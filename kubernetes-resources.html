@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Kubernetes Learning Resources</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    line-height: 1.6;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #1a1f35 0%, #0d1117 60%);
+    border-bottom: 1px solid #21262d;
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.4rem;
+    color: #58a6ff;
+    margin-bottom: 8px;
+  }
+  .hero p {
+    font-size: 1.05rem;
+    color: #8b949e;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+
+  /* ── Section headings ── */
+  .section-title {
+    font-size: 1.35rem;
+    color: #58a6ff;
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #21262d;
+  }
+  .section-title:first-of-type { margin-top: 0; }
+
+  /* ── Cards ── */
+  .card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: #388bfd; }
+
+  .card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .card h3 a {
+    color: #58a6ff;
+    text-decoration: none;
+  }
+  .card h3 a:hover { text-decoration: underline; }
+
+  .card p {
+    font-size: 0.9rem;
+    color: #8b949e;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge-free { background: #0e4429; color: #3fb950; }
+  .badge-popular { background: #3d1f00; color: #d29922; }
+  .badge-interactive { background: #1f2937; color: #79c0ff; }
+  .badge-video { background: #2d1b3d; color: #bc8cff; }
+  .badge-cert { background: #1a2d4d; color: #388bfd; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: #484f58;
+    font-size: 0.8rem;
+    border-top: 1px solid #21262d;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Learn Kubernetes</h1>
+  <p>A curated list of the best websites, courses, interactive labs, and video channels for learning Kubernetes — based on what the community actually uses and recommends.</p>
+</div>
+
+<div class="container">
+
+  <!-- ── Official Docs & Tutorials ── -->
+  <h2 class="section-title">Official Documentation &amp; Tutorials</h2>
+
+  <div class="card">
+    <h3><a href="https://kubernetes.io/docs/tutorials/" target="_blank" rel="noopener">Kubernetes Official Tutorials</a> <span class="badge badge-free">Free</span> <span class="badge badge-popular">Essential</span></h3>
+    <p>The official Kubernetes docs include browser-based interactive tutorials (powered by Katacoda) covering basics, configurations, stateless &amp; stateful apps, services, and security. Always up-to-date with the latest release. This is where everyone starts.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://kubernetes.io/docs/tasks/" target="_blank" rel="noopener">Kubernetes Tasks (Official)</a> <span class="badge badge-free">Free</span></h3>
+    <p>Step-by-step task guides for real-world operations — managing secrets, configuring networking, setting up storage, and more. Invaluable for CKA/CKAD exam prep.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://kubernetes.io/docs/concepts/" target="_blank" rel="noopener">Kubernetes Concepts (Official)</a> <span class="badge badge-free">Free</span></h3>
+    <p>Deep-dive reference for every core concept: Pods, Deployments, Services, Namespaces, RBAC, Scheduling, and the control plane architecture. Bookmark this one.</p>
+  </div>
+
+  <!-- ── Interactive Labs & Playgrounds ── -->
+  <h2 class="section-title">Interactive Labs &amp; Playgrounds</h2>
+
+  <div class="card">
+    <h3><a href="https://killercoda.com/" target="_blank" rel="noopener">Killercoda</a> <span class="badge badge-free">Free</span> <span class="badge badge-interactive">Interactive</span> <span class="badge badge-popular">Community Favourite</span></h3>
+    <p>Browser-based Kubernetes playgrounds with guided scenarios — no installation needed. Covers pods, deployments, services, networking, Helm, and troubleshooting. The successor to Katacoda and widely regarded as the best free hands-on platform.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://kodekloud.com/studio/labs/kubernetes" target="_blank" rel="noopener">KodeKloud Kubernetes Labs</a> <span class="badge badge-interactive">Interactive</span> <span class="badge badge-popular">Top Rated</span></h3>
+    <p>Hands-on labs and playgrounds aligned with CKA, CKAD, and CKS exam curricula. Run real commands in realistic clusters. KodeKloud is consistently the most-recommended platform on Reddit and DevOps communities for practical Kubernetes learning. (Subscription required for full access.)</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://labs.play-with-k8s.com/" target="_blank" rel="noopener">Play with Kubernetes (PWK)</a> <span class="badge badge-free">Free</span> <span class="badge badge-interactive">Interactive</span></h3>
+    <p>Spin up a real multi-node Kubernetes cluster in your browser in seconds. Great for quick experiments and practice without any setup. Sessions last 4 hours.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://www.ibm.com/products/kubernetes-service/kubernetes-tutorials" target="_blank" rel="noopener">IBM CloudLabs — Kubernetes Tutorials</a> <span class="badge badge-free">Free</span> <span class="badge badge-interactive">Interactive</span></h3>
+    <p>Three free browser-based labs covering containers &amp; Kubernetes essentials, scalable web apps, and log analysis &amp; monitoring. No downloads or credit card required.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://k8svisual.com/learn" target="_blank" rel="noopener">K8sVisual — Interactive Visual Tutorials</a> <span class="badge badge-free">Free</span> <span class="badge badge-interactive">Interactive</span></h3>
+    <p>15+ visual, interactive lessons covering pods, services, deployments, StatefulSets, DaemonSets, RBAC, and more. Great for visual learners who want to see how resources relate.</p>
+  </div>
+
+  <!-- ── Structured Courses ── -->
+  <h2 class="section-title">Structured Courses</h2>
+
+  <div class="card">
+    <h3><a href="https://kodekloud.com/p/kubernetes-for-beginners" target="_blank" rel="noopener">KodeKloud — Kubernetes for Beginners (CKA/CKAD)</a> <span class="badge badge-popular">Most Recommended</span> <span class="badge badge-cert">Certification</span></h3>
+    <p>The single most-recommended Kubernetes course across Reddit, DevOps communities, and certification forums. Created by Mumshad Mannambeth, it combines video lectures with integrated hands-on labs. Covers everything from basics to CKA/CKAD exam readiness. Trustpilot rating: 4.5/5 from 460+ reviews.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://www.coursera.org/learn/google-kubernetes-engine" target="_blank" rel="noopener">Coursera — Architecting with Google Kubernetes Engine</a> <span class="badge badge-cert">Certification</span></h3>
+    <p>Google's official GKE specialization on Coursera. Structured, instructor-led, and includes hands-on labs via Qwiklabs. Ideal if you're targeting GCP or want a university-style course format.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://www.coursera.org/learn/ibm-containers-docker-kubernetes-openshift" target="_blank" rel="noopener">Coursera — IBM: Introduction to Containers, Kubernetes &amp; OpenShift</a> <span class="badge badge-free">Free to audit</span></h3>
+    <p>Holistic overview of Docker, Kubernetes, and OpenShift. Good for beginners who want context on the full container ecosystem, not just K8s in isolation.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/" target="_blank" rel="noopener">Linux Foundation — CKA / CKAD / CKS Certifications</a> <span class="badge badge-cert">Certification</span> <span class="badge badge-popular">Industry Standard</span></h3>
+    <p>The official CNCF certification paths. The CKA exam curriculum doubles as an excellent learning checklist — even if you don't sit the exam, working through its domains ensures comprehensive coverage. KodeKloud and Killer.sh provide exam-simulator environments.</p>
+  </div>
+
+  <!-- ── Video Channels ── -->
+  <h2 class="section-title">YouTube Channels</h2>
+
+  <div class="card">
+    <h3><a href="https://www.youtube.com/@TechWorldwithNana" target="_blank" rel="noopener">TechWorld with Nana</a> <span class="badge badge-video">Video</span> <span class="badge badge-popular">Most Recommended</span></h3>
+    <p>Nana's Kubernetes tutorial series is one of the most-watched on YouTube. Clear, well-structured, beginner-friendly. Her "DevOps Bootcamp" playlist covers Docker, Kubernetes, CI/CD, and GitOps. Perfect starting point for visual learners.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://www.youtube.com/@KodeKloud" target="_blank" rel="noopener">KodeKloud</a> <span class="badge badge-video">Video</span></h3>
+    <p>Free Kubernetes tutorials and labs on YouTube that complement their paid courses. Great for CKA/CKAD prep with practical demonstrations.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://www.youtube.com/@AbhishekVeeramalla" target="_blank" rel="noopener">Abhishek Veeramalla</a> <span class="badge badge-video">Video</span></h3>
+    <p>Real-world Kubernetes examples with clear explanations. His Kubernetes playlist is highly recommended for understanding practical day-to-day operations and interview preparation.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://www.youtube.com/@KubernetesCommunity" target="_blank" rel="noopener">Kubernetes Community (Official)</a> <span class="badge badge-video">Video</span></h3>
+    <p>Official Kubernetes channel with talks, tutorials, KubeCon recordings, and updates directly from the community. Best for staying current with ecosystem developments.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://www.youtube.com/@CNCF" target="_blank" rel="noopener">CNCF (Cloud Native Computing Foundation)</a> <span class="badge badge-video">Video</span></h3>
+    <p>Live Kubernetes troubleshooting sessions, project updates, and deep-dive talks from KubeCon. Excellent for intermediate-to-advanced learners.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://www.youtube.com/@DevOpsDirective" target="_blank" rel="noopener">DevOps Directive</a> <span class="badge badge-video">Video</span></h3>
+    <p>Scott Lowe's channel covers Kubernetes and cloud-native topics for both beginners and seasoned professionals. Well-produced, concise, and practical.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://www.youtube.com/@freeCodeCamp" target="_blank" rel="noopener">freeCodeCamp.org</a> <span class="badge badge-video">Video</span></h3>
+    <p>Full-length Kubernetes courses (often 8+ hours) that are completely free. Comprehensive, well-structured, and great for deep weekend study sessions.</p>
+  </div>
+
+  <!-- ── Roadmaps & Guides ── -->
+  <h2 class="section-title">Roadmaps &amp; Guides</h2>
+
+  <div class="card">
+    <h3><a href="https://roadmap.sh/kubernetes" target="_blank" rel="noopener">Kubernetes Roadmap (roadmap.sh)</a> <span class="badge badge-free">Free</span> <span class="badge badge-popular">Community Favourite</span></h3>
+    <p>Community-maintained visual roadmap laying out every topic from fundamentals through security, observability, and networking. Perfect for knowing what to learn next and avoiding random tutorial hopping.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://devopscube.com/learn-kubernetes-complete-roadmap/" target="_blank" rel="noopener">DevOpsCube — Kubernetes Learning Roadmap</a> <span class="badge badge-free">Free</span></h3>
+    <p>Step-by-step guide with a suggested learning order, free resources, and project ideas. Also links to 35+ hands-on Kubernetes tutorials on the same site.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://github.com/techiescamp/kubernetes-learning-path" target="_blank" rel="noopener">Kubernetes Learning Path (GitHub)</a> <span class="badge badge-free">Free</span></h3>
+    <p>Community-maintained GitHub repo with a structured learning path, free resources, cluster deployment guides, and production case studies. Great companion reference.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://www.cncf.io/blog/2026/01/19/top-28-kubernetes-resources-for-2026-learn-and-stay-up-to-date/" target="_blank" rel="noopener">CNCF — Top 28 Kubernetes Resources for 2026</a> <span class="badge badge-free">Free</span></h3>
+    <p>Official CNCF-curated list covering docs, interactive labs, roadmaps, podcasts, and community resources. A comprehensive meta-resource that's kept up to date.</p>
+  </div>
+
+  <!-- ── Blogs & Tutorials ── -->
+  <h2 class="section-title">Blogs &amp; Written Tutorials</h2>
+
+  <div class="card">
+    <h3><a href="https://devopscube.com/kubernetes-tutorials-beginners/" target="_blank" rel="noopener">DevOpsCube Kubernetes Tutorials</a> <span class="badge badge-free">Free</span></h3>
+    <p>35+ comprehensive hands-on tutorials covering architecture, cluster setup, deployments, best practices, package management, secrets, monitoring, and logging. One of the best free written tutorial collections.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://learncloudnative.com/blog/2020-05-26-getting-started-with-kubernetes-part-1/" target="_blank" rel="noopener">Learn Cloud Native — Beginner's Guide to Kubernetes</a> <span class="badge badge-free">Free</span></h3>
+    <p>A 45-page illustrated guide explaining pods, replica sets, services, and core concepts. Originally recommended on r/devops and still one of the clearest written introductions.</p>
+  </div>
+
+  <!-- ── Podcasts ── -->
+  <h2 class="section-title">Podcasts</h2>
+
+  <div class="card">
+    <h3><a href="https://kubernetespodcast.com/" target="_blank" rel="noopener">Kubernetes Podcast from Google</a> <span class="badge badge-free">Free</span></h3>
+    <p>Long-running weekly show with guest insights from the Kubernetes community, news, and commentary on recent releases. Great for staying current during commutes.</p>
+  </div>
+
+  <div class="card">
+    <h3><a href="https://packetpushers.net/podcast/day-two-devops/" target="_blank" rel="noopener">Day Two DevOps (Packet Pushers)</a> <span class="badge badge-free">Free</span></h3>
+    <p>Conversations with technical leaders on Kubernetes operations, security, networking, and day-2 concerns. Focuses on real-world production experience.</p>
+  </div>
+
+</div>
+
+<footer>
+  Curated from community recommendations on Reddit, CNCF, DevOps forums, and hands-on practitioner reviews. Last updated June 2026.
+</footer>
+
+</body>
+</html>
