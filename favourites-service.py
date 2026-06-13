@@ -6,7 +6,7 @@ Serves the HTML file and provides a JSON API for favourites.
 Favourites are stored in .favourites.json and auto-committed to Git.
 
 Usage:
-    python3 favourites-service.py          # starts on http://localhost:8000
+    python3 favourites-service.py          # starts on http://localhost:5000
     python3 favourites-service.py --port 9000  # custom port
 """
 
@@ -17,7 +17,7 @@ import sys
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse
 
-PORT = int(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[1] == "--port" else 8000
+PORT = int(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[1] == "--port" else 5000
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 FAV_FILE = os.path.join(SCRIPT_DIR, ".favourites.json")
 HTML_FILE = os.path.join(SCRIPT_DIR, "devops-learning-hub.html")
@@ -66,8 +66,15 @@ class FavouritesHandler(SimpleHTTPRequestHandler):
             self.end_headers()
             favs = load_favourites()
             self.wfile.write(json.dumps(favs).encode())
+        elif parsed.path == "/" or parsed.path == "/index.html":
+            # serve the learning hub at root
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.end_headers()
+            with open(HTML_FILE, "rb") as f:
+                self.wfile.write(f.read())
         else:
-            # serve static files normally
+            # serve other static files normally
             super().do_GET()
 
     def do_POST(self):
@@ -114,8 +121,8 @@ if __name__ == "__main__":
         save_favourites([])
 
     server = HTTPServer(("0.0.0.0", PORT), FavouritesHandler)
-    print(f"Favourites service running at http://localhost:{PORT}")
-    print(f"  → Open http://localhost:{PORT}/devops-learning-hub.html")
+    print(f"DevOps Learning Hub running at http://localhost:{PORT}")
+    print(f"  → Open http://localhost:{PORT} in your browser")
     print(f"  → Favourites stored in: {FAV_FILE}")
     print(f"  → Auto-syncs to Git on every change")
     print(f"  → Press Ctrl+C to stop")
