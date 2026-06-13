@@ -4,5 +4,10 @@
     "id": "card-001-kodekloud-free-tier",
     "name": "KodeKloud (Free Tier)",
     "url": "https://kodekloud.com/courses/"
+  },
+  {
+    "id": "card-071-ramitsurana-awesome-kubernetes",
+    "name": "ramitsurana/awesome-kubernetes",
+    "url": "https://github.com/ramitsurana/awesome-kubernetes"
   }
 ]
