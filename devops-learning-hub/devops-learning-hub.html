@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate DevOps Learning Resources 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --orange: #d29922;
+    --red: #f85149;
+    --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-padding-top: 70px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, #161b22 0%, #1a2332 50%, #161b22 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(88,166,255,0.08) 0%, transparent 60%);
+  }
+  header h1 {
+    font-size: 1.4em;
+    margin-bottom: 4px;
+    position: relative;
+  }
+  header h1 span { color: var(--accent); }
+  header p {
+    color: var(--muted);
+    font-size: 0.85em;
+    position: relative;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .tag-free { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+  .tag-paid { background: rgba(210,153,34,0.15); color: var(--orange); border: 1px solid rgba(210,153,34,0.3); }
+  .tag-cert { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
+  .tag-youtube { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
+
+  nav {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  nav li a {
+    display: block;
+    padding: 12px 16px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  nav li a:hover { color: var(--accent); }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  .section { margin-bottom: 50px; }
+  .section-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-icon { font-size: 1.3em; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .card h3 {
+    font-size: 1.05em;
+    margin-bottom: 8px;
+    padding-right: 32px;
+  }
+  .card h3 a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .card h3 a:hover { text-decoration: underline; }
+  .card p {
+    color: var(--muted);
+    font-size: 0.88em;
+    flex-grow: 1;
+    margin-bottom: 12px;
+  }
+  .card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  .book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .book {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    flex: 1 1 260px;
+  }
+  .book strong { color: var(--text); font-size: 0.95em; }
+  .book .author { color: var(--muted); font-size: 0.82em; margin-top: 4px; }
+  .book .desc { color: var(--muted); font-size: 0.8em; margin-top: 6px; }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+    font-size: 0.85em;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5em; }
+    .grid { grid-template-columns: 1fr; }
+    nav ul { overflow-x: auto; }
+  }
+  /* Favourites */
+  .star-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 1.3em;
+    cursor: pointer;
+    color: var(--muted);
+    transition: color 0.2s, transform 0.2s;
+    line-height: 1;
+    padding: 2px;
+  }
+  .star-btn:hover { transform: scale(1.2); }
+  .star-btn.active {
+    color: var(--orange);
+  }
+  .card { position: relative; }
+
+  .fav-empty {
+    color: var(--muted);
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.95em;
+  }
+  .fav-empty span { font-size: 2em; display: block; margin-bottom: 10px; }
+
+  #favourites-count {
+    background: rgba(210,153,34,0.2);
+    color: var(--orange);
+    font-size: 0.7em;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 700;
+    vertical-align: middle;
+    margin-left: 4px;
+    display: inline-block;
+  }
+  #favourites-count.hidden { display: none; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🚀 The Ultimate <span>DevOps</span> Learning Hub</h1>
+  <p>Curated from across the internet — courses, books, certifications, communities &amp; more. All in one place.</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#courses-free">Free Courses</a></li>
+    <li><a href="#courses-paid">Paid Courses</a></li>
+    <li><a href="#bootcamps">Bootcamps</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#interview">Interview Prep</a></li>
+    <li><a href="#youtube">YouTube</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#communities">Communities</a></li>
+    <li><a href="#roadmaps">Dev Roadmaps</a></li>
+    <li><a href="#github-repos">GitHub Repos</a></li>
+    <li><a href="#favourites">⭐ Favourites <span id="favourites-count" class="hidden">0</span></a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- FREE COURSES -->
+  <div class="section" id="courses-free">
+    <h2 class="section-title"><span class="section-icon">🎓</span> Free Courses &amp; Resources</h2>
+    <div class="grid">
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-001-kodekloud-free-tier" data-name="KodeKloud (Free Tier)" data-url="https://kodekloud.com/courses/" title="Add to favourites">☆</button>
+        <h3><a href="https://kodekloud.com/courses/" target="_blank">KodeKloud (Free Tier)</a></h3>
+        <p>Best-in-class hands-on DevOps courses with browser-based labs. Free courses include Docker, Kubernetes, Linux &amp; Git for absolute beginners. Labs are the killer feature here — you practice real commands without installing anything.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-002-cloudcaptain" data-name="CloudCaptain" data-url="https://cloudcaptain.io" title="Add to favourites">☆</button>
+        <h3><a href="https://cloudcaptain.io" target="_blank">CloudCaptain</a></h3>
+        <p>100% free, open-source learning hub with 150+ documentation pages, 49 architecture diagrams, 8 career paths &amp; 7 structured roadmaps covering Cloud, DevOps &amp; AI. Hands-on exercises, cheat sheets &amp; interview Q&amp;A included.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-003-microsoft-learn-devops" data-name="Microsoft Learn — DevOps" data-url="https://learn.microsoft.com/en-us/training/modules/get-started-with-devops/" title="Add to favourites">☆</button>
+        <h3><a href="https://learn.microsoft.com/en-us/training/modules/get-started-with-devops/" target="_blank">Microsoft Learn — DevOps</a></h3>
+        <p>Microsoft's official self-paced platform with guided, interactive modules on DevOps practices using Azure tools. Covers CI/CD, infrastructure as code, and monitoring. Completely free with hands-on sandbox environments.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-004-coursera-devops-courses" data-name="Coursera DevOps Courses" data-url="https://www.coursera.org/courses?query=devops" title="Add to favourites">☆</button>
+        <h3><a href="https://www.coursera.org/courses?query=devops" target="_blank">Coursera DevOps Courses</a></h3>
+        <p>Courses from IBM, Google, Duke University &amp; more. Introduction to DevOps, CI/CD, Kubernetes, and cloud-native development. Free to audit (pay only for certificates). Financial aid available.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free to Audit</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-005-techtarget-s-10-best-free-devops-courses" data-name="TechTarget's 10 Best Free DevOps Courses" data-url="https://www.techtarget.com/whatis/feature/9-best-free-DevOps-certifications-and-training-courses" title="Add to favourites">☆</button>
+        <h3><a href="https://www.techtarget.com/whatis/feature/9-best-free-DevOps-certifications-and-training-courses" target="_blank">TechTarget's 10 Best Free DevOps Courses</a></h3>
+        <p>Curated list of the best free DevOps certifications and training courses for 2026. Covers Linux Foundation, Google Cloud Skills Boost, and more. Great starting point.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-006-dev-to-favorite-free-devops-courses" data-name="Dev.to — Favorite Free DevOps Courses" data-url="https://dev.to/javinpaul/my-favorite-free-courses-to-learn-devops-in-2023-4h6m" title="Add to favourites">☆</button>
+        <h3><a href="https://dev.to/javinpaul/my-favorite-free-courses-to-learn-devops-in-2023-4h6m" target="_blank">Dev.to — Favorite Free DevOps Courses</a></h3>
+        <p>In-depth blog post covering free courses on Udemy, YouTube, and Pluralsight to learn Docker, Jenkins, Ansible, Kubernetes &amp; more. Created by experienced developers, trusted by thousands.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-007-pw-skills-9-best-devops-certifications" data-name="PW Skills — 9 Best DevOps Certifications" data-url="https://pwskills.com/blog/devops/9-best-devops-certification-free-and-paid" title="Add to favourites">☆</button>
+        <h3><a href="https://pwskills.com/blog/devops/9-best-devops-certification-free-and-paid" target="_blank">PW Skills — 9 Best DevOps Certifications</a></h3>
+        <p>Mix of free and paid DevOps certifications and courses. Covers AWS, Azure, Docker, Kubernetes &amp; Terraform. Good comparison of free vs paid options with costs.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free Options</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-008-10-free-devops-resources-no-udemy-needed" data-name="10 FREE DevOps Resources (No Udemy Needed)" data-url="https://www.linkedin.com/pulse/10-free-resources-learn-devops-2025-udemy-needed-david-yaya-nnehc" title="Add to favourites">☆</button>
+        <h3><a href="https://www.linkedin.com/pulse/10-free-resources-learn-devops-2025-udemy-needed-david-yaya-nnehc" target="_blank">10 FREE DevOps Resources (No Udemy Needed)</a></h3>
+        <p>LinkedIn article listing 10 completely free DevOps learning resources. Covers interactive labs, documentation, and community-driven platforms that cost nothing.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PAID COURSES -->
+  <div class="section" id="courses-paid">
+    <h2 class="section-title"><span class="section-icon">💰</span> Paid Courses &amp; Platforms</h2>
+    <div class="grid">
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-009-kodekloud-pro" data-name="KodeKloud PRO" data-url="https://kodekloud.com" title="Add to favourites">☆</button>
+        <h3><a href="https://kodekloud.com" target="_blank">KodeKloud PRO</a></h3>
+        <p>The gold standard for hands-on DevOps learning. $35/month (Standard) or $70/month (PRO) with 170+ courses and 1,250+ interactive labs. Covers CKA, CKAD, Terraform, Docker, Ansible, Prometheus &amp; more. Practice in real environments.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$35–99/mo</span>
+          <span class="tag tag-cert">Cert Prep</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-010-st-phane-maarek-s-aws-courses-udemy" data-name="Stéphane Maarek's AWS Courses (Udemy)" data-url="https://www.udemy.com/user/stephane-maarek" title="Add to favourites">☆</button>
+        <h3><a href="https://www.udemy.com/user/stephane-maarek" target="_blank">Stéphane Maarek's AWS Courses (Udemy)</a></h3>
+        <p>One of Udemy's top instructors with 3.4M+ students. Ultimate AWS Certified DevOps Engineer Professional, Solutions Architect &amp; Cloud Practitioner courses. Often on sale for $12–15. Best-selling, constantly updated.</p>
+        <div class="tags">
+          <span class="tag tag-paid">~$15 (on sale)</span>
+          <span class="tag tag-cert">AWS Certs</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-011-udemy-top-devops-courses" data-name="Udemy — Top DevOps Courses" data-url="https://www.udemy.com/topic/devops/" title="Add to favourites">☆</button>
+        <h3><a href="https://www.udemy.com/topic/devops/" target="_blank">Udemy — Top DevOps Courses</a></h3>
+        <p>2.4M+ learners across 330 DevOps courses (avg rating 4.5). Find Mumshad Mannambeth's KodeKloud courses, DevOps bootcamps, Docker/Kubernetes mastery &amp; CI/CD deep dives. Frequent sales make courses $10–15.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$10–15 (sale)</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-012-pluralsight-a-cloud-guru" data-name="Pluralsight (A Cloud Guru)" data-url="https://pluralsight.com/cloud-guru" title="Add to favourites">☆</button>
+        <h3><a href="https://pluralsight.com/cloud-guru" target="_blank">Pluralsight (A Cloud Guru)</a></h3>
+        <p>Now includes A Cloud Guru. Subscription starts at $15/mo. 3,000+ hands-on labs, Skill IQ assessments, cloud playground &amp; certification prep for AWS, Azure, GCP. Best for career-long learning across all tech domains.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$15+/mo</span>
+          <span class="tag tag-cert">Multi-cert</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-013-coursera-ibm-devops-professional-certificate" data-name="Coursera — IBM DevOps Professional Certificate" data-url="https://www.coursera.org/courses?query=devops" title="Add to favourites">☆</button>
+        <h3><a href="https://www.coursera.org/courses?query=devops" target="_blank">Coursera — IBM DevOps Professional Certificate</a></h3>
+        <p>IBM's DevOps and Software Engineering Professional Certificate. Covers CI/CD, cloud-native, microservices, containers, Agile &amp; Scrum. 4.7-star rated, ~3 months at 10 hrs/week. Financial aid available.</p>
+        <div class="tags">
+          <span class="tag tag-paid">Free Trial / $49/mo</span>
+          <span class="tag tag-cert">Professional Cert</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-014-reddemy-top-rated-devops-courses" data-name="Reddemy — Top Rated DevOps Courses" data-url="https://reddemy.com/creators/stephane-maarek-%7C-aws-certified-cloud-practitioner%2Csolutions-architect%2Cdeveloper" title="Add to favourites">☆</button>
+        <h3><a href="https://reddemy.com/creators/stephane-maarek-%7C-aws-certified-cloud-practitioner%2Csolutions-architect%2Cdeveloper" target="_blank">Reddemy — Top Rated DevOps Courses</a></h3>
+        <p>Reddit-powered course finder that ranks Udemy courses by upvotes from real DevOps communities. Find the most-loved courses for Docker, Kubernetes, Terraform &amp; CI/CD without guessing.</p>
+        <div class="tags">
+          <span class="tag tag-paid">Varies</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOOTCAMPS -->
+  <div class="section" id="bootcamps">
+    <h2 class="section-title"><span class="section-icon">🏕️</span> DevOps Bootcamps</h2>
+    <div class="grid">
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-015-devops-bootcamp-techworld-with-nana" data-name="DevOps Bootcamp — TechWorld with Nana" data-url="https://techworld-with-nana.com/devops-bootcamp" title="Add to favourites">☆</button>
+        <h3><a href="https://techworld-with-nana.com/devops-bootcamp" target="_blank">DevOps Bootcamp — TechWorld with Nana</a></h3>
+        <p>6-month program by Nana Janashia. Covers Linux, Git, CI/CD, Docker, Kubernetes, Terraform, Ansion, Prometheus, Grafana &amp; AWS. 9,500+ students, 4.9 rating. Real mentoring emails from Nana herself. Job-ready focus.</p>
+        <div class="tags">
+          <span class="tag tag-paid">Paid</span>
+          <span class="tag tag-cert">Mentoring</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-016-edx-linux-foundation-devops-program" data-name="edX — Linux Foundation DevOps Program" data-url="https://www.edx.org/professional-certificate/linuxfoundationx-devops-engineer" title="Add to favourites">☆</button>
+        <h3><a href="https://www.edx.org/professional-certificate/linuxfoundationx-devops-engineer" target="_blank">edX — Linux Foundation DevOps Program</a></h3>
+        <p>Professional certificate covering the fundamental tools and processes of DevOps. Covers version control, containerization, CI/CD, infrastructure automation, and monitoring. Self-paced, university-backed curriculum.</p>
+        <div class="tags">
+          <span class="tag tag-paid">Paid</span>
+          <span class="tag tag-cert">Professional Cert</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-017-forbes-best-devops-bootcamps-2026" data-name="&#43;>Forbes — Best DevOps Bootcamps 2026" data-url="https://www.forbes.com/advisor/education/bootcamps/best-devops-bootcamps/" title="Add to favourites">☆</button>
+        <h3><a href="https://www.forbes.com/advisor/education/bootcamps/best-devops-bootcamps/" target="_blank>">Forbes — Best DevOps Bootcamps 2026</a></h3>
+        <p>Forbes Advisor's reviewed list of best DevOps bootcamps. Compares affordability, credibility, and student experiences across top programs including Simplilearn, Caltech CTME, &amp; more.</p>
+        <div class="tags">
+          <span class="tag tag-paid">Varies</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section" id="certifications">
+    <h2 class="section-title"><span class="section-icon">📜</span> Top DevOps Certifications</h2>
+    <div class="grid">
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-018-aws-certified-devops-engineer-professional" data-name="AWS Certified DevOps Engineer — Professional" data-url="https://aws.amazon.com/certification/certified-devops-engineer-professional/" title="Add to favourites">☆</button>
+        <h3><a href="https://aws.amazon.com/certification/certified-devops-engineer-professional/" target="_blank">AWS Certified DevOps Engineer — Professional</a></h3>
+        <p>The most sought-after cloud DevOps cert. Validates CI/CD, infrastructure automation, monitoring, logging &amp; security on AWS. $300 exam. Requires 2+ years AWS experience. Median salary ~$130K+.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$300</span>
+          <span class="tag tag-cert">AWS</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-019-certified-kubernetes-administrator-cka" data-name="Certified Kubernetes Administrator (CKA)" data-url="https://www.cncf.io/certification/cka/" title="Add to favourites">☆</button>
+        <h3><a href="https://www.cncf.io/certification/cka/" target="_blank">Certified Kubernetes Administrator (CKA)</a></h3>
+        <p>The industry-standard Kubernetes cert from CNCF. Hands-on, performance-based exam. Covers cluster architecture, workloads, networking, storage &amp; troubleshooting. $300 exam. Essential for any Kubernetes role.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$300</span>
+          <span class="tag tag-cert">CNCF</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-020-hashicorp-certified-terraform-associate" data-name="HashiCorp Certified: Terraform Associate" data-url="https://www.hashicorp.com/en/certification" title="Add to favourites">☆</button>
+        <h3><a href="https://www.hashicorp.com/en/certification" target="_blank">HashiCorp Certified: Terraform Associate</a></h3>
+        <p>Validates Infrastructure as Code skills using Terraform. Covers Terraform CLI, modules, state management &amp; provisioning across clouds. ~$70 exam. Great entry-level cert for IaC.</p>
+        <div class="tags">
+          <span class="tag tag-paid">~$70</span>
+          <span class="tag tag-cert">HashiCorp</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-021-microsoft-certified-devops-engineer-expert" data-name="Microsoft Certified: DevOps Engineer Expert" data-url="https://learn.microsoft.com/en-us/certifications/devops-engineer/" title="Add to favourites">☆</button>
+        <h3><a href="https://learn.microsoft.com/en-us/certifications/devops-engineer/" target="_blank">Microsoft Certified: DevOps Engineer Expert</a></h3>
+        <p>Expert-level Azure cert. Covers designing &amp; implementing DevOps strategies, source control, CI/CD, compliance &amp; instrumentation. Requires Azure Admin or Developer Associate first. ~$165 exam.</p>
+        <div class="tags">
+          <span class="tag tag-paid">~$165</span>
+          <span class="tag tag-cert">Azure</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-022-certified-kubernetes-application-developer-ckad" data-name="Certified Kubernetes Application Developer (CKAD)" data-url="https://www.cncf.io/certification/ckad/" title="Add to favourites">☆</button>
+        <h3><a href="https://www.cncf.io/certification/ckad/" target="_blank">Certified Kubernetes Application Developer (CKAD)</a></h3>
+        <p>For developers building &amp; deploying apps on Kubernetes. Covers pod design, configuration, observability, services &amp; networking. $300 exam. Pairs well with CKA.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$300</span>
+          <span class="tag tag-cert">CNCF</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-023-certified-kubernetes-security-specialist-cks" data-name="Certified Kubernetes Security Specialist (CKS)" data-url="https://www.cncf.io/certification/cks/" title="Add to favourites">☆</button>
+        <h3><a href="https://www.cncf.io/certification/cks/" target="_blank">Certified Kubernetes Security Specialist (CKS)</a></h3>
+        <p>Advanced security-focused Kubernetes cert. Requires CKA first. Covers cluster hardening, supply chain security, runtime security &amp; network policies. $395 exam. High-value for DevSecOps roles.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$395</span>
+          <span class="tag tag-cert">CNCF</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- INTERVIEW PREP -->
+  <div class="section" id="interview">
+    <h2 class="section-title"><span class="section-icon">💼</span> Interview Preparation</h2>
+    <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.9em;">DevOps and Kubernetes interview questions, answers, and practice resources — sourced from top GitHub repos, community guides, and real interview experiences.</p>
+    <div class="grid">
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-024-notharshhaa-devops-interview-questions" data-name="NotHarshhaa/DevOps-Interview-Questions" data-url="https://github.com/NotHarshhaa/DevOps-Interview-Questions" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/NotHarshhaa/DevOps-Interview-Questions" target="_blank">NotHarshhaa/DevOps-Interview-Questions</a> <span style="color: var(--orange); font-size: 0.8em;">★ 809</span></h3>
+        <p>1,100+ carefully curated DevOps interview questions with detailed answers. Covers DevOps fundamentals, AWS/Azure/GCP, Docker, Kubernetes, Helm, Jenkins, ArgoCD, GitHub Actions, Prometheus, Grafana, ELK, Ansible, Terraform, Bash, Python, Linux, networking, security &amp; real-world scenarios. Questions categorized as Beginner / Intermediate / Advanced. Includes downloadable PDFs and cheat sheets.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">GitHub</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-025-bregman-arie-devops-exercises" data-name="bregman-arie/devops-exercises" data-url="https://github.com/bregman-arie/devops-exercises" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/bregman-arie/devops-exercises" target="_blank">bregman-arie/devops-exercises</a> <span style="color: var(--orange); font-size: 0.8em;">★ 82K</span></h3>
+        <p>The most popular DevOps interview repo on GitHub. 2,600+ exercises covering Linux, Jenkins, AWS, SRE, Prometheus, Docker, Python, Ansible, Git, Kubernetes, Terraform, OpenStack, SQL, NoSQL, Azure, GCP, DNS, Elastic, Network &amp; Virtualization. Community-maintained with constant updates. Perfect for hands-on practice.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">GitHub</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-026-atryx-kubernetes-interview-questions" data-name="atryx/kubernetes-interview-questions" data-url="https://github.com/atryx/kubernetes-interview-questions" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/atryx/kubernetes-interview-questions" target="_blank">atryx/kubernetes-interview-questions</a></h3>
+        <p>100+ Kubernetes interview questions with detailed answers — from Pod basics to production cluster architecture. Covers core concepts, pods &amp; workloads, networking, storage, ConfigMaps &amp; Secrets, scheduling, security, observability, cluster administration, and scenario-based questions. Junior through Principal level.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">Kubernetes</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-027-devinterview-io-kubernetes-interview-questions" data-name="Devinterview-io/kubernetes-interview-questions" data-url="https://github.com/Devinterview-io/kubernetes-interview-questions" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/Devinterview-io/kubernetes-interview-questions" target="_blank">Devinterview-io/kubernetes-interview-questions</a></h3>
+        <p>42 important Kubernetes interview questions for 2026 with detailed answers. Covers container orchestration concepts, pod management, networking, persistent storage, RBAC, Helm, and troubleshooting. Well-structured with YAML examples and code snippets.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">Kubernetes</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-028-rohitg00-devops-interview-questions" data-name="rohitg00/devops-interview-questions" data-url="https://github.com/rohitg00/devops-interview-questions" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/rohitg00/devops-interview-questions" target="_blank">rohitg00/devops-interview-questions</a></h3>
+        <p>DevOps interview questions covering blue/green deployment, canary releases, chaos engineering (Chaos Monkey, Gremlin, Chaos Mesh, LitmusChaos), Terraform drift, incident management, and real-world architecture scenarios. Includes detailed answers with diagrams and code examples.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">GitHub</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-029-dnxlabs-devops-interview-questions" data-name="DNXLabs/DevOps-Interview-Questions" data-url="https://github.com/DNXLabs/DevOps-Interview-Questions" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/DNXLabs/DevOps-Interview-Questions" target="_blank">DNXLabs/DevOps-Interview-Questions</a> <span style="color: var(--orange); font-size: 0.8em;">★ 486</span></h3>
+        <p>Well-organized DevOps interview questions covering general DevOps concepts, networking, Linux, cloud, CI/CD, coding, security, architecture, and automation. Includes behavioral/fun questions that interviewers actually ask. Great for holistic interview prep.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">GitHub</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-030-devops-training-institute-200-interview-q-amp-a" data-name="DevOps Training Institute — 200+ Interview Q&amp;A" data-url="https://www.devopstraininginstitute.com/blog/200-DevOps-Interview-Questions-and-Answers-Complete-Guide" title="Add to favourites">☆</button>
+        <h3><a href="https://www.devopstraininginstitute.com/blog/200-DevOps-Interview-Questions-and-Answers-Complete-Guide" target="_blank">DevOps Training Institute — 200+ Interview Q&amp;A</a></h3>
+        <p>201 scenario-based DevOps interview questions with detailed answers. Covers CI/CD pipelines, containerization, IaC, monitoring, security, multi-cloud (AWS/Azure/GCP), Jenkins, Docker, Kubernetes, Terraform, Ansible, and GitLab CI/CD. Tailored for both freshers and experienced professionals.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-031-devops-training-institute-150-kubernetes-q-amp-a" data-name="DevOps Training Institute — 150+ Kubernetes Q&amp;A" data-url="https://www.devopstraininginstitute.com/blog/150-Kubernetes-Interview-Questions-and-Answers" title="Add to favourites">☆</button>
+        <h3><a href="https://www.devopstraininginstitute.com/blog/150-Kubernetes-Interview-Questions-and-Answers" target="_blank">DevOps Training Institute — 150+ Kubernetes Q&amp;A</a></h3>
+        <p>151 Kubernetes interview questions covering fundamentals, architecture, networking, storage, orchestration, security, CI/CD integration with AWS ECS/EKS and CodePipeline. Designed for DevOps Engineers and SREs in enterprise environments.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">Kubernetes</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-032-dev-community-100-devops-interview-q-amp-a-for-2025" data-name="DEV Community — 100 DevOps Interview Q&amp;A for 2025" data-url="https://dev.to/dev_tips/100-devops-interview-questions-and-answers-for-2025-588j" title="Add to favourites">☆</button>
+        <h3><a href="https://dev.to/dev_tips/100-devops-interview-questions-and-answers-for-2025-588j" target="_blank">DEV Community — 100 DevOps Interview Q&amp;A for 2025</a></h3>
+        <p>100 real interview questions and in-depth answers covering GitOps, Kubernetes, security, observability, platform engineering, CI/CD, and cloud. Reflects 2025 hiring trends. Questions derived from actual interviews at top MNCs and product-based companies.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-033-dataquest-44-kubernetes-interview-questions" data-name="Dataquest — 44 Kubernetes Interview Questions" data-url="https://www.dataquest.io/blog/kubernetes-interview-questions/" title="Add to favourites">☆</button>
+        <h3><a href="https://www.dataquest.io/blog/kubernetes-interview-questions/" target="_blank">Dataquest — 44 Kubernetes Interview Questions</a></h3>
+        <p>44 Kubernetes questions organized the way real interviews actually flow — from foundational concepts through practical troubleshooting and open-ended design scenarios. Covers basic, intermediate, advanced, and scenario-based questions with detailed explanations.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">Kubernetes</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-034-easyinterview-40-kubernetes-interview-questions" data-name="EasyInterview — 40+ Kubernetes Interview Questions" data-url="https://easyinterview.me/blogs/the-interview-questions-that-matter/kubernetes-interview-guide" title="Add to favourites">☆</button>
+        <h3><a href="https://easyinterview.me/blogs/the-interview-questions-that-matter/kubernetes-interview-guide" target="_blank">EasyInterview — 40+ Kubernetes Interview Questions</a></h3>
+        <p>40+ Kubernetes interview questions with practical YAML examples. Covers pods, deployments, rolling updates, services, ConfigMaps, Secrets, namespaces, labels, selectors, resource management, health checks, kubectl commands, and troubleshooting.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">Kubernetes</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-035-hackajob-devops-engineer-interview-guide" data-name="Hackajob — DevOps Engineer Interview Guide" data-url="https://hackajob.com/talent/technical-assessment/devops-engineer-interview-preparation-guide" title="Add to favourites">☆</button>
+        <h3><a href="https://hackajob.com/talent/technical-assessment/devops-engineer-interview-preparation-guide" target="_blank">Hackajob — DevOps Engineer Interview Guide</a></h3>
+        <p>Complete interview preparation guide covering technical questions (CI/CD, K8s, Terraform, cloud architecture, observability, Linux), behavioral questions with STAR-based answer tips, troubleshooting simulations, and example answers from real interviews.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-036-geeksforgeeks-devops-interview-questions" data-name="GeeksforGeeks — DevOps Interview Questions" data-url="https://www.geeksforgeeks.org/devops/devops-interview-questions" title="Add to favourites">☆</button>
+        <h3><a href="https://www.geeksforgeeks.org/devops/devops-interview-questions" target="_blank">GeeksforGeeks — DevOps Interview Questions</a></h3>
+        <p>Comprehensive DevOps interview questions and answers covering what is DevOps, CI/CD, Docker, Kubernetes, Jenkins, Ansible, Terraform, cloud platforms, monitoring, and scripting. Well-structured for quick revision with code examples.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- YOUTUBE -->
+  <div class="section" id="youtube">
+    <h2 class="section-title"><span class="section-icon">📺</span> Best YouTube Channels</h2>
+    <div class="grid">
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-037-bret-fisher-docker-and-devops" data-name="Bret Fisher — Docker and DevOps" data-url="https://www.youtube.com/@BretFisher" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@BretFisher" target="_blank">Bret Fisher — Docker and DevOps</a></h3>
+        <p>One of the most respected Docker and DevOps channels. Bret covers Docker, Kubernetes, Swarm, and cloud topics with deep technical expertise. His Docker Mastery playlist and Kubernetes 101 series are essential viewing for serious DevOps engineers. Active Docker Captain with real production experience.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-038-kodekloud" data-name="KodeKloud" data-url="https://www.youtube.com/@KodeKloud" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@KodeKloud" target="_blank">KodeKloud</a></h3>
+        <p>Free video courses on Docker, Kubernetes, Linux, Terraform, Ansible &amp; more. High-quality production with hands-on demos and browser-based labs. Their Kubernetes for Beginners and Docker for Beginners playlists are perfect starting points.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-039-devops-toolkit-viktor-farcic" data-name="DevOps Toolkit (Viktor Farcic)" data-url="https://www.youtube.com/@DevopsToolkit" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@DevopsToolkit" target="_blank">DevOps Toolkit (Viktor Farcic)</a></h3>
+        <p>Viktor Farcic shows DevOps from a developer's perspective — building CI/CD pipelines, deploying microservices, GitOps with ArgoCD, integrating monitoring, and practical Kubernetes workflows. Great for understanding how all the tools fit together in real projects.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-040-networkchuck" data-name="NetworkChuck" data-url="https://www.youtube.com/@NetworkChuck" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@NetworkChuck" target="_blank">NetworkChuck</a></h3>
+        <p>High-energy tutorials on Linux, Docker, Kubernetes, Python for DevOps, and homelab projects. Great for beginners who want to learn by doing. His "I Suck at Linux" series and Kubernetes crash course are fan favorites with millions of views.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-041-jeff-geerling" data-name="Jeff Geerling" data-url="https://www.youtube.com/@geerlingguy" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@geerlingguy" target="_blank">Jeff Geerling</a></h3>
+        <p>Jeff covers Ansible, Kubernetes, Raspberry Pi clusters, and homelab DevOps projects. His "Kubernetes 101" series and Ansible tutorials are incredibly thorough. Also known for building a Raspberry Pi Kubernetes cluster from scratch. Great for hands-on learners.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-042-fireship" data-name="Fireship" data-url="https://www.youtube.com/@Fireship" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@Fireship" target="_blank">Fireship</a></h3>
+        <p>"100 Seconds of..." series gives rapid-fire overviews of every DevOps tool imaginable — Docker, Kubernetes, Terraform, Jenkins, GitHub Actions, Helm, Prometheus &amp; more. Not deep dives, but perfect for understanding what each tool does before committing to learning it.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-043-techworld-with-milan" data-name="TechWorld with Milan" data-url="https://www.youtube.com/@TechWorldwithMilan" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@TechWorldwithMilan" target="_blank">TechWorld with Milan</a></h3>
+        <p>Milan's channel covers DevOps roadmaps, tool comparisons, system design, and career advice. His DevOps Roadmap video is one of the most-watched on the topic. Great for understanding the big picture of the DevOps landscape and choosing what to learn next.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-044-stephane-maarek" data-name="Stephane Maarek" data-url="https://www.youtube.com/@StephaneMaarek" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@StephaneMaarek" target="_blank">Stephane Maarek</a></h3>
+        <p>The best cloud-focused DevOps YouTube channel. Stephane covers AWS, Apache Kafka, and cloud architecture matching his top-rated Udemy courses. His AWS Certified DevOps Engineer and CloudFormation tutorials are essential for cloud DevOps roles.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-045-hitesh-choudhary" data-name="Hitesh Choudhary" data-url="https://www.youtube.com/@HiteshChoudharydotcom" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@HiteshChoudharydotcom" target="_blank">Hitesh Choudhary</a></h3>
+        <p>Full-length DevOps courses covering Docker, Kubernetes, CI/CD, cloud platforms, and DevOps fundamentals. Hitesh explains everything from scratch with clear examples. His DevOps full course is a great one-stop resource for beginners.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-046-cloud-advocate-krishna-gadhiraju" data-name="Cloud Advocate (Krishna Gadhiraju)" data-url="https://www.youtube.com/@CloudAdvocate" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@CloudAdvocate" target="_blank">Cloud Advocate (Krishna Gadhiraju)</a></h3>
+        <p>DevSecOps expert and AWS/GCP architect providing tutorials on DevOps, cloud architecture, security best practices, and multi-cloud strategies. Great for engineers targeting cloud-native DevOps or DevSecOps roles.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-047-cncf-cloud-native-computing-foundation" data-name="CNCF (Cloud Native Computing Foundation)" data-url="https://www.youtube.com/@CNCF" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@CNCF" target="_blank">CNCF (Cloud Native Computing Foundation)</a></h3>
+        <p>The official YouTube channel for the organization behind Kubernetes, Prometheus, Envoy, and other CNCF projects. Features KubeCon talks, project updates, security advisories, and deep-dive tutorials directly from the maintainers of the tools you use every day.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-048-freecodecamp-org" data-name="freeCodeCamp.org" data-url="https://www.youtube.com/@freeCodeCamp" title="Add to favourites">☆</button>
+        <h3><a href="https://www.youtube.com/@freeCodeCamp" target="_blank">freeCodeCamp.org</a></h3>
+        <p>Legendary long-form DevOps courses (3–8 hours each) covering Docker, Kubernetes, Terraform, CI/CD, and cloud from scratch. Their DevOps for Beginners and full Kubernetes certification courses are among the most-watched free DevOps resources on YouTube.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOOKS -->
+  <div class="section" id="books">
+    <h2 class="section-title"><span class="section-icon">📚</span> Must-Read DevOps Books</h2>
+    <div class="book-list">
+
+      <div class="book">
+        <strong>The Phoenix Project</strong>
+        <div class="author">by Gene Kim, Kevin Behr &amp; George Spafford</div>
+        <div class="desc">A novel about IT, DevOps, and helping your business win. The #1 recommended starting point — teaches DevOps culture through a story. Explains the Three Ways: Flow, Feedback, and Continual Learning.</div>
+      </div>
+
+      <div class="book">
+        <strong>The DevOps Handbook</strong>
+        <div class="author">by Gene Kim, Jez Humble, Patrick Debois &amp; John Willis</div>
+        <div class="desc">The HOW companion to The Phoenix Project. Practical guide to implementing DevOps in real organizations. Covers deployment pipelines, continuous integration, automated testing, and organizational culture change.</div>
+      </div>
+
+      <div class="book">
+        <strong>Accelerate</strong>
+        <div class="author">by Nicole Forsgren, Jez Humble &amp; Gene Kim</div>
+        <div class="desc">Data-driven research on what makes high-performing DevOps teams. Introduces DORA metrics (deployment frequency, lead time, MTTR, change failure rate). Essential for understanding WHY DevOps works.</div>
+      </div>
+
+      <div class="book">
+        <strong>Site Reliability Engineering (SRE Book)</strong>
+        <div class="author">by Google (free online)</div>
+        <div class="desc">Google's definitive guide to running production systems. Covers SLOs, monitoring, incident response, postmortems, and toil reduction. Free at sre.google/sre-book. The bible of SRE.</div>
+      </div>
+
+      <div class="book">
+        <strong>The Unicorn Project</strong>
+        <div class="author">by Gene Kim</div>
+        <div class="desc">Sequel to The Phoenix Project, told from a developer's perspective. Explores the Five Ideals: Locality and Simplicity, Focus, Flow and Joy, Improvement of Daily Work, and Psychological Safety.</div>
+      </div>
+
+      <div class="book">
+        <strong>Cloud Native DevOps with Kubernetes</strong>
+        <div class="author">by John Arundel &amp; Justin Domingus</div>
+        <div class="desc">Practical guide to running applications in production with Kubernetes. Covers deployments, services, ingress, CI/CD, monitoring, and security. Great for hands-on Kubernetes learning.</div>
+      </div>
+
+      <div class="book">
+        <strong>Infrastructure as Code</strong>
+        <div class="author">by Kief Morris</div>
+        <div class="desc">Comprehensive guide to managing infrastructure through code. Covers patterns, practices, and pitfalls of IaC. Essential reading for anyone working with Terraform, CloudFormation, or Pulumi.</div>
+      </div>
+
+      <div class="book">
+        <strong>Continuous Delivery</strong>
+        <div class="author">by Jez Humble &amp; David Farley</div>
+        <div class="desc">The foundational text on CI/CD. Covers deployment pipelines, build strategies, environment management, and release patterns. Dense but incredibly valuable — the textbook of modern software delivery.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PLATFORMS -->
+  <div class="section" id="platforms">
+    <h2 class="section-title"><span class="section-icon">🖥️</span> Learning Platforms &amp; Labs</h2>
+    <div class="grid">
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-049-kodekloud" data-name="KodeKloud" data-url="https://kodekloud.com" title="Add to favourites">☆</button>
+        <h3><a href="https://kodekloud.com" target="_blank">KodeKloud</a></h3>
+        <p>Best hands-on DevOps platform. 1,250+ browser-based labs, 170+ courses, certification-aligned paths for CKA, CKAD, CKS, Terraform &amp; AWS. Learn-by-doing approach. $35–99/month.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$35–99/mo</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-050-cloudcaptain" data-name="CloudCaptain" data-url="https://cloudcaptain.io" title="Add to favourites">☆</button>
+        <h3><a href="https://cloudcaptain.io" target="_blank">CloudCaptain</a></h3>
+        <p>100% free, open-source. 150+ docs pages, 49 architecture diagrams, 8 career paths, 7 roadmaps. Covers Docker, K8s, Terraform, Ansible, AWS, Azure, GCP, CI/CD, Linux, Bash, Python &amp; more.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-051-killercoda" data-name="Killercoda" data-url="https://killercoda.com" title="Add to favourites">☆</button>
+        <h3><a href="https://killercoda.com" target="_blank">Killercoda</a></h3>
+        <p>Free interactive Kubernetes &amp; DevOps playgrounds. Browser-based environments for practicing with real clusters. Used by CNCF for official Kubernetes training. No signup needed for many scenarios.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-052-play-with-kubernetes" data-name="Play with Kubernetes" data-url="https://labs.play-with-k8s.com" title="Add to favourites">☆</button>
+        <h3><a href="https://labs.play-with-k8s.com" target="_blank">Play with Kubernetes</a></h3>
+        <p>Free, browser-based Kubernetes cluster playground. Spin up a multi-node cluster in seconds. Great for experimenting without any local setup. Perfect for CKA/CKAD practice.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-053-katacoda-o-reilly" data-name="Katacoda (O'Reilly)" data-url="https://www.katacoda.com" title="Add to favourites">☆</button>
+        <h3><a href="https://www.katacoda.com" target="_blank">Katacoda (O'Reilly)</a></h3>
+        <p>Interactive learning scenarios for Docker, Kubernetes, Linux &amp; more. Now part of O'Reilly. Some content free, full access with O'Reilly subscription. Great for guided, step-by-step practice.</p>
+        <div class="tags">
+          <span class="tag tag-free">Partial Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-054-google-cloud-skills-boost-qwiklabs" data-name="Google Cloud Skills Boost (Qwiklabs)" data-url="https://www.qwiklabs.com" title="Add to favourites">☆</button>
+        <h3><a href="https://www.qwiklabs.com" target="_blank">Google Cloud Skills Boost (Qwiklabs)</a></h3>
+        <p>Hands-on Google Cloud labs. Free credits available, then pay-per-lab or subscription. Covers GCP, Kubernetes, Terraform, BigQuery &amp. Official Google training paths with real cloud environments.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free Credits</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COMMUNITIES -->
+  <div class="section" id="communities">
+    <h2 class="section-title"><span class="section-icon">👥</span> Communities &amp; Forums</h2>
+    <div class="grid">
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-055-r-devops" data-name="r/devops" data-url="https://www.reddit.com/r/devops/" title="Add to favourites">☆</button>
+        <h3><a href="https://www.reddit.com/r/devops/" target="_blank">r/devops</a></h3>
+        <p>415K+ members. The largest DevOps community on Reddit. Ask questions, share resources, discuss tools &amp; career advice. Active daily with experienced engineers and beginners alike.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-056-r-kubernetes" data-name="r/kubernetes" data-url="https://www.reddit.com/r/kubernetes/" title="Add to favourites">☆</button>
+        <h3><a href="https://www.reddit.com/r/kubernetes/" target="_blank">r/kubernetes</a></h3>
+        <p>Dedicated Kubernetes community. Great for troubleshooting, best practices, CKA/CKAD study tips, and staying up to date with K8s releases. Very active and helpful.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-057-dev-community-devops" data-name="DEV Community — DevOps" data-url="https://dev.to/t/devops" title="Add to favourites">☆</button>
+        <h3><a href="https://dev.to/t/devops" target="_blank">DEV Community — DevOps</a></h3>
+        <p>Developer community with a strong DevOps tag. Tutorials, career stories, tool reviews &amp; beginner guides. Friendly, inclusive community with high-quality content.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-058-linux-foundation-community" data-name="Linux Foundation Community" data-url="https://www.linuxfoundation.org/community" title="Add to favourites">☆</button>
+        <h3><a href="https://www.linuxfoundation.org/community" target="_blank">Linux Foundation Community</a></h3>
+        <p>Home of CNCF, Kubernetes, Terraform &amp; many open-source projects. Free training resources, community forums, KubeCon events &amp; certification programs. The backbone of cloud-native DevOps.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-059-devops-discord-servers" data-name="DevOps Discord Servers" data-url="https://discord.gg/devops" title="Add to favourites">☆</button>
+        <h3><a href="https://discord.gg/devops" target="_blank">DevOps Discord Servers</a></h3>
+        <p>Real-time chat communities for DevOps engineers. Channels for Kubernetes, Terraform, AWS, career advice &amp; job postings. Great for networking and getting quick help.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ROADMAPS -->
+  <div class="section" id="roadmaps">
+    <h2 class="section-title"><span class="section-icon">📍</span> DevOps Roadmaps</h2>
+    <div class="grid">
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-060-roadmap-sh-devops-roadmap" data-name="roadmap.sh — DevOps Roadmap" data-url="https://roadmap.sh/devops" title="Add to favourites">☆</button>
+        <h3><a href="https://roadmap.sh/devops" target="_blank">roadmap.sh — DevOps Roadmap</a></h3>
+        <p>The most popular visual DevOps roadmap. Interactive, community-driven, covers every tool and technology in the DevOps landscape with recommended learning order. Updated regularly. Free.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-061-github-devops-roadmap-2026-19-6k-stars" data-name="GitHub — DevOps Roadmap 2026 (19.6k stars)" data-url="https://github.com/milanm/DevOps-Roadmap" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/milanm/DevOps-Roadmap" target="_blank">GitHub — DevOps Roadmap 2026 (19.6k stars)</a></h3>
+        <p>Milan's comprehensive DevOps roadmap with links to learning resources for every topic. 19.6K GitHub stars. Covers Linux, Git, CI/CD, Docker, K8s, Terraform, monitoring &amp; more. PDF version available.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-062-devops-roadmap-2025-gaurav-kaushal" data-name="DevOps Roadmap 2025 — Gaurav Kaushal" data-url="https://gauravkaushal.tech/devops-roadmap" title="Add to favourites">☆</button>
+        <h3><a href="https://gauravkaushal.tech/devops-roadmap" target="_blank">DevOps Roadmap 2025 — Gaurav Kaushal</a></h3>
+        <p>Practical, opinionated roadmap built from 8 years in production DevOps. Not every tool — the right tools in the right order. Each stage builds on the last with time estimates. Excellent for self-paced learners.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-063-techworld-with-nana-devops-roadmap" data-name="TechWorld with Nana — DevOps Roadmap" data-url="https://www.techworld-with-nana.com/devops-roadmap" title="Add to favourites">☆</button>
+        <h3><a href="https://www.techworld-with-nana.com/devops-roadmap" target="_blank">TechWorld with Nana — DevOps Roadmap</a></h3>
+        <p>Nana's visual roadmap covering the complete DevOps learning path. Links to her free YouTube tutorials for each topic. Great companion to her bootcamp and YouTube channel.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-064-switchtodevops-complete-roadmap-2026" data-name="SwitchToDevOps — Complete Roadmap 2026" data-url="https://switchtodevops.com/learn/complete-devops-roadmap-2026" title="Add to favourites">☆</button>
+        <h3><a href="https://switchtodevops.com/learn/complete-devops-roadmap-2026" target="_blank">SwitchToDevOps — Complete Roadmap 2026</a></h3>
+        <p>Structured learning path to become job-ready in 6–9 months. Covers Linux, Git, CI/CD, Docker, Kubernetes, cloud platforms in correct order. Includes free and paid resource recommendations.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GITHUB REPOS -->
+  <div class="section" id="github-repos">
+    <h2 class="section-title"><span class="section-icon">⭐</span> Top GitHub Repositories for DevOps</h2>
+    <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.9em;">The most-starred DevOps learning repositories on GitHub, ranked by community stars. These are the resources the DevOps community has voted on with their ⭐.</p>
+    <div class="grid">
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-065-kamranahmedse-developer-roadmap" data-name="kamranahmedse/developer-roadmap" data-url="https://github.com/kamranahmedse/developer-roadmap" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/kamranahmedse/developer-roadmap" target="_blank">kamranahmedse/developer-roadmap</a> <span style="color: var(--orange); font-size: 0.8em;">★ 330K</span></h3>
+        <p>The most popular developer roadmap on GitHub. Includes an interactive DevOps roadmap covering CI/CD, Docker, Kubernetes, cloud platforms, monitoring &amp; more. Community-driven and constantly updated. Available at roadmap.sh.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">Roadmap</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-066-trimstray-the-book-of-secret-knowledge" data-name="trimstray/the-book-of-secret-knowledge" data-url="https://github.com/trimstray/the-book-of-secret-knowledge" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/trimstray/the-book-of-secret-knowledge" target="_blank">trimstray/the-book-of-secret-knowledge</a> <span style="color: var(--orange); font-size: 0.8em;">★ 227K</span></h3>
+        <p>A massive collection of lists, manuals, cheatsheets, blogs, hacks, one-liners, CLI/web tools &amp; more. Covers Linux, security, DevOps, networking, pentesting &amp; system operations. The ultimate meta-resource for sysadmins and DevOps engineers.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-067-bregman-arie-devops-exercises" data-name="bregman-arie/devops-exercises" data-url="https://github.com/bregman-arie/devops-exercises" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/bregman-arie/devops-exercises" target="_blank">bregman-arie/devops-exercises</a> <span style="color: var(--orange); font-size: 0.8em;">★ 82K</span></h3>
+        <p>2,600+ DevOps exercises and interview questions covering Linux, Jenkins, AWS, SRE, Prometheus, Docker, Python, Ansible, Git, Kubernetes, Terraform, OpenStack, SQL, NoSQL, Azure, GCP, DNS, Elastic, Network &amp; Virtualization. The #1 interview prep repo.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">Interview Prep</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-068-binhnguyennus-awesome-scalability" data-name="binhnguyennus/awesome-scalability" data-url="https://github.com/binhnguyennus/awesome-scalability" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/binhnguyennus/awesome-scalability" target="_blank">binhnguyennus/awesome-scalability</a> <span style="color: var(--orange); font-size: 0.8em;">★ 71K</span></h3>
+        <p>The patterns of scalable, reliable, and performant large-scale systems. Covers load balancing, caching, database sharding, microservices, event-driven architecture &amp; more. Essential reading for DevOps engineers working at scale.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-069-nektos-act" data-name="nektos/act" data-url="https://github.com/nektos/act" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/nektos/act" target="_blank">nektos/act</a> <span style="color: var(--orange); font-size: 0.8em;">★ 70K</span></h3>
+        <p>Run GitHub Actions locally! Test your CI/CD workflows before pushing, catch errors in jobs, environment variables &amp; steps. Uses Docker to simulate the GitHub Actions runner environment. An essential DevOps tool, not just a learning resource.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-070-milanm-devops-roadmap" data-name="milanm/DevOps-Roadmap" data-url="https://github.com/milanm/DevOps-Roadmap" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/milanm/DevOps-Roadmap" target="_blank">milanm/DevOps-Roadmap</a> <span style="color: var(--orange); font-size: 0.8em;">★ 19.6K</span></h3>
+        <p>DevOps Roadmap for 2026 with learning resources linked at every step. Covers Linux, Git, CI/CD, Docker, Kubernetes, Terraform, monitoring, cloud &amp; more. Includes the famous "DevOps as a Burger" diagram. PDF version available.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">Roadmap</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-071-ramitsurana-awesome-kubernetes" data-name="ramitsurana/awesome-kubernetes" data-url="https://github.com/ramitsurana/awesome-kubernetes" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/ramitsurana/awesome-kubernetes" target="_blank">ramitsurana/awesome-kubernetes</a> <span style="color: var(--orange); font-size: 0.8em;">★ 16K</span></h3>
+        <p>A curated list of awesome Kubernetes sources. Covers installation, tutorials, networking, monitoring, CI/CD, machine learning on K8s, and community resources. One of the oldest and most comprehensive K8s awesome lists.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-072-bregman-arie-devops-resources" data-name="bregman-arie/devops-resources" data-url="https://github.com/bregman-arie/devops-resources" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/bregman-arie/devops-resources" target="_blank">bregman-arie/devops-resources</a> <span style="color: var(--orange); font-size: 0.8em;">★ 9.5K</span></h3>
+        <p>Comprehensive collection of DevOps tools, tutorials, and roadmaps. Covers Linux, Jenkins, AWS, SRE, Prometheus, Docker, Python, Ansible, Git, Kubernetes, Terraform &amp; more. Opinionated learning paths to avoid overwhelm for beginners.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-073-wmariuss-awesome-devops" data-name="wmariuss/awesome-devops" data-url="https://github.com/wmariuss/awesome-devops" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/wmariuss/awesome-devops" target="_blank">wmariuss/awesome-devops</a> <span style="color: var(--orange); font-size: 0.8em;">★ 4.1K</span></h3>
+        <p>A curated list of awesome DevOps platforms, tools, practices, and resources. Covers CI/CD, configuration management, monitoring, containerization, cloud platforms &amp; SRE. A well-maintained, community-driven awesome list.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+      <button class="star-btn" data-favid="card-074-in28minutes-devops-master-class" data-name="in28minutes/devops-master-class" data-url="https://github.com/in28minutes/devops-master-class" title="Add to favourites">☆</button>
+        <h3><a href="https://github.com/in28minutes/devops-master-class" target="_blank">in28minutes/devops-master-class</a> <span style="color: var(--orange); font-size: 0.8em;">★ 2.9K</span></h3>
+        <p>DevOps tutorial for beginners — learn Docker, Kubernetes, Terraform, Ansible, Jenkins and Azure DevOps. Step-by-step projects with code. From the popular in28minutes YouTube channel with millions of views.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FAVOURITES -->
+  <div class="section" id="favourites">
+    <h2 class="section-title"><span class="section-icon">⭐</span> Your Favourites</h2>
+    <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.9em;">Resources you've starred across the site. Star any resource by clicking the ☆ button in the top-right corner of its card. Your favourites are saved automatically.</p>
+    <div class="grid" id="favourites-grid">
+      <!-- Dynamically populated by JavaScript -->
+    </div>
+    <div class="fav-empty" id="favourites-empty">
+      <span>☆</span>
+      No favourites yet. Star any resource to add it here!
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Compiled from Reddit, Google, Coursera, Udemy, KodeKloud, TechWorld with Nana, CloudCaptain, roadmap.sh &amp; more.</p>
+  <p style="margin-top:8px;">Last updated: June 2026 · All links verified at time of creation.</p>
+</footer>
+
+</body>
+</html>
+
+<script>
+(function() {
+  'use strict';
+
+  var API = '/api/favourites';
+
+  // ── API helpers (server-backed persistence) ──────────
+  function loadFavs() {
+    return fetch(API)
+      .then(function(r) { return r.json(); })
+      .catch(function() { return []; });
+  }
+
+  function saveFavs(ids) {
+    return fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(ids)
+    }).catch(function() { /* offline — silently fail */ });
+  }
+
+  // ── update star UI ───────────────────────────────────
+  function updateStar(btn, active) {
+    btn.textContent = active ? '★' : '☆';
+    btn.classList.toggle('active', active);
+  }
+
+  function updateCount(count) {
+    var badge = document.getElementById('favourites-count');
+    if (!badge) return;
+    badge.textContent = count;
+    badge.classList.toggle('hidden', count === 0);
+  }
+
+  // ── build a card clone for the favourites grid ───────
+  function buildFavCard(originalCard, favId) {
+    var name = '';
+    var url = '';
+    var desc = '';
+    var tagsHtml = '';
+
+    var linkEl = originalCard.querySelector('h3 a');
+    if (linkEl) {
+      name = linkEl.textContent.replace(/\s*★\s*\d[\d.K]*$/, '').trim();
+      url = linkEl.getAttribute('href');
+    }
+
+    var pEl = originalCard.querySelector('p');
+    if (pEl) desc = pEl.innerHTML;
+
+    var tagsEl = originalCard.querySelector('.tags');
+    if (tagsEl) tagsHtml = tagsEl.outerHTML;
+
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.setAttribute('data-fav-id', favId);
+
+    card.innerHTML =
+      '<button class="star-btn active" data-favid="' + favId +
+      '" data-name="' + name.replace(/"/g, '&quot;') +
+      '" data-url="' + url +
+      '" title="Remove from favourites">★</button>' +
+      '<h3><a href="' + url + '" target="_blank">' + name + '</a></h3>' +
+      '<p>' + desc + '</p>' +
+      tagsHtml;
+
+    var removeBtn = card.querySelector('.star-btn');
+    removeBtn.addEventListener('click', function() { handleStarClick(this); });
+
+    return card;
+  }
+
+  // ── render the favourites section ────────────────────
+  function renderFavourites(favs) {
+    var grid = document.getElementById('favourites-grid');
+    var empty = document.getElementById('favourites-empty');
+    if (!grid || !empty) return;
+
+    grid.innerHTML = '';
+
+    if (!favs || favs.length === 0) {
+      grid.style.display = 'none';
+      empty.style.display = 'block';
+      updateCount(0);
+      return;
+    }
+
+    grid.style.display = '';
+    empty.style.display = 'none';
+    updateCount(favs.length);
+
+    favs.forEach(function(favId) {
+      var btn = document.querySelector('.star-btn[data-favid="' + CSS.escape(favId) + '"]');
+      if (!btn) return;
+      var originalCard = btn.closest('.card');
+      if (!originalCard) return;
+      grid.appendChild(buildFavCard(originalCard, favId));
+    });
+  }
+
+  // ── sync all star buttons from server state ──────────
+  function syncStars(favs) {
+    var favSet = {};
+    favs.forEach(function(id) { favSet[id] = true; });
+    document.querySelectorAll('.star-btn').forEach(function(btn) {
+      updateStar(btn, !!favSet[btn.getAttribute('data-favid')]);
+    });
+  }
+
+  // ── star button click handler ────────────────────────
+  function handleStarClick(btn) {
+    var id = btn.getAttribute('data-favid');
+    // optimistically toggle
+    var isActive = btn.classList.contains('active');
+    var nowActive = !isActive;
+    updateStar(btn, nowActive);
+
+    // sync other buttons with same id
+    document.querySelectorAll('.star-btn[data-favid="' + CSS.escape(id) + '"]').forEach(function(b) {
+      if (b !== btn) updateStar(b, nowActive);
+    });
+
+    // reload from server to get canonical state, then re-render
+    loadFavs().then(function(favs) {
+      if (nowActive && favs.indexOf(id) === -1) {
+        favs.push(id);
+      } else if (!nowActive && favs.indexOf(id) !== -1) {
+        favs.splice(favs.indexOf(id), 1);
+      }
+      return saveFavs(favs);
+    }).then(function() {
+      return loadFavs();
+    }).then(function(favs) {
+      syncStars(favs);
+      renderFavourites(favs);
+    });
+  }
+
+  // ── init ─────────────────────────────────────────────
+  function init() {
+    loadFavs().then(function(favs) {
+      // set initial star states
+      syncStars(favs);
+      // render favourites section
+      renderFavourites(favs);
+      // attach click handlers
+      document.querySelectorAll('.star-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() { handleStarClick(this); });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
