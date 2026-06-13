@@ -23,5 +23,10 @@
     "id": "card-069-nektos-act",
     "name": "nektos/act",
     "url": "https://github.com/nektos/act"
+  },
+  {
+    "id": "card-002-cloudcaptain",
+    "name": "CloudCaptain",
+    "url": "https://cloudcaptain.io"
   }
 ]
