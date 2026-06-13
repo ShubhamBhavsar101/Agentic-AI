@@ -135,8 +135,10 @@ if __name__ == "__main__":
 
     def shutdown(signum=None, frame=None):
         print("\nShutting down.")
+        server.shutdown()
         server.server_close()
         commit_all("sync: update data files")
+        sys.exit(0)
 
     # Handle both Ctrl+C and SIGTERM (kill, systemd stop, etc.)
     import signal
