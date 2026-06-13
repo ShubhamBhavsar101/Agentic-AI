@@ -152,29 +152,38 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    import signal
+    import threading
+
     os.chdir(SCRIPT_DIR)
     server = HTTPServer(("0.0.0.0", PORT), Handler)
     print(f"Service running on http://localhost:{PORT}")
     print(f"  Favourites API:  GET/POST/DELETE /api/favourites")
     print(f"  Projects API:    GET/POST/DELETE /api/projects")
 
-    def shutdown(signum=None, frame=None):
-        print("\nShutting down.")
-        # Stop accepting new connections
+    shutdown_event = threading.Event()
+
+    def shutdown_handler(signum, frame):
+        print(f"\nReceived signal {signum}, shutting down.")
+        shutdown_event.set()
         server.shutdown()
-        server.server_close()
-        # Commit in a thread so git push never blocks exit
-        import threading
-        t = threading.Thread(target=commit_all, args=("sync: update data files",), daemon=True)
-        t.start()
-        t.join(timeout=20)  # wait up to 20s for commit+push
-        if t.is_alive():
-            print("Commit still running — exiting anyway.")
-        sys.exit(0)
 
-    # Handle both Ctrl+C and SIGTERM (kill, systemd stop, etc.)
-    import signal
-    signal.signal(signal.SIGINT, shutdown)
-    signal.signal(signal.SIGTERM, shutdown)
+    signal.signal(signal.SIGINT, shutdown_handler)
+    signal.signal(signal.SIGTERM, shutdown_handler)
 
-    server.serve_forever()
+    # Serve in a thread so main thread can respond to signals
+    server_thread = threading.Thread(target=server.serve_forever)
+    server_thread.daemon = True
+    server_thread.start()
+
+    # Block main thread until shutdown signal
+    try:
+        shutdown_event.wait()
+    except KeyboardInterrupt:
+        pass
+
+    print("Shutting down.")
+    server.server_close()
+    # Commmit in daemon thread, don't wait
+    threading.Thread(target=commit_all, args=("sync: update data files",), daemon=True).start()
+    print("Shutdown complete.")
