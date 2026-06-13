@@ -1,0 +1,555 @@
+/*
+ * DevOps Learning Hub — Stylesheet
+ * Dark theme, GitHub-inspired color palette
+ */
+
+/* ── CSS Reset ─────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Semantic Color Tokens ─────────────────────────────── */
+:root {
+  /* Surfaces */
+  --bg:           #0d1117;
+  --surface:      #161b22;
+  --border:       #30363d;
+  --border-hover: #8b949e;
+
+  /* Text */
+  --text:         #e6edf3;
+  --text-muted:   #8b949e;
+  --text-heading: #f0f6fc;
+
+  /* Interactive */
+  --link:         #58a6ff;
+  --link-hover:   #79c0ff;
+
+  /* Status / Tags */
+  --success:      #3fb950;
+  --warning:      #d29922;
+  --danger:       #f85149;
+  --info:         #bc8cff;
+
+  /* Tag backgrounds (with alpha) */
+  --success-bg:   rgba(63,185,80,0.15);
+  --warning-bg:   rgba(210,153,34,0.15);
+  --danger-bg:    rgba(248,81,73,0.15);
+  --info-bg:      rgba(188,140,255,0.15);
+
+  /* Tag borders */
+  --success-border: rgba(63,185,80,0.3);
+  --warning-border: rgba(210,153,34,0.3);
+  --danger-border:  rgba(248,81,73,0.3);
+  --info-border:    rgba(188,140,255,0.3);
+
+  /* Layout */
+  --max-width:    1200px;
+  --nav-height:   70px;
+  --radius-sm:    8px;
+  --radius-md:    12px;
+  --radius-pill:  20px;
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+html {
+  scroll-padding-top: var(--nav-height);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── TOP TABS (Learning / Personal) ───────────────────── */
+.top-tabs {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+}
+.top-tab-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1em;
+  font-weight: 600;
+  padding: 14px 32px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.top-tab-btn:hover { color: var(--text); }
+.top-tab-btn.active {
+  color: var(--link);
+  border-bottom-color: var(--link);
+}
+
+/* ── PAGE PANES ───────────────────────────────────────── */
+.page-pane { display: none; }
+.page-pane.active { display: block; }
+
+/* ── HEADER ───────────────────────────────────────────── */
+header {
+  background: linear-gradient(135deg, #161b22 0%, #1a2332 50%, #161b22 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(88,166,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+header h1 {
+  font-size: 1.4em;
+  margin-bottom: 4px;
+  position: relative;
+}
+header h1 span { color: var(--link); }
+header p {
+  color: var(--text-muted);
+  font-size: 0.85em;
+  position: relative;
+}
+
+/* ── TAGS ─────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75em;
+  font-weight: 600;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.tag-free {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+.tag-paid {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid var(--warning-border);
+}
+.tag-cert {
+  background: var(--info-bg);
+  color: var(--info);
+  border: 1px solid var(--info-border);
+}
+.tag-youtube {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-border);
+}
+
+/* ── LEARNING NAV ─────────────────────────────────────── */
+.learning-nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.learning-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.learning-nav li a {
+  display: block;
+  padding: 12px 16px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.learning-nav li a:hover,
+.learning-nav li a.active {
+  color: var(--link);
+}
+
+/* ── CONTAINER ────────────────────────────────────────── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* ── SECTIONS ─────────────────────────────────────────── */
+.section {
+  margin-bottom: 50px;
+  scroll-margin-top: var(--nav-height);
+}
+.section-title {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-icon { font-size: 1.3em; }
+
+/* ── GRID / CARDS ─────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.card:hover {
+  border-color: var(--link);
+  transform: translateY(-2px);
+}
+.card h3 {
+  font-size: 1.05em;
+  margin-bottom: 8px;
+  padding-right: 32px;
+}
+.card h3 a {
+  color: var(--link);
+  text-decoration: none;
+}
+.card h3 a:hover { text-decoration: underline; }
+.card p {
+  color: var(--text-muted);
+  font-size: 0.88em;
+  flex-grow: 1;
+  margin-bottom: 12px;
+}
+.card .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+/* ── BOOKS ────────────────────────────────────────────── */
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.book {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  flex: 1 1 260px;
+}
+.book strong { color: var(--text); font-size: 0.95em; }
+.book .author { color: var(--text-muted); font-size: 0.82em; margin-top: 4px; }
+.book .desc { color: var(--text-muted); font-size: 0.8em; margin-top: 6px; }
+
+/* ── FAVOURITES ───────────────────────────────────────── */
+.star-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.3em;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.2s, transform 0.2s;
+  line-height: 1;
+  padding: 2px;
+}
+.star-btn:hover { transform: scale(1.2); }
+.star-btn.active { color: var(--warning); }
+
+.fav-empty {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.95em;
+}
+.fav-empty span { font-size: 2em; display: block; margin-bottom: 10px; }
+
+#favourites-count {
+  background: var(--warning-bg);
+  color: var(--warning);
+  font-size: 0.7em;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 700;
+  vertical-align: middle;
+  margin-left: 4px;
+  display: inline-block;
+}
+#favourites-count.hidden { display: none; }
+
+/* ═══════════════════════════════════════════════════════
+   PERSONAL SECTION
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Personal sub-tabs ─────────────────────────────────── */
+.personal-subnav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.personal-subnav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.personal-subnav li a {
+  display: block;
+  padding: 12px 16px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.personal-subnav li a:hover { color: var(--link); }
+.personal-subnav li a.active { color: var(--link); font-weight: 600; }
+
+/* ── Sub-tab panes ─────────────────────────────────────── */
+.subtab-pane { display: none; }
+.subtab-pane.active { display: block; }
+
+/* ── Personal header ──────────────────────────────────── */
+.personal-header {
+  text-align: center;
+  padding: 30px 20px 10px;
+}
+.personal-header h1 {
+  font-size: 1.6em;
+  margin-bottom: 4px;
+}
+.personal-header p {
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+/* ── Add button ───────────────────────────────────────── */
+.add-btn-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+.add-btn {
+  background: var(--link);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 18px;
+  font-size: 0.88em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, background 0.2s;
+}
+.add-btn:hover { opacity: 0.85; }
+
+/* ── Modal ────────────────────────────────────────────── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 200;
+  justify-content: center;
+  align-items: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.modal h2 {
+  font-size: 1.2em;
+  margin-bottom: 18px;
+}
+.modal label {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.82em;
+  margin-bottom: 4px;
+  margin-top: 12px;
+}
+.modal input {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.95em;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.modal input:focus { border-color: var(--link); }
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+.modal-actions button {
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88em;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s;
+}
+.modal-actions button:hover { opacity: 0.85; }
+.btn-cancel { background: var(--border); color: var(--text); }
+.btn-save { background: var(--link); color: #fff; }
+
+/* ── Project card ─────────────────────────────────────── */
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.project-card:hover {
+  border-color: var(--link);
+  transform: translateY(-2px);
+}
+.project-card h3 {
+  font-size: 1.05em;
+  margin-bottom: 6px;
+  padding-right: 36px;
+}
+.project-card h3 a {
+  color: var(--link);
+  text-decoration: none;
+}
+.project-card h3 a:hover { text-decoration: underline; }
+.project-card .project-link {
+  color: var(--text-muted);
+  font-size: 0.82em;
+  word-break: break-all;
+  margin-bottom: 8px;
+}
+.project-card .project-link a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.project-card .project-link a:hover { text-decoration: underline; }
+.project-card .project-date {
+  color: var(--text-muted);
+  font-size: 0.75em;
+  margin-top: auto;
+}
+.delete-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.delete-btn:hover { color: var(--danger); }
+
+/* ── Empty / Coming Soon states ───────────────────────── */
+.empty-state,
+.coming-soon {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 0.95em;
+}
+.empty-state span,
+.coming-soon span {
+  font-size: 2.5em;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* ── FOOTER ───────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: var(--text-muted);
+  font-size: 0.85em;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  header h1 { font-size: 1.2em; }
+  .top-tab-btn { padding: 12px 20px; font-size: 0.9em; }
+  .learning-nav ul { overflow-x: auto; }
+  .section-title { font-size: 1.2em; }
+  .modal { padding: 20px; }
+}
