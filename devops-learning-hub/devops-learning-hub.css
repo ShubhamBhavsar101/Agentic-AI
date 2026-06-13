@@ -28,10 +28,14 @@
   --link-hover:   #79c0ff;
 
   /* Status / Tags */
-  --success:      #3fb950;
-  --warning:      #d29922;
-  --danger:       #f85149;
-  --info:         #bc8cff;
+  --success:          #3fb950;
+  --warning:          #d29922;
+  --danger:           #f85149;
+  --info:             #bc8cff;
+
+  /* Section accents */
+  --accent-learning:  #58a6ff;
+  --accent-personal:  #bc8cff;
 
   /* Tag backgrounds (with alpha) */
   --success-bg:   rgba(63,185,80,0.15);
@@ -362,8 +366,11 @@ header p {
   transition: color 0.2s;
   white-space: nowrap;
 }
-.personal-subnav li a:hover { color: var(--link); }
-.personal-subnav li a.active { color: var(--link); font-weight: 600; }
+.personal-subnav li a:hover,
+.personal-subnav li a.active {
+  color: var(--accent-personal);
+  font-weight: 600;
+}
 
 /* ── Sub-tab panes ─────────────────────────────────────── */
 .subtab-pane { display: none; }
@@ -373,7 +380,7 @@ header p {
 .personal-header {
   text-align: center;
   padding: 18px 20px;
-  background: linear-gradient(135deg, #161b22 0%, #1a2332 50%, #161b22 100%);
+  background: linear-gradient(135deg, #161b22 0%, #1c1f2b 50%, #161b22 100%);
   border-bottom: 1px solid var(--border);
   position: relative;
   overflow: hidden;
@@ -385,7 +392,7 @@ header p {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(ellipse at center, rgba(88,166,255,0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(188,140,255,0.1) 0%, transparent 60%);
   pointer-events: none;
 }
 .personal-header h1 {
@@ -394,7 +401,7 @@ header p {
   position: relative;
 }
 .personal-header h1 span {
-  color: var(--link);
+  color: var(--accent-personal);
 }
 .personal-header p {
   color: var(--text-muted);
