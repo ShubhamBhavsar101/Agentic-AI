@@ -1420,6 +1420,251 @@ document.querySelectorAll('.personal-subtab').forEach(function(btn) {
 });
 
 // ═══════════════════════════════════════════════════════
+// PROJECTS CRUD (API-backed)
+// ═══════════════════════════════════════════════════════
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderProjects(projects) {
+  var grid = document.getElementById('projects-grid');
+  var empty = document.getElementById('projects-empty');
+  grid.querySelectorAll('.project-card').forEach(function(c) { c.remove(); });
+  if (!projects || projects.length === 0) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  projects.forEach(function(proj) {
+    var card = document.createElement('div');
+    card.className = 'project-card';
+    card.setAttribute('data-proj-id', proj.id);
+    var t = escapeHtml(proj.title);
+    var u = escapeHtml(proj.url);
+    card.innerHTML =
+      '<button class="delete-btn" title="Delete project" data-proj-id="' + escapeHtml(String(proj.id)) + '">✕</button>' +
+      '<h3><a href="' + u + '" target="_blank">' + t + '</a></h3>' +
+      '<div class="project-link"><a href="' + u + '" target="_blank">' + u + '</a></div>' +
+      '<div class="project-date">Added: ' + new Date(proj.added).toLocaleDateString() + '</div>';
+    grid.appendChild(card);
+  });
+}
+
+function loadProjects() {
+  fetch('/api/projects')
+    .then(function(r) { return r.json(); })
+    .then(function(data) { renderProjects(data); })
+    .catch(function() { renderProjects([]); });
+}
+
+// Modal
+var modal = document.getElementById('project-modal');
+document.getElementById('add-project-btn').addEventListener('click', function() {
+  modal.classList.add('open');
+  document.getElementById('proj-title').focus();
+});
+document.getElementById('modal-cancel').addEventListener('click', function() {
+  modal.classList.remove('open');
+  document.getElementById('proj-title').value = '';
+  document.getElementById('proj-url').value = '';
+});
+document.getElementById('modal-save').addEventListener('click', function() {
+  var title = document.getElementById('proj-title').value.trim();
+  var url = document.getElementById('proj-url').value.trim();
+  if (!title || !url) return;
+  // Load current, add new, save back
+  fetch('/api/projects')
+    .then(function(r) { return r.json(); })
+    .then(function(projects) {
+      projects.push({ id: Date.now().toString(36), title: title, url: url, added: Date.now() });
+      return fetch('/api/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(projects)
+      });
+    })
+    .then(function() {
+      loadProjects();
+      modal.classList.remove('open');
+      document.getElementById('proj-title').value = '';
+      document.getElementById('proj-url').value = '';
+    });
+});
+modal.addEventListener('click', function(e) {
+  if (e.target === modal) {
+    modal.classList.remove('open');
+    document.getElementById('proj-title').value = '';
+    document.getElementById('proj-url').value = '';
+  }
+});
+
+// Delete project
+document.getElementById('projects-grid').addEventListener('click', function(e) {
+  if (!e.target.classList.contains('delete-btn')) return;
+  var id = e.target.getAttribute('data-proj-id');
+  fetch('/api/projects/' + encodeURIComponent(id), { method: 'DELETE' })
+    .then(function() { loadProjects(); });
+});
+
+// Initial load
+loadProjects();
+
+// ═══════════════════════════════════════════════════════
+// FAVOURITES (API-backed, synced across both views)
+// ═══════════════════════════════════════════════════════
+
+// Helper: sync ALL star buttons for a given favid across the whole page
+function syncStarButtons(favid, isFavourite) {
+  document.querySelectorAll('.star-btn[data-favid="' + favid + '"]').forEach(function(btn) {
+    btn.classList.toggle('active', isFavourite);
+    btn.textContent = isFavourite ? '★' : '☆';
+    btn.title = isFavourite ? 'Remove from favourites' : 'Add to favourites';
+  });
+}
+
+function renderFavourites(favs) {
+  var grid = document.getElementById('favourites-grid');
+  var empty = document.getElementById('fav-empty');
+  grid.querySelectorAll('.card').forEach(function(c) { c.remove(); });
+  if (!favs || favs.length === 0) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  favs.forEach(function(fav) {
+    // Skip malformed entries (old string format etc.)
+    if (!fav || typeof fav !== 'object' || !fav.name) return;
+    var card = document.createElement('div');
+    card.className = 'card';
+    var safeName = escapeHtml(fav.name);
+    var safeUrl = escapeHtml(fav.url);
+    card.innerHTML =
+      '<button class="star-btn active" data-favid="' + escapeHtml(fav.id) + '" data-name="' + escapeHtml(fav.name) + '" data-url="' + escapeHtml(fav.url) + '" title="Remove from favourites">★</button>' +
+      '<h3><a href="' + safeUrl + '" target="_blank">' + safeName + '</a></h3>' +
+      '<p>' + safeUrl + '</p>';
+    grid.appendChild(card);
+  });
+}
+
+function updateFavCount(favs) {
+  var count = favs ? favs.length : 0;
+  var el = document.getElementById('favourites-count');
+  el.textContent = count;
+  el.classList.toggle('hidden', count === 0);
+}
+
+function loadFavourites() {
+  fetch('/api/favourites')
+    .then(function(r) { return r.json(); })
+    .then(function(favs) {
+      updateFavCount(favs);
+      renderFavourites(favs);
+      // Sync star state on all Learning page cards
+      var favIds = {};
+      favs.forEach(function(f) { if (f && typeof f === 'object' && f.id) favIds[f.id] = true; });
+      document.querySelectorAll('.star-btn').forEach(function(btn) {
+        var id = btn.getAttribute('data-favid');
+        var isFav = !!favIds[id];
+        btn.classList.toggle('active', isFav);
+        btn.textContent = isFav ? '★' : '☆';
+        btn.title = isFav ? 'Remove from favourites' : 'Add to favourites';
+      });
+    })
+    .catch(function() { updateFavCount([]); });
+}
+
+// Star button click handler
+document.addEventListener('click', function(e) {
+  if (!e.target.classList.contains('star-btn')) return;
+  var id = e.target.getAttribute('data-favid');
+  var name = e.target.getAttribute('data-name');
+  var url = e.target.getAttribute('data-url');
+  // Read current state from the button itself (source of truth after click)
+  var wasActive = e.target.classList.contains('active');
+  // Toggle immediately for responsiveness
+  syncStarButtons(id, !wasActive);
+  // Now sync with server
+  fetch('/api/favourites')
+    .then(function(r) { return r.json(); })
+    .then(function(favs) {
+      var idx = favs.findIndex(function(f) { return f.id === id; });
+      if (!wasActive) {
+        // Adding to favourites
+        if (idx < 0) favs.push({ id: id, name: name, url: url });
+      } else {
+        // Removing from favourites
+        if (idx >= 0) favs.splice(idx, 1);
+      }
+      return fetch('/api/favourites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(favs)
+      }).then(function() { return favs; });
+    })
+    .then(function(favs) {
+      updateFavCount(favs);
+      renderFavourites(favs);
+      // Re-sync all buttons from server state
+      var favIds = {};
+      favs.forEach(function(f) { if (f && typeof f === 'object' && f.id) favIds[f.id] = true; });
+      document.querySelectorAll('.star-btn').forEach(function(btn) {
+        var bid = btn.getAttribute('data-favid');
+        var isFav = !!favIds[bid];
+        btn.classList.toggle('active', isFav);
+        btn.textContent = isFav ? '★' : '☆';
+        btn.title = isFav ? 'Remove from favourites' : 'Add to favourites';
+      });
+    });
+});
+
+// Initial load
+loadFavourites();
+
+// ═══════════════════════════════════════════════════════
+// LEARNING NAV active state on scroll
+// ═══════════════════════════════════════════════════════
+var navLinks = document.querySelectorAll('.learning-nav a');
+var sections = document.querySelectorAll('.section');
+window.addEventListener('scroll', function() {
+  if (document.querySelector('#pane-personal').classList.contains('active')) return;
+  var scrollY = window.scrollY + 80;
+  var current = '';
+  sections.forEach(function(sec) {
+    var top = sec.offsetTop;
+    if (top <= scrollY) current = sec.getAttribute('id');
+  });
+  navLinks.forEach(function(a) {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+  });
+});
+</script>
+document.querySelectorAll('.top-tab-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var tab = this.getAttribute('data-tab');
+    document.querySelectorAll('.top-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    document.querySelectorAll('.page-pane').forEach(function(p) { p.classList.remove('active'); });
+    document.getElementById('pane-' + tab).classList.add('active');
+    window.scrollTo(0, 0);
+  });
+});
+
+// ═══════════════════════════════════════════════════════
+// PERSONAL SUB-TABS (Projects / Notes / Bookmarks)
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.personal-subtab').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    var tab = this.getAttribute('data-subtab');
+    document.querySelectorAll('.personal-subtab').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    document.querySelectorAll('.subtab-pane').forEach(function(p) { p.classList.remove('active'); });
+    document.getElementById('subtab-' + tab).classList.add('active');
+  });
+});
+
+// ═══════════════════════════════════════════════════════
 // PROJECTS CRUD (localStorage-backed)
 // ═══════════════════════════════════════════════════════
 var PROJECTS_KEY = 'devops-hub-projects';
