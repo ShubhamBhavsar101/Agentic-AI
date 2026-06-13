@@ -171,16 +171,15 @@
       var safeName = escapeHtml(fav.name);
       var safeUrl = escapeHtml(fav.url);
       var safeDesc = escapeHtml(fav.desc || '');
-      var safeTags = escapeHtml(fav.tags || '');
-      var tagsHtml = '';
-      if (safeTags) {
-        var tagList = safeTags.split(',').map(function(t) { return t.trim(); }).filter(Boolean);
-        if (tagList.length) {
-          tagsHtml = '<div class="tags">' + tagList.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div>';
-        }
-      }
+      // Decode tags HTML: reverse the entity encoding done for the data attribute
+      var rawTags = (fav.tags || '')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, '&');
+      var tagsHtml = rawTags ? '<div class="tags">' + rawTags + '</div>' : '';
       card.innerHTML =
-        '<button class="star-btn active" data-favid="' + escapeHtml(fav.id) + '" data-name="' + escapeHtml(fav.name) + '" data-url="' + escapeHtml(fav.url) + '" data-desc="' + safeDesc + '" data-tags="' + safeTags + '" title="Remove from favourites">&#x2605;</button>' +
+        '<button class="star-btn active" data-favid="' + escapeHtml(fav.id) + '" data-name="' + escapeHtml(fav.name) + '" data-url="' + escapeHtml(fav.url) + '" data-desc="' + safeDesc + '" data-tags="' + escapeHtml(fav.tags || '') + '" title="Remove from favourites">&#x2605;</button>' +
         '<h3><a href="' + safeUrl + '" target="_blank" rel="noopener">' + safeName + '</a></h3>' +
         (safeDesc ? '<p>' + safeDesc + '</p>' : '') +
         tagsHtml;
