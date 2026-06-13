@@ -91,7 +91,18 @@ class Handler(SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(projs).encode())
             return
-        # Serve HTML and static files
+        # Serve the hub HTML file at root
+        if parsed.path == "/" or parsed.path == "/index.html":
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.end_headers()
+            if os.path.exists(HTML_FILE):
+                with open(HTML_FILE, "rb") as f:
+                    self.wfile.write(f.read())
+            else:
+                self.wfile.write(b"devops-learning-hub.html not found")
+            return
+        # Serve other static files
         self.directory = SCRIPT_DIR
         super().do_GET()
 
