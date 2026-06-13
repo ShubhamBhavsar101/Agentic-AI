@@ -1,17 +1,7 @@
 [
   {
-    "id": "card-005-techtarget-s-10-best-free-devops-courses",
-    "name": "TechTarget's 10 Best Free DevOps Courses",
-    "url": "https://www.techtarget.com/whatis/feature/9-best-free-DevOps-certifications-and-training-courses"
-  },
-  {
-    "id": "card-004-coursera-devops-courses",
-    "name": "Coursera DevOps Courses",
-    "url": "https://www.coursera.org/courses?query=devops"
-  },
-  {
-    "id": "card-001-kodekloud-free-tier",
-    "name": "KodeKloud (Free Tier)",
-    "url": "https://kodekloud.com/courses/"
+    "id": "card-002-cloudcaptain",
+    "name": "CloudCaptain",
+    "url": "https://cloudcaptain.io"
   }
 ]
