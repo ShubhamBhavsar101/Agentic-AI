@@ -33,5 +33,10 @@
     "id": "card-015-devops-bootcamp-techworld-with-nana",
     "name": "DevOps Bootcamp \u2014 TechWorld with Nana",
     "url": "https://techworld-with-nana.com/devops-bootcamp"
+  },
+  {
+    "id": "card-016-edx-linux-foundation-devops-program",
+    "name": "edX \u2014 Linux Foundation DevOps Program",
+    "url": "https://www.edx.org/professional-certificate/linuxfoundationx-devops-engineer"
   }
 ]
