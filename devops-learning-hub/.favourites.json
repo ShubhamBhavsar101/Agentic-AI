@@ -28,5 +28,10 @@
     "id": "card-002-cloudcaptain",
     "name": "CloudCaptain",
     "url": "https://cloudcaptain.io"
+  },
+  {
+    "id": "card-015-devops-bootcamp-techworld-with-nana",
+    "name": "DevOps Bootcamp \u2014 TechWorld with Nana",
+    "url": "https://techworld-with-nana.com/devops-bootcamp"
   }
 ]
