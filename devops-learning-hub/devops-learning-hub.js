@@ -170,10 +170,20 @@
       card.className = 'card';
       var safeName = escapeHtml(fav.name);
       var safeUrl = escapeHtml(fav.url);
+      var safeDesc = escapeHtml(fav.desc || '');
+      var safeTags = escapeHtml(fav.tags || '');
+      var tagsHtml = '';
+      if (safeTags) {
+        var tagList = safeTags.split(',').map(function(t) { return t.trim(); }).filter(Boolean);
+        if (tagList.length) {
+          tagsHtml = '<div class="tags">' + tagList.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div>';
+        }
+      }
       card.innerHTML =
-        '<button class="star-btn active" data-favid="' + escapeHtml(fav.id) + '" data-name="' + escapeHtml(fav.name) + '" data-url="' + escapeHtml(fav.url) + '" title="Remove from favourites">&#x2605;</button>' +
+        '<button class="star-btn active" data-favid="' + escapeHtml(fav.id) + '" data-name="' + escapeHtml(fav.name) + '" data-url="' + escapeHtml(fav.url) + '" data-desc="' + safeDesc + '" data-tags="' + safeTags + '" title="Remove from favourites">&#x2605;</button>' +
         '<h3><a href="' + safeUrl + '" target="_blank" rel="noopener">' + safeName + '</a></h3>' +
-        '<p>' + safeUrl + '</p>';
+        (safeDesc ? '<p>' + safeDesc + '</p>' : '') +
+        tagsHtml;
       grid.appendChild(card);
     });
   }
@@ -211,6 +221,8 @@
     var id = e.target.getAttribute('data-favid');
     var name = e.target.getAttribute('data-name');
     var url = e.target.getAttribute('data-url');
+    var desc = e.target.getAttribute('data-desc') || '';
+    var tags = e.target.getAttribute('data-tags') || '';
     var wasActive = e.target.classList.contains('active');
     // Optimistic toggle
     syncStarButtons(id, !wasActive);
@@ -220,7 +232,7 @@
       .then(function(favs) {
         var idx = favs.findIndex(function(f) { return f && f.id === id; });
         if (!wasActive) {
-          if (idx < 0) favs.push({ id: id, name: name, url: url });
+          if (idx < 0) favs.push({ id: id, name: name, url: url, desc: desc, tags: tags });
         } else {
           if (idx >= 0) favs.splice(idx, 1);
         }
