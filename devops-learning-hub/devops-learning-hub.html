@@ -25,6 +25,37 @@
     color: var(--text);
     line-height: 1.6;
   }
+
+  /* ── TOP TABS (Learning / Personal) ─────────────────── */
+  .top-tabs {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+  .top-tab-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1em;
+    font-weight: 600;
+    padding: 14px 32px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .top-tab-btn:hover { color: var(--text); }
+  .top-tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ── PAGE PANES ─────────────────────────────────────── */
+  .page-pane { display: none; }
+  .page-pane.active { display: block; }
+
+  /* ── HEADER ─────────────────────────────────────────── */
   header {
     background: linear-gradient(135deg, #161b22 0%, #1a2332 50%, #161b22 100%);
     border-bottom: 1px solid var(--border);
@@ -53,6 +84,8 @@
     font-size: 0.85em;
     position: relative;
   }
+
+  /* ── TAGS ───────────────────────────────────────────── */
   .tag {
     display: inline-block;
     padding: 2px 10px;
@@ -67,7 +100,8 @@
   .tag-cert { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
   .tag-youtube { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
 
-  nav {
+  /* ── LEARNING NAV ───────────────────────────────────── */
+  .learning-nav {
     background: var(--card);
     border-bottom: 1px solid var(--border);
     padding: 0 20px;
@@ -75,7 +109,7 @@
     top: 0;
     z-index: 100;
   }
-  nav ul {
+  .learning-nav ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -83,7 +117,7 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-  nav li a {
+  .learning-nav li a {
     display: block;
     padding: 12px 16px;
     color: var(--muted);
@@ -92,14 +126,16 @@
     transition: color 0.2s;
     white-space: nowrap;
   }
-  nav li a:hover { color: var(--accent); }
+  .learning-nav li a:hover { color: var(--accent); }
 
+  /* ── CONTAINER ──────────────────────────────────────── */
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 30px 20px;
   }
 
+  /* ── SECTIONS ───────────────────────────────────────── */
   .section { margin-bottom: 50px; scroll-margin-top: 70px; }
   .section-title {
     font-size: 1.5em;
@@ -112,12 +148,12 @@
   }
   .section-icon { font-size: 1.3em; }
 
+  /* ── GRID / CARDS ───────────────────────────────────── */
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 16px;
   }
-
   .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -126,6 +162,7 @@
     transition: border-color 0.2s, transform 0.2s;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   .card:hover {
     border-color: var(--accent);
@@ -154,6 +191,7 @@
     margin-top: auto;
   }
 
+  /* ── BOOKS ──────────────────────────────────────────── */
   .book-list {
     display: flex;
     flex-wrap: wrap;
@@ -170,6 +208,7 @@
   .book .author { color: var(--muted); font-size: 0.82em; margin-top: 4px; }
   .book .desc { color: var(--muted); font-size: 0.8em; margin-top: 6px; }
 
+  /* ── FOOTER ─────────────────────────────────────────── */
   footer {
     text-align: center;
     padding: 30px;
@@ -178,12 +217,7 @@
     border-top: 1px solid var(--border);
   }
 
-  @media (max-width: 600px) {
-    header h1 { font-size: 1.5em; }
-    .grid { grid-template-columns: 1fr; }
-    nav ul { overflow-x: auto; }
-  }
-  /* Favourites */
+  /* ── FAVOURITES ─────────────────────────────────────── */
   .star-btn {
     position: absolute;
     top: 14px;
@@ -198,10 +232,7 @@
     padding: 2px;
   }
   .star-btn:hover { transform: scale(1.2); }
-  .star-btn.active {
-    color: var(--orange);
-  }
-  .card { position: relative; }
+  .star-btn.active { color: var(--orange); }
 
   .fav-empty {
     color: var(--muted);
@@ -224,16 +255,235 @@
   }
   #favourites-count.hidden { display: none; }
 
+  /* ═══════════════════════════════════════════════════════
+     PERSONAL SECTION
+     ═══════════════════════════════════════════════════════ */
+
+  /* ── Personal sub-tabs ───────────────────────────────── */
+  .personal-subnav {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .personal-subnav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .personal-subnav li a {
+    display: block;
+    padding: 12px 16px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .personal-subnav li a:hover { color: var(--accent); }
+  .personal-subnav li a.active { color: var(--accent); font-weight: 600; }
+
+  /* ── Sub-tab panes ───────────────────────────────────── */
+  .subtab-pane { display: none; }
+  .subtab-pane.active { display: block; }
+
+  /* ── Personal header ────────────────────────────────── */
+  .personal-header {
+    text-align: center;
+    padding: 30px 20px 10px;
+  }
+  .personal-header h1 {
+    font-size: 1.6em;
+    margin-bottom: 4px;
+  }
+  .personal-header p {
+    color: var(--muted);
+    font-size: 0.9em;
+  }
+
+  /* ── Add button ─────────────────────────────────────── */
+  .add-btn-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+  .add-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 0.88em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .add-btn:hover { opacity: 0.85; }
+
+  /* ── Modal ──────────────────────────────────────────── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    width: 90%;
+    max-width: 480px;
+  }
+  .modal h2 {
+    font-size: 1.2em;
+    margin-bottom: 18px;
+  }
+  .modal label {
+    display: block;
+    color: var(--muted);
+    font-size: 0.82em;
+    margin-bottom: 4px;
+    margin-top: 12px;
+  }
+  .modal input {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.95em;
+    outline: none;
+  }
+  .modal input:focus { border-color: var(--accent); }
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+  }
+  .modal-actions button {
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.88em;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+  }
+  .modal-actions button:hover { opacity: 0.85; }
+  .btn-cancel { background: var(--border); color: var(--text); }
+  .btn-save { background: var(--accent); color: #fff; }
+
+  /* ── Project card ───────────────────────────────────── */
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .project-card h3 {
+    font-size: 1.05em;
+    margin-bottom: 6px;
+    padding-right: 36px;
+  }
+  .project-card h3 a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .project-card h3 a:hover { text-decoration: underline; }
+  .project-card .project-link {
+    color: var(--muted);
+    font-size: 0.82em;
+    word-break: break-all;
+    margin-bottom: 8px;
+  }
+  .project-card .project-link a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .project-card .project-link a:hover { text-decoration: underline; }
+  .project-card .project-date {
+    color: var(--muted);
+    font-size: 0.75em;
+    margin-top: auto;
+  }
+  .delete-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.1em;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .delete-btn:hover { color: var(--red); }
+
+  .empty-state {
+    color: var(--muted);
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 0.95em;
+  }
+  .empty-state span { font-size: 2.5em; display: block; margin-bottom: 12px; }
+
+  /* ── Coming soon placeholder ────────────────────────── */
+  .coming-soon {
+    color: var(--muted);
+    text-align: center;
+    padding: 80px 20px;
+    font-size: 1em;
+  }
+  .coming-soon span { font-size: 2.5em; display: block; margin-bottom: 12px; }
+
+  /* ── Responsive ─────────────────────────────────────── */
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5em; }
+    .grid { grid-template-columns: 1fr; }
+    .learning-nav ul { overflow-x: auto; }
+    .top-tab-btn { padding: 12px 20px; font-size: 0.9em; }
+  }
 </style>
 </head>
 <body>
+
+<!-- ═══ TOP TABS ═══ -->
+<div class="top-tabs">
+  <button class="top-tab-btn active" data-tab="learning">📚 Learning</button>
+  <button class="top-tab-btn" data-tab="personal">👤 Personal</button>
+</div>
+
+<!-- ═══ LEARNING PANE ═══ -->
+<div class="page-pane active" id="pane-learning">
 
 <header>
   <h1>🚀 The Ultimate <span>DevOps</span> Learning Hub</h1>
   <p>Curated from across the internet — courses, books, certifications, communities &amp; more. All in one place.</p>
 </header>
 
-<nav>
+<nav class="learning-nav">
   <ul>
     <li><a href="#courses-free">Free Courses</a></li>
     <li><a href="#courses-paid">Paid Courses</a></li>
@@ -1056,36 +1306,10 @@
       <div class="card">
       <button class="star-btn" data-favid="card-071-ramitsurana-awesome-kubernetes" data-name="ramitsurana/awesome-kubernetes" data-url="https://github.com/ramitsurana/awesome-kubernetes" title="Add to favourites">☆</button>
         <h3><a href="https://github.com/ramitsurana/awesome-kubernetes" target="_blank">ramitsurana/awesome-kubernetes</a> <span style="color: var(--orange); font-size: 0.8em;">★ 16K</span></h3>
-        <p>A curated list of awesome Kubernetes sources. Covers installation, tutorials, networking, monitoring, CI/CD, machine learning on K8s, and community resources. One of the oldest and most comprehensive K8s awesome lists.</p>
+        <p>A curated list of awesome Kubernetes sources and resources. Covers tools, platforms, books, tutorials, blogs, events &amp; more for Kubernetes. Great for discovering new tools in the K8s ecosystem.</p>
         <div class="tags">
           <span class="tag tag-free">Free</span>
-        </div>
-      </div>
-
-      <div class="card">
-      <button class="star-btn" data-favid="card-072-bregman-arie-devops-resources" data-name="bregman-arie/devops-resources" data-url="https://github.com/bregman-arie/devops-resources" title="Add to favourites">☆</button>
-        <h3><a href="https://github.com/bregman-arie/devops-resources" target="_blank">bregman-arie/devops-resources</a> <span style="color: var(--orange); font-size: 0.8em;">★ 9.5K</span></h3>
-        <p>Comprehensive collection of DevOps tools, tutorials, and roadmaps. Covers Linux, Jenkins, AWS, SRE, Prometheus, Docker, Python, Ansible, Git, Kubernetes, Terraform &amp; more. Opinionated learning paths to avoid overwhelm for beginners.</p>
-        <div class="tags">
-          <span class="tag tag-free">Free</span>
-        </div>
-      </div>
-
-      <div class="card">
-      <button class="star-btn" data-favid="card-073-wmariuss-awesome-devops" data-name="wmariuss/awesome-devops" data-url="https://github.com/wmariuss/awesome-devops" title="Add to favourites">☆</button>
-        <h3><a href="https://github.com/wmariuss/awesome-devops" target="_blank">wmariuss/awesome-devops</a> <span style="color: var(--orange); font-size: 0.8em;">★ 4.1K</span></h3>
-        <p>A curated list of awesome DevOps platforms, tools, practices, and resources. Covers CI/CD, configuration management, monitoring, containerization, cloud platforms &amp; SRE. A well-maintained, community-driven awesome list.</p>
-        <div class="tags">
-          <span class="tag tag-free">Free</span>
-        </div>
-      </div>
-
-      <div class="card">
-      <button class="star-btn" data-favid="card-074-in28minutes-devops-master-class" data-name="in28minutes/devops-master-class" data-url="https://github.com/in28minutes/devops-master-class" title="Add to favourites">☆</button>
-        <h3><a href="https://github.com/in28minutes/devops-master-class" target="_blank">in28minutes/devops-master-class</a> <span style="color: var(--orange); font-size: 0.8em;">★ 2.9K</span></h3>
-        <p>DevOps tutorial for beginners — learn Docker, Kubernetes, Terraform, Ansible, Jenkins and Azure DevOps. Step-by-step projects with code. From the popular in28minutes YouTube channel with millions of views.</p>
-        <div class="tags">
-          <span class="tag tag-free">Free</span>
+          <span class="tag tag-cert">Kubernetes</span>
         </div>
       </div>
 
@@ -1094,183 +1318,275 @@
 
   <!-- FAVOURITES -->
   <div class="section" id="favourites">
-    <h2 class="section-title"><span class="section-icon">⭐</span> Your Favourites</h2>
-    <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.9em;">Resources you've starred across the site. Star any resource by clicking the ☆ button in the top-right corner of its card. Your favourites are saved automatically.</p>
+    <h2 class="section-title"><span class="section-icon">⭐</span> Favourites</h2>
+    <p style="color: var(--muted); margin-bottom: 20px; font-size:0.9em;">Your starred resources. Click the ☆ on any card to add/remove. Persisted via the favourites service.</p>
     <div class="grid" id="favourites-grid">
-      <!-- Dynamically populated by JavaScript -->
-    </div>
-    <div class="fav-empty" id="favourites-empty">
-      <span>☆</span>
-      No favourites yet. Star any resource to add it here!
+      <div class="fav-empty" id="fav-empty"><span>☆</span> No favourites yet — click the star on any card above!</div>
     </div>
   </div>
 
+</div><!-- end container -->
+
+</div><!-- end pane-learning -->
+
+<!-- ═══ PERSONAL PANE ═══ -->
+<div class="page-pane" id="pane-personal">
+
+  <div class="personal-header">
+    <h1>👤 Personal</h1>
+    <p>Your projects, notes &amp; bookmarks — all in one place.</p>
+  </div>
+
+  <nav class="personal-subnav">
+    <ul>
+      <li><a href="#" class="personal-subtab active" data-subtab="projects">🚀 Projects</a></li>
+      <li><a href="#" class="personal-subtab" data-subtab="notes">📝 Notes</a></li>
+      <li><a href="#" class="personal-subtab" data-subtab="bookmarks">🔖 Bookmarks</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <!-- PROJECTS SUB-TAB -->
+    <div class="subtab-pane active" id="subtab-projects">
+      <div class="add-btn-row">
+        <button class="add-btn" id="add-project-btn">+ Add Project</button>
+      </div>
+      <div class="grid" id="projects-grid">
+        <div class="empty-state" id="projects-empty"><span>🚀</span>No projects yet — click "Add Project" to get started!</div>
+      </div>
+    </div>
+
+    <!-- NOTES SUB-TAB -->
+    <div class="subtab-pane" id="subtab-notes">
+      <div class="coming-soon"><span>📝</span>Coming soon — Notes section under construction.</div>
+    </div>
+
+    <!-- BOOKMARKS SUB-TAB -->
+    <div class="subtab-pane" id="subtab-bookmarks">
+      <div class="coming-soon"><span>🔖</span>Coming soon — Bookmarks section under construction.</div>
+    </div>
+
+  </div>
+
+</div><!-- end pane-personal -->
+
+<!-- ═══ ADD PROJECT MODAL ═══ -->
+<div class="modal-overlay" id="project-modal">
+  <div class="modal">
+    <h2>🚀 Add Project</h2>
+    <label for="proj-title">Project Title</label>
+    <input type="text" id="proj-title" placeholder="e.g. My Awesome DevOps Project">
+    <label for="proj-url">Project Link</label>
+    <input type="url" id="proj-url" placeholder="https://github.com/you/project">
+    <div class="modal-actions">
+      <button class="btn-cancel" id="modal-cancel">Cancel</button>
+      <button class="btn-save" id="modal-save">Save</button>
+    </div>
+  </div>
 </div>
 
 <footer>
-  <p>Compiled from Reddit, Google, Coursera, Udemy, KodeKloud, TechWorld with Nana, CloudCaptain, roadmap.sh &amp; more.</p>
-  <p style="margin-top:8px;">Last updated: June 2026 · All links verified at time of creation.</p>
+  <p>The Ultimate DevOps Learning Hub &copy; 2026 &mdash; Curated with ❤️ for the DevOps community.</p>
 </footer>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// TOP TABS (Learning / Personal)
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.top-tab-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var tab = this.getAttribute('data-tab');
+    document.querySelectorAll('.top-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    document.querySelectorAll('.page-pane').forEach(function(p) { p.classList.remove('active'); });
+    document.getElementById('pane-' + tab).classList.add('active');
+    window.scrollTo(0, 0);
+  });
+});
+
+// ═══════════════════════════════════════════════════════
+// PERSONAL SUB-TABS (Projects / Notes / Bookmarks)
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.personal-subtab').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    var tab = this.getAttribute('data-subtab');
+    document.querySelectorAll('.personal-subtab').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    document.querySelectorAll('.subtab-pane').forEach(function(p) { p.classList.remove('active'); });
+    document.getElementById('subtab-' + tab).classList.add('active');
+  });
+});
+
+// ═══════════════════════════════════════════════════════
+// PROJECTS CRUD (localStorage-backed)
+// ═══════════════════════════════════════════════════════
+var PROJECTS_KEY = 'devops-hub-projects';
+
+function getProjects() {
+  try { return JSON.parse(localStorage.getItem(PROJECTS_KEY)) || []; } catch(e) { return []; }
+}
+
+function saveProjects(projects) {
+  localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+}
+
+function renderProjects() {
+  var projects = getProjects();
+  var grid = document.getElementById('projects-grid');
+  var empty = document.getElementById('projects-empty');
+  if (projects.length === 0) {
+    empty.style.display = 'block';
+    // remove any project cards
+    grid.querySelectorAll('.project-card').forEach(function(c) { c.remove(); });
+    return;
+  }
+  empty.style.display = 'none';
+  grid.querySelectorAll('.project-card').forEach(function(c) { c.remove(); });
+  projects.forEach(function(proj) {
+    var card = document.createElement('div');
+    card.className = 'project-card';
+    card.setAttribute('data-proj-id', proj.id);
+    var safeTitle = proj.title.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    var safeUrl = proj.url.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    card.innerHTML =
+      '<button class="delete-btn" title="Delete project" data-proj-id="' + proj.id + '">✕</button>' +
+      '<h3><a href="' + safeUrl + '" target="_blank">' + safeTitle + '</a></h3>' +
+      '<div class="project-link"><a href="' + safeUrl + '" target="_blank">' + safeUrl + '</a></div>' +
+      '<div class="project-date">Added: ' + new Date(proj.added).toLocaleDateString() + '</div>';
+    grid.appendChild(card);
+  });
+}
+
+// Modal
+var modal = document.getElementById('project-modal');
+document.getElementById('add-project-btn').addEventListener('click', function() {
+  modal.classList.add('open');
+  document.getElementById('proj-title').focus();
+});
+document.getElementById('modal-cancel').addEventListener('click', function() {
+  modal.classList.remove('open');
+  document.getElementById('proj-title').value = '';
+  document.getElementById('proj-url').value = '';
+});
+document.getElementById('modal-save').addEventListener('click', function() {
+  var title = document.getElementById('proj-title').value.trim();
+  var url = document.getElementById('proj-url').value.trim();
+  if (!title || !url) return;
+  var projects = getProjects();
+  projects.push({ id: Date.now().toString(36), title: title, url: url, added: Date.now() });
+  saveProjects(projects);
+  renderProjects();
+  modal.classList.remove('open');
+  document.getElementById('proj-title').value = '';
+  document.getElementById('proj-url').value = '';
+});
+// Close modal on overlay click
+modal.addEventListener('click', function(e) {
+  if (e.target === modal) {
+    modal.classList.remove('open');
+    document.getElementById('proj-title').value = '';
+    document.getElementById('proj-url').value = '';
+  }
+});
+
+// Delete project
+document.getElementById('projects-grid').addEventListener('click', function(e) {
+  if (e.target.classList.contains('delete-btn')) {
+    var id = e.target.getAttribute('data-proj-id');
+    var projects = getProjects().filter(function(p) { return p.id !== id; });
+    saveProjects(projects);
+    renderProjects();
+  }
+});
+
+renderProjects();
+
+// ═══════════════════════════════════════════════════════
+// FAVOURITES (localStorage-backed)
+// ═══════════════════════════════════════════════════════
+var FAV_KEY = 'devops-hub-favourites';
+
+function getFavs() {
+  try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch(e) { return []; }
+}
+
+function saveFavs(favs) {
+  localStorage.setItem(FAV_KEY, JSON.stringify(favs));
+}
+
+function updateFavCount() {
+  var count = getFavs().length;
+  var el = document.getElementById('favourites-count');
+  el.textContent = count;
+  el.classList.toggle('hidden', count === 0);
+}
+
+function renderFavourites() {
+  var favs = getFavs();
+  var grid = document.getElementById('favourites-grid');
+  var empty = document.getElementById('fav-empty');
+  if (favs.length === 0) {
+    empty.style.display = 'block';
+    grid.querySelectorAll('.card').forEach(function(c) { c.remove(); });
+    return;
+  }
+  empty.style.display = 'none';
+  grid.querySelectorAll('.card').forEach(function(c) { c.remove(); });
+  favs.forEach(function(fav) {
+    var card = document.createElement('div');
+    card.className = 'card';
+    var safeName = fav.name.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    var safeUrl = fav.url.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    card.innerHTML =
+      '<button class="star-btn active" data-favid="' + fav.id + '" data-name="' + fav.name + '" data-url="' + fav.url + '" title="Remove from favourites">★</button>' +
+      '<h3><a href="' + safeUrl + '" target="_blank">' + safeName + '</a></h3>' +
+      '<p>' + safeUrl + '</p>';
+    grid.appendChild(card);
+  });
+}
+
+// Star buttons
+document.addEventListener('click', function(e) {
+  if (!e.target.classList.contains('star-btn')) return;
+  var id = e.target.getAttribute('data-favid');
+  var name = e.target.getAttribute('data-name');
+  var url = e.target.getAttribute('data-url');
+  var favs = getFavs();
+  var idx = favs.findIndex(function(f) { return f.id === id; });
+  if (idx >= 0) {
+    favs.splice(idx, 1);
+    e.target.classList.remove('active');
+  } else {
+    favs.push({ id: id, name: name, url: url });
+    e.target.classList.add('active');
+  }
+  saveFavs(favs);
+  updateFavCount();
+  renderFavourites();
+});
+
+updateFavCount();
+
+// ═══════════════════════════════════════════════════════
+// LEARNING NAV active state on scroll
+// ═══════════════════════════════════════════════════════
+var navLinks = document.querySelectorAll('.learning-nav a');
+var sections = document.querySelectorAll('.section');
+window.addEventListener('scroll', function() {
+  if (document.querySelector('#pane-personal').classList.contains('active')) return;
+  var scrollY = window.scrollY + 80;
+  var current = '';
+  sections.forEach(function(sec) {
+    var top = sec.offsetTop;
+    if (top <= scrollY) current = sec.getAttribute('id');
+  });
+  navLinks.forEach(function(a) {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+  });
+});
+</script>
 
 </body>
 </html>
-
-<script>
-(function() {
-  'use strict';
-
-  var API = '/api/favourites';
-
-  // ── API helpers (server-backed persistence) ──────────
-  function loadFavs() {
-    return fetch(API)
-      .then(function(r) { return r.json(); })
-      .catch(function() { return []; });
-  }
-
-  function saveFavs(ids) {
-    return fetch(API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(ids)
-    }).catch(function() { /* offline — silently fail */ });
-  }
-
-  // ── update star UI ───────────────────────────────────
-  function updateStar(btn, active) {
-    btn.textContent = active ? '★' : '☆';
-    btn.classList.toggle('active', active);
-  }
-
-  function updateCount(count) {
-    var badge = document.getElementById('favourites-count');
-    if (!badge) return;
-    badge.textContent = count;
-    badge.classList.toggle('hidden', count === 0);
-  }
-
-  // ── build a card clone for the favourites grid ───────
-  function buildFavCard(originalCard, favId) {
-    var name = '';
-    var url = '';
-    var desc = '';
-    var tagsHtml = '';
-
-    var linkEl = originalCard.querySelector('h3 a');
-    if (linkEl) {
-      name = linkEl.textContent.replace(/\s*★\s*\d[\d.K]*$/, '').trim();
-      url = linkEl.getAttribute('href');
-    }
-
-    var pEl = originalCard.querySelector('p');
-    if (pEl) desc = pEl.innerHTML;
-
-    var tagsEl = originalCard.querySelector('.tags');
-    if (tagsEl) tagsHtml = tagsEl.outerHTML;
-
-    var card = document.createElement('div');
-    card.className = 'card';
-    card.setAttribute('data-fav-id', favId);
-
-    card.innerHTML =
-      '<button class="star-btn active" data-favid="' + favId +
-      '" data-name="' + name.replace(/"/g, '&quot;') +
-      '" data-url="' + url +
-      '" title="Remove from favourites">★</button>' +
-      '<h3><a href="' + url + '" target="_blank">' + name + '</a></h3>' +
-      '<p>' + desc + '</p>' +
-      tagsHtml;
-
-    var removeBtn = card.querySelector('.star-btn');
-    removeBtn.addEventListener('click', function() { handleStarClick(this); });
-
-    return card;
-  }
-
-  // ── render the favourites section ────────────────────
-  function renderFavourites(favs) {
-    var grid = document.getElementById('favourites-grid');
-    var empty = document.getElementById('favourites-empty');
-    if (!grid || !empty) return;
-
-    grid.innerHTML = '';
-
-    if (!favs || favs.length === 0) {
-      grid.style.display = 'none';
-      empty.style.display = 'block';
-      updateCount(0);
-      return;
-    }
-
-    grid.style.display = '';
-    empty.style.display = 'none';
-    updateCount(favs.length);
-
-    favs.forEach(function(favId) {
-      var btn = document.querySelector('.star-btn[data-favid="' + CSS.escape(favId) + '"]');
-      if (!btn) return;
-      var originalCard = btn.closest('.card');
-      if (!originalCard) return;
-      grid.appendChild(buildFavCard(originalCard, favId));
-    });
-  }
-
-  // ── sync all star buttons from server state ──────────
-  function syncStars(favs) {
-    var favSet = {};
-    favs.forEach(function(id) { favSet[id] = true; });
-    document.querySelectorAll('.star-btn').forEach(function(btn) {
-      updateStar(btn, !!favSet[btn.getAttribute('data-favid')]);
-    });
-  }
-
-  // ── star button click handler ────────────────────────
-  function handleStarClick(btn) {
-    var id = btn.getAttribute('data-favid');
-    // optimistically toggle
-    var isActive = btn.classList.contains('active');
-    var nowActive = !isActive;
-    updateStar(btn, nowActive);
-
-    // sync other buttons with same id
-    document.querySelectorAll('.star-btn[data-favid="' + CSS.escape(id) + '"]').forEach(function(b) {
-      if (b !== btn) updateStar(b, nowActive);
-    });
-
-    // reload from server to get canonical state, then re-render
-    loadFavs().then(function(favs) {
-      if (nowActive && favs.indexOf(id) === -1) {
-        favs.push(id);
-      } else if (!nowActive && favs.indexOf(id) !== -1) {
-        favs.splice(favs.indexOf(id), 1);
-      }
-      return saveFavs(favs);
-    }).then(function() {
-      return loadFavs();
-    }).then(function(favs) {
-      syncStars(favs);
-      renderFavourites(favs);
-    });
-  }
-
-  // ── init ─────────────────────────────────────────────
-  function init() {
-    loadFavs().then(function(favs) {
-      // set initial star states
-      syncStars(favs);
-      // render favourites section
-      renderFavourites(favs);
-      // attach click handlers
-      document.querySelectorAll('.star-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() { handleStarClick(this); });
-      });
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
