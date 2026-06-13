@@ -1,42 +1,7 @@
 [
   {
-    "id": "card-001-kodekloud-free-tier",
-    "name": "KodeKloud (Free Tier)",
-    "url": "https://kodekloud.com/courses/"
-  },
-  {
-    "id": "card-043-techworld-with-milan",
-    "name": "TechWorld with Milan",
-    "url": "https://www.youtube.com/@TechWorldwithMilan"
-  },
-  {
-    "id": "card-007-pw-skills-9-best-devops-certifications",
-    "name": "PW Skills \u2014 9 Best DevOps Certifications",
-    "url": "https://pwskills.com/blog/devops/9-best-devops-certification-free-and-paid"
-  },
-  {
-    "id": "card-068-binhnguyennus-awesome-scalability",
-    "name": "binhnguyennus/awesome-scalability",
-    "url": "https://github.com/binhnguyennus/awesome-scalability"
-  },
-  {
-    "id": "card-069-nektos-act",
-    "name": "nektos/act",
-    "url": "https://github.com/nektos/act"
-  },
-  {
-    "id": "card-002-cloudcaptain",
-    "name": "CloudCaptain",
-    "url": "https://cloudcaptain.io"
-  },
-  {
-    "id": "card-015-devops-bootcamp-techworld-with-nana",
-    "name": "DevOps Bootcamp \u2014 TechWorld with Nana",
-    "url": "https://techworld-with-nana.com/devops-bootcamp"
-  },
-  {
-    "id": "card-016-edx-linux-foundation-devops-program",
-    "name": "edX \u2014 Linux Foundation DevOps Program",
-    "url": "https://www.edx.org/professional-certificate/linuxfoundationx-devops-engineer"
+    "id": "test-card",
+    "name": "Test",
+    "url": "https://test.com"
   }
 ]
