@@ -38,26 +38,38 @@ def save_json(path, data):
 
 def commit_all(msg):
     """Commit and push all data files. Called only on server shutdown."""
-    try:
-        subprocess.run(["git", "add", FAV_FILE, PROJ_FILE], cwd=SCRIPT_DIR, capture_output=True, timeout=10)
-        result = subprocess.run(["git", "commit", "-m", msg], cwd=SCRIPT_DIR, capture_output=True, timeout=10)
-        if result.returncode == 0:
-            print("Changes committed.")
-        else:
-            print("Nothing to commit (no changes).")
-        # Push with timeout — don't block shutdown if network is slow
+    # Run entire git workflow in a subprocess with a hard timeout
+    # so it can never block the main thread
+    import threading
+    def _run():
         try:
-            push_result = subprocess.run(["git", "push"], cwd=SCRIPT_DIR, capture_output=True, timeout=15)
-            if push_result.returncode == 0:
-                print("Changes pushed.")
+            # Combine add+commit+push in one shell command
+            cmd = (
+                f'cd "{SCRIPT_DIR}" && '
+                f'git add "{FAV_FILE}" "{PROJ_FILE}" && '
+                f'git commit -m "{msg}" && '
+                f'git push'
+            )
+            result = subprocess.run(
+                cmd, shell=True, capture_output=True, timeout=20
+            )
+            if result.returncode == 0:
+                print("Changes committed and pushed.")
             else:
-                print("Push failed — data committed locally, push manually later.")
+                err = result.stderr.decode('utf-8', errors='replace')[:200]
+                if 'nothing to commit' in err or 'nothing added' in err:
+                    print("Nothing to commit.")
+                else:
+                    print(f"Git failed: {err}")
         except subprocess.TimeoutExpired:
-            print("Push timed out — data committed locally, push manually later.")
-    except subprocess.TimeoutExpired:
-        print("Git commit timed out.")
-    except Exception as e:
-        print(f"Git error: {e}")
+            print("Git timed out — data may not have been pushed.")
+        except Exception as e:
+            print(f"Git error: {e}")
+    t = threading.Thread(target=_run, daemon=True)
+    t.start()
+    t.join(timeout=25)
+    if t.is_alive():
+        print("Git still running — moving on.")
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -148,9 +160,16 @@ if __name__ == "__main__":
 
     def shutdown(signum=None, frame=None):
         print("\nShutting down.")
+        # Stop accepting new connections
         server.shutdown()
         server.server_close()
-        commit_all("sync: update data files")
+        # Commit in a thread so git push never blocks exit
+        import threading
+        t = threading.Thread(target=commit_all, args=("sync: update data files",), daemon=True)
+        t.start()
+        t.join(timeout=20)  # wait up to 20s for commit+push
+        if t.is_alive():
+            print("Commit still running — exiting anyway.")
         sys.exit(0)
 
     # Handle both Ctrl+C and SIGTERM (kill, systemd stop, etc.)
