@@ -132,9 +132,15 @@ if __name__ == "__main__":
     print(f"Service running on http://localhost:{PORT}")
     print(f"  Favourites API:  GET/POST/DELETE /api/favourites")
     print(f"  Projects API:    GET/POST/DELETE /api/projects")
-    try:
-        server.serve_forever()
-    except KeyboardInterrupt:
+
+    def shutdown(signum=None, frame=None):
         print("\nShutting down.")
         server.server_close()
         commit_all("sync: update data files")
+
+    # Handle both Ctrl+C and SIGTERM (kill, systemd stop, etc.)
+    import signal
+    signal.signal(signal.SIGINT, shutdown)
+    signal.signal(signal.SIGTERM, shutdown)
+
+    server.serve_forever()
