@@ -3,5 +3,10 @@
     "id": "card-002-cloudcaptain",
     "name": "CloudCaptain",
     "url": "https://cloudcaptain.io"
+  },
+  {
+    "id": "card-001-kodekloud-free-tier",
+    "name": "KodeKloud (Free Tier)",
+    "url": "https://kodekloud.com/courses/"
   }
 ]
