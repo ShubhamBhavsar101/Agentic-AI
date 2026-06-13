@@ -8,5 +8,10 @@
     "id": "card-004-coursera-devops-courses",
     "name": "Coursera DevOps Courses",
     "url": "https://www.coursera.org/courses?query=devops"
+  },
+  {
+    "id": "card-001-kodekloud-free-tier",
+    "name": "KodeKloud (Free Tier)",
+    "url": "https://kodekloud.com/courses/"
   }
-] 
+]
