@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate DevOps Learning Resources 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --orange: #d29922;
+    --red: #f85149;
+    --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, #161b22 0%, #1a2332 50%, #161b22 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(88,166,255,0.08) 0%, transparent 60%);
+  }
+  header h1 {
+    font-size: 2.2em;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  header h1 span { color: var(--accent); }
+  header p {
+    color: var(--muted);
+    font-size: 1.1em;
+    position: relative;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .tag-free { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+  .tag-paid { background: rgba(210,153,34,0.15); color: var(--orange); border: 1px solid rgba(210,153,34,0.3); }
+  .tag-cert { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
+  .tag-youtube { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
+
+  nav {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  nav li a {
+    display: block;
+    padding: 12px 16px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  nav li a:hover { color: var(--accent); }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  .section { margin-bottom: 50px; }
+  .section-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-icon { font-size: 1.3em; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .card h3 {
+    font-size: 1.05em;
+    margin-bottom: 8px;
+  }
+  .card h3 a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .card h3 a:hover { text-decoration: underline; }
+  .card p {
+    color: var(--muted);
+    font-size: 0.88em;
+    flex-grow: 1;
+    margin-bottom: 12px;
+  }
+  .card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  .roadmap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .roadmap h3 {
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .roadmap ol {
+    padding-left: 20px;
+  }
+  .roadmap ol li {
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 0.92em;
+  }
+  .roadmap ol li strong { color: var(--text); }
+
+  .book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .book {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    flex: 1 1 260px;
+  }
+  .book strong { color: var(--text); font-size: 0.95em; }
+  .book .author { color: var(--muted); font-size: 0.82em; margin-top: 4px; }
+  .book .desc { color: var(--muted); font-size: 0.8em; margin-top: 6px; }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+    font-size: 0.85em;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5em; }
+    .grid { grid-template-columns: 1fr; }
+    nav ul { overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🚀 The Ultimate <span>DevOps</span> Learning Hub</h1>
+  <p>Curated from across the internet — courses, books, certifications, communities &amp; more. All in one place.</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#courses-free">Free Courses</a></li>
+    <li><a href="#courses-paid">Paid Courses</a></li>
+    <li><a href="#bootcamps">Bootcamps</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#youtube">YouTube</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#communities">Communities</a></li>
+    <li><a href="#roadmaps">Dev Roadmaps</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- ROADMAP -->
+  <div class="section" id="roadmap">
+    <h2 class="section-title"><span class="section-icon">🗺️</span> Suggested Learning Path</h2>
+    <div class="roadmap">
+      <h3>Phase 1 — Foundation (2–3 months)</h3>
+      <ol>
+        <li><strong>Linux &amp; Command Line</strong> — File system, permissions, process management, bash scripting, SSH, cron</li>
+        <li><strong>Networking Fundamentals</strong> — TCP/IP, DNS, HTTP/SSL, subnets, firewalls, VPN</li>
+        <li><strong>Git &amp; Version Control</strong> — Branching strategies, GitFlow, PRs, rebase vs merge, hooks</li>
+        <li><strong>Scripting (Bash / Python)</strong> — Automate basic tasks, parse logs, write deployment scripts</li>
+      </ol>
+    </div>
+    <div class="roadmap">
+      <h3>Phase 2 — Core DevOps (2–3 months)</h3>
+      <ol>
+        <li><strong>CI/CD Pipelines</strong> — GitHub Actions, Jenkins, pipeline-as-code, secrets management</li>
+        <li><strong>Containers &amp; Docker</strong> — Dockerfiles, multi-stage builds, Docker Compose, registries</li>
+        <li><strong>Kubernetes</strong> — Pods, Deployments, Services, Ingress, Helm, RBAC, troubleshooting</li>
+        <li><strong>Infrastructure as Code</strong> — Terraform (modules, state), Ansible, CloudFormation</li>
+      </ol>
+    </div>
+    <div class="roadmap">
+      <h3>Phase 3 — Cloud &amp; Advanced (2–3 months)</h3>
+      <ol>
+        <li><strong>Cloud Platform (AWS / Azure / GCP)</strong> — IAM, VPC, compute, storage, databases, serverless</li>
+        <li><strong>Monitoring &amp; Observability</strong> — Prometheus, Grafana, ELK, OpenTelemetry, SLOs/SLIs</li>
+        <li><strong>DevSecOps</strong> — Image scanning, SAST/DAST, OPA, security in pipelines</li>
+        <li><strong>Site Reliability Engineering</strong> — Incident management, postmortems, toil reduction</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- FREE COURSES -->
+  <div class="section" id="courses-free">
+    <h2 class="section-title"><span class="section-icon">🎓</span> Free Courses &amp; Resources</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3><a href="https://kodekloud.com/courses/" target="_blank">KodeKloud (Free Tier)</a></h3>
+        <p>Best-in-class hands-on DevOps courses with browser-based labs. Free courses include Docker, Kubernetes, Linux &amp; Git for absolute beginners. Labs are the killer feature here — you practice real commands without installing anything.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://cloudcaptain.io" target="_blank">CloudCaptain</a></h3>
+        <p>100% free, open-source learning hub with 150+ documentation pages, 49 architecture diagrams, 8 career paths &amp; 7 structured roadmaps covering Cloud, DevOps &amp; AI. Hands-on exercises, cheat sheets &amp; interview Q&amp;A included.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://learn.microsoft.com/en-us/training/modules/get-started-with-devops/" target="_blank">Microsoft Learn — DevOps</a></h3>
+        <p>Microsoft's official self-paced platform with guided, interactive modules on DevOps practices using Azure tools. Covers CI/CD, infrastructure as code, and monitoring. Completely free with hands-on sandbox environments.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.coursera.org/courses?query=devops" target="_blank">Coursera DevOps Courses</a></h3>
+        <p>Courses from IBM, Google, Duke University &amp; more. Introduction to DevOps, CI/CD, Kubernetes, and cloud-native development. Free to audit (pay only for certificates). Financial aid available.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free to Audit</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.techtarget.com/whatis/feature/9-best-free-DevOps-certifications-and-training-courses" target="_blank">TechTarget's 10 Best Free DevOps Courses</a></h3>
+        <p>Curated list of the best free DevOps certifications and training courses for 2026. Covers Linux Foundation, Google Cloud Skills Boost, and more. Great starting point.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://dev.to/javinpaul/my-favorite-free-courses-to-learn-devops-in-2023-4h6m" target="_blank">Dev.to — Favorite Free DevOps Courses</a></h3>
+        <p>In-depth blog post covering free courses on Udemy, YouTube, and Pluralsight to learn Docker, Jenkins, Ansible, Kubernetes &amp; more. Created by experienced developers, trusted by thousands.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://pwskills.com/blog/devops/9-best-devops-certification-free-and-paid" target="_blank">PW Skills — 9 Best DevOps Certifications</a></h3>
+        <p>Mix of free and paid DevOps certifications and courses. Covers AWS, Azure, Docker, Kubernetes &amp; Terraform. Good comparison of free vs paid options with costs.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free Options</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.linkedin.com/pulse/10-free-resources-learn-devops-2025-udemy-needed-david-yaya-nnehc" target="_blank">10 FREE DevOps Resources (No Udemy Needed)</a></h3>
+        <p>LinkedIn article listing 10 completely free DevOps learning resources. Covers interactive labs, documentation, and community-driven platforms that cost nothing.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PAID COURSES -->
+  <div class="section" id="courses-paid">
+    <h2 class="section-title"><span class="section-icon">💰</span> Paid Courses &amp; Platforms</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3><a href="https://kodekloud.com" target="_blank">KodeKloud PRO</a></h3>
+        <p>The gold standard for hands-on DevOps learning. $35/month (Standard) or $70/month (PRO) with 170+ courses and 1,250+ interactive labs. Covers CKA, CKAD, Terraform, Docker, Ansible, Prometheus &amp; more. Practice in real environments.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$35–99/mo</span>
+          <span class="tag tag-cert">Cert Prep</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.udemy.com/user/stephane-maarek" target="_blank">Stéphane Maarek's AWS Courses (Udemy)</a></h3>
+        <p>One of Udemy's top instructors with 3.4M+ students. Ultimate AWS Certified DevOps Engineer Professional, Solutions Architect &amp; Cloud Practitioner courses. Often on sale for $12–15. Best-selling, constantly updated.</p>
+        <div class="tags">
+          <span class="tag tag-paid">~$15 (on sale)</span>
+          <span class="tag tag-cert">AWS Certs</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.udemy.com/topic/devops/" target="_blank">Udemy — Top DevOps Courses</a></h3>
+        <p>2.4M+ learners across 330 DevOps courses (avg rating 4.5). Find Mumshad Mannambeth's KodeKloud courses, DevOps bootcamps, Docker/Kubernetes mastery &amp; CI/CD deep dives. Frequent sales make courses $10–15.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$10–15 (sale)</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://pluralsight.com/cloud-guru" target="_blank">Pluralsight (A Cloud Guru)</a></h3>
+        <p>Now includes A Cloud Guru. Subscription starts at $15/mo. 3,000+ hands-on labs, Skill IQ assessments, cloud playground &amp; certification prep for AWS, Azure, GCP. Best for career-long learning across all tech domains.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$15+/mo</span>
+          <span class="tag tag-cert">Multi-cert</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.coursera.org/courses?query=devops" target="_blank">Coursera — IBM DevOps Professional Certificate</a></h3>
+        <p>IBM's DevOps and Software Engineering Professional Certificate. Covers CI/CD, cloud-native, microservices, containers, Agile &amp; Scrum. 4.7-star rated, ~3 months at 10 hrs/week. Financial aid available.</p>
+        <div class="tags">
+          <span class="tag tag-paid">Free Trial / $49/mo</span>
+          <span class="tag tag-cert">Professional Cert</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://reddemy.com/creators/stephane-maarek-%7C-aws-certified-cloud-practitioner%2Csolutions-architect%2Cdeveloper" target="_blank">Reddemy — Top Rated DevOps Courses</a></h3>
+        <p>Reddit-powered course finder that ranks Udemy courses by upvotes from real DevOps communities. Find the most-loved courses for Docker, Kubernetes, Terraform &amp; CI/CD without guessing.</p>
+        <div class="tags">
+          <span class="tag tag-paid">Varies</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOOTCAMPS -->
+  <div class="section" id="bootcamps">
+    <h2 class="section-title"><span class="section-icon">🏕️</span> DevOps Bootcamps</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3><a href="https://techworld-with-nana.com/devops-bootcamp" target="_blank">DevOps Bootcamp — TechWorld with Nana</a></h3>
+        <p>6-month program by Nana Janashia. Covers Linux, Git, CI/CD, Docker, Kubernetes, Terraform, Ansion, Prometheus, Grafana &amp; AWS. 9,500+ students, 4.9 rating. Real mentoring emails from Nana herself. Job-ready focus.</p>
+        <div class="tags">
+          <span class="tag tag-paid">Paid</span>
+          <span class="tag tag-cert">Mentoring</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.edx.org/professional-certificate/linuxfoundationx-devops-engineer" target="_blank">edX — Linux Foundation DevOps Program</a></h3>
+        <p>Professional certificate covering the fundamental tools and processes of DevOps. Covers version control, containerization, CI/CD, infrastructure automation, and monitoring. Self-paced, university-backed curriculum.</p>
+        <div class="tags">
+          <span class="tag tag-paid">Paid</span>
+          <span class="tag tag-cert">Professional Cert</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.forbes.com/advisor/education/bootcamps/best-devops-bootcamps/" target="_blank>">Forbes — Best DevOps Bootcamps 2026</a></h3>
+        <p>Forbes Advisor's reviewed list of best DevOps bootcamps. Compares affordability, credibility, and student experiences across top programs including Simplilearn, Caltech CTME, &amp; more.</p>
+        <div class="tags">
+          <span class="tag tag-paid">Varies</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section" id="certifications">
+    <h2 class="section-title"><span class="section-icon">📜</span> Top DevOps Certifications</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3><a href="https://aws.amazon.com/certification/certified-devops-engineer-professional/" target="_blank">AWS Certified DevOps Engineer — Professional</a></h3>
+        <p>The most sought-after cloud DevOps cert. Validates CI/CD, infrastructure automation, monitoring, logging &amp; security on AWS. $300 exam. Requires 2+ years AWS experience. Median salary ~$130K+.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$300</span>
+          <span class="tag tag-cert">AWS</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.cncf.io/certification/cka/" target="_blank">Certified Kubernetes Administrator (CKA)</a></h3>
+        <p>The industry-standard Kubernetes cert from CNCF. Hands-on, performance-based exam. Covers cluster architecture, workloads, networking, storage &amp; troubleshooting. $300 exam. Essential for any Kubernetes role.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$300</span>
+          <span class="tag tag-cert">CNCF</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.hashicorp.com/en/certification" target="_blank">HashiCorp Certified: Terraform Associate</a></h3>
+        <p>Validates Infrastructure as Code skills using Terraform. Covers Terraform CLI, modules, state management &amp; provisioning across clouds. ~$70 exam. Great entry-level cert for IaC.</p>
+        <div class="tags">
+          <span class="tag tag-paid">~$70</span>
+          <span class="tag tag-cert">HashiCorp</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://learn.microsoft.com/en-us/certifications/devops-engineer/" target="_blank">Microsoft Certified: DevOps Engineer Expert</a></h3>
+        <p>Expert-level Azure cert. Covers designing &amp; implementing DevOps strategies, source control, CI/CD, compliance &amp; instrumentation. Requires Azure Admin or Developer Associate first. ~$165 exam.</p>
+        <div class="tags">
+          <span class="tag tag-paid">~$165</span>
+          <span class="tag tag-cert">Azure</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.cncf.io/certification/ckad/" target="_blank">Certified Kubernetes Application Developer (CKAD)</a></h3>
+        <p>For developers building &amp; deploying apps on Kubernetes. Covers pod design, configuration, observability, services &amp; networking. $300 exam. Pairs well with CKA.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$300</span>
+          <span class="tag tag-cert">CNCF</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.cncf.io/certification/cks/" target="_blank">Certified Kubernetes Security Specialist (CKS)</a></h3>
+        <p>Advanced security-focused Kubernetes cert. Requires CKA first. Covers cluster hardening, supply chain security, runtime security &amp; network policies. $395 exam. High-value for DevSecOps roles.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$395</span>
+          <span class="tag tag-cert">CNCF</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- YOUTUBE -->
+  <div class="section" id="youtube">
+    <h2 class="section-title"><span class="section-icon">📺</span> Best YouTube Channels</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3><a href="https://youtube.com/c/techworldwithnana" target="_blank">TechWorld with Nana</a></h3>
+        <p>1.4M+ subscribers. The #1 DevOps YouTube channel. Nana's tutorials on Docker, Kubernetes, Terraform, Jenkins, Prometheus &amp; Git are legendary — clear, practical, and beginner-friendly. Her "DevOps in 100 Seconds" series is perfect for quick overviews.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.youtube.com/@KodeKloud" target="_blank">KodeKloud YouTube</a></h3>
+        <p>Free video courses on Docker, Kubernetes, Linux, Terraform, Ansible &amp; more. High-quality production with hands-on demos. Great companion to their paid platform — lots of free content here.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.youtube.com/@TechWorldwithMilan" target="_blank">TechWorld with Milan</a></h3>
+        <p>Milan's channel covers DevOps roadmaps, tool comparisons, and career advice. His DevOps Roadmap 2026 video is one of the most-watched on the topic. Great for understanding the big picture.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.youtube.com/@NetworkChuck" target="_blank">NetworkChuck</a></h3>
+        <p>High-energy tutorials on Linux, Docker, Kubernetes, Python for DevOps, and homelab projects. Great for beginners who want to learn by doing. "I Suck at Linux" series is a fan favorite.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.youtube.com/@DevOpsEngineer" target="_blank">DevOps Engineer</a></h3>
+        <p>Deep-dive tutorials on Kubernetes, Docker, Terraform, Ansible, Jenkins, AWS &amp; Azure DevOps. Full-length courses and tool-specific walkthroughs. Good for intermediate learners.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.youtube.com/@Fireship" target="_blank">Fireship</a></h3>
+        <p>"100 Seconds of..." series gives rapid-fire overviews of every DevOps tool imaginable. Not deep dives, but perfect for understanding what each tool does before committing to learning it.</p>
+        <div class="tags">
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOOKS -->
+  <div class="section" id="books">
+    <h2 class="section-title"><span class="section-icon">📚</span> Must-Read DevOps Books</h2>
+    <div class="book-list">
+
+      <div class="book">
+        <strong>The Phoenix Project</strong>
+        <div class="author">by Gene Kim, Kevin Behr &amp; George Spafford</div>
+        <div class="desc">A novel about IT, DevOps, and helping your business win. The #1 recommended starting point — teaches DevOps culture through a story. Explains the Three Ways: Flow, Feedback, and Continual Learning.</div>
+      </div>
+
+      <div class="book">
+        <strong>The DevOps Handbook</strong>
+        <div class="author">by Gene Kim, Jez Humble, Patrick Debois &amp; John Willis</div>
+        <div class="desc">The HOW companion to The Phoenix Project. Practical guide to implementing DevOps in real organizations. Covers deployment pipelines, continuous integration, automated testing, and organizational culture change.</div>
+      </div>
+
+      <div class="book">
+        <strong>Accelerate</strong>
+        <div class="author">by Nicole Forsgren, Jez Humble &amp; Gene Kim</div>
+        <div class="desc">Data-driven research on what makes high-performing DevOps teams. Introduces DORA metrics (deployment frequency, lead time, MTTR, change failure rate). Essential for understanding WHY DevOps works.</div>
+      </div>
+
+      <div class="book">
+        <strong>Site Reliability Engineering (SRE Book)</strong>
+        <div class="author">by Google (free online)</div>
+        <div class="desc">Google's definitive guide to running production systems. Covers SLOs, monitoring, incident response, postmortems, and toil reduction. Free at sre.google/sre-book. The bible of SRE.</div>
+      </div>
+
+      <div class="book">
+        <strong>The Unicorn Project</strong>
+        <div class="author">by Gene Kim</div>
+        <div class="desc">Sequel to The Phoenix Project, told from a developer's perspective. Explores the Five Ideals: Locality and Simplicity, Focus, Flow and Joy, Improvement of Daily Work, and Psychological Safety.</div>
+      </div>
+
+      <div class="book">
+        <strong>Cloud Native DevOps with Kubernetes</strong>
+        <div class="author">by John Arundel &amp; Justin Domingus</div>
+        <div class="desc">Practical guide to running applications in production with Kubernetes. Covers deployments, services, ingress, CI/CD, monitoring, and security. Great for hands-on Kubernetes learning.</div>
+      </div>
+
+      <div class="book">
+        <strong>Infrastructure as Code</strong>
+        <div class="author">by Kief Morris</div>
+        <div class="desc">Comprehensive guide to managing infrastructure through code. Covers patterns, practices, and pitfalls of IaC. Essential reading for anyone working with Terraform, CloudFormation, or Pulumi.</div>
+      </div>
+
+      <div class="book">
+        <strong>Continuous Delivery</strong>
+        <div class="author">by Jez Humble &amp; David Farley</div>
+        <div class="desc">The foundational text on CI/CD. Covers deployment pipelines, build strategies, environment management, and release patterns. Dense but incredibly valuable — the textbook of modern software delivery.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PLATFORMS -->
+  <div class="section" id="platforms">
+    <h2 class="section-title"><span class="section-icon">🖥️</span> Learning Platforms &amp; Labs</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3><a href="https://kodekloud.com" target="_blank">KodeKloud</a></h3>
+        <p>Best hands-on DevOps platform. 1,250+ browser-based labs, 170+ courses, certification-aligned paths for CKA, CKAD, CKS, Terraform &amp; AWS. Learn-by-doing approach. $35–99/month.</p>
+        <div class="tags">
+          <span class="tag tag-paid">$35–99/mo</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://cloudcaptain.io" target="_blank">CloudCaptain</a></h3>
+        <p>100% free, open-source. 150+ docs pages, 49 architecture diagrams, 8 career paths, 7 roadmaps. Covers Docker, K8s, Terraform, Ansible, AWS, Azure, GCP, CI/CD, Linux, Bash, Python &amp; more.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://killercoda.com" target="_blank">Killercoda</a></h3>
+        <p>Free interactive Kubernetes &amp; DevOps playgrounds. Browser-based environments for practicing with real clusters. Used by CNCF for official Kubernetes training. No signup needed for many scenarios.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://labs.play-with-k8s.com" target="_blank">Play with Kubernetes</a></h3>
+        <p>Free, browser-based Kubernetes cluster playground. Spin up a multi-node cluster in seconds. Great for experimenting without any local setup. Perfect for CKA/CKAD practice.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.katacoda.com" target="_blank">Katacoda (O'Reilly)</a></h3>
+        <p>Interactive learning scenarios for Docker, Kubernetes, Linux &amp; more. Now part of O'Reilly. Some content free, full access with O'Reilly subscription. Great for guided, step-by-step practice.</p>
+        <div class="tags">
+          <span class="tag tag-free">Partial Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.qwiklabs.com" target="_blank">Google Cloud Skills Boost (Qwiklabs)</a></h3>
+        <p>Hands-on Google Cloud labs. Free credits available, then pay-per-lab or subscription. Covers GCP, Kubernetes, Terraform, BigQuery &amp. Official Google training paths with real cloud environments.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free Credits</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COMMUNITIES -->
+  <div class="section" id="communities">
+    <h2 class="section-title"><span class="section-icon">👥</span> Communities &amp; Forums</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3><a href="https://www.reddit.com/r/devops/" target="_blank">r/devops</a></h3>
+        <p>415K+ members. The largest DevOps community on Reddit. Ask questions, share resources, discuss tools &amp; career advice. Active daily with experienced engineers and beginners alike.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.reddit.com/r/kubernetes/" target="_blank">r/kubernetes</a></h3>
+        <p>Dedicated Kubernetes community. Great for troubleshooting, best practices, CKA/CKAD study tips, and staying up to date with K8s releases. Very active and helpful.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://dev.to/t/devops" target="_blank">DEV Community — DevOps</a></h3>
+        <p>Developer community with a strong DevOps tag. Tutorials, career stories, tool reviews &amp; beginner guides. Friendly, inclusive community with high-quality content.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.linuxfoundation.org/community" target="_blank">Linux Foundation Community</a></h3>
+        <p>Home of CNCF, Kubernetes, Terraform &amp; many open-source projects. Free training resources, community forums, KubeCon events &amp; certification programs. The backbone of cloud-native DevOps.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://discord.gg/devops" target="_blank">DevOps Discord Servers</a></h3>
+        <p>Real-time chat communities for DevOps engineers. Channels for Kubernetes, Terraform, AWS, career advice &amp; job postings. Great for networking and getting quick help.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ROADMAPS -->
+  <div class="section" id="roadmaps">
+    <h2 class="section-title"><span class="section-icon">📍</span> DevOps Roadmaps</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3><a href="https://roadmap.sh/devops" target="_blank">roadmap.sh — DevOps Roadmap</a></h3>
+        <p>The most popular visual DevOps roadmap. Interactive, community-driven, covers every tool and technology in the DevOps landscape with recommended learning order. Updated regularly. Free.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://github.com/milanm/DevOps-Roadmap" target="_blank">GitHub — DevOps Roadmap 2026 (19.6k stars)</a></h3>
+        <p>Milan's comprehensive DevOps roadmap with links to learning resources for every topic. 19.6K GitHub stars. Covers Linux, Git, CI/CD, Docker, K8s, Terraform, monitoring &amp; more. PDF version available.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://gauravkaushal.tech/devops-roadmap" target="_blank">DevOps Roadmap 2025 — Gaurav Kaushal</a></h3>
+        <p>Practical, opinionated roadmap built from 8 years in production DevOps. Not every tool — the right tools in the right order. Each stage builds on the last with time estimates. Excellent for self-paced learners.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://www.techworld-with-nana.com/devops-roadmap" target="_blank">TechWorld with Nana — DevOps Roadmap</a></h3>
+        <p>Nana's visual roadmap covering the complete DevOps learning path. Links to her free YouTube tutorials for each topic. Great companion to her bootcamp and YouTube channel.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://switchtodevops.com/learn/complete-devops-roadmap-2026" target="_blank">SwitchToDevOps — Complete Roadmap 2026</a></h3>
+        <p>Structured learning path to become job-ready in 6–9 months. Covers Linux, Git, CI/CD, Docker, Kubernetes, cloud platforms in correct order. Includes free and paid resource recommendations.</p>
+        <div class="tags">
+          <span class="tag tag-free">Free</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Compiled from Reddit, Google, Coursera, Udemy, KodeKloud, TechWorld with Nana, CloudCaptain, roadmap.sh &amp; more.</p>
+  <p style="margin-top:8px;">Last updated: June 2026 · All links verified at time of creation.</p>
+</footer>
+
+</body>
+</html>
