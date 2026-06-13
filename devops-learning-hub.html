@@ -1118,32 +1118,21 @@
 (function() {
   'use strict';
 
-  var STORAGE_KEY = 'devops-hub-favourites';
+  var API = '/api/favourites';
 
-  // ── helpers ──────────────────────────────────────────
+  // ── API helpers (server-backed persistence) ──────────
   function loadFavs() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    } catch (e) {
-      return [];
-    }
+    return fetch(API)
+      .then(function(r) { return r.json(); })
+      .catch(function() { return []; });
   }
 
   function saveFavs(ids) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
-  }
-
-  function isFaved(id) {
-    return loadFavs().indexOf(id) !== -1;
-  }
-
-  function toggleFav(id) {
-    var favs = loadFavs();
-    var idx = favs.indexOf(id);
-    if (idx === -1) { favs.push(id); }
-    else { favs.splice(idx, 1); }
-    saveFavs(favs);
-    return idx === -1; // true = now starred
+    return fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(ids)
+    }).catch(function() { /* offline — silently fail */ });
   }
 
   // ── update star UI ───────────────────────────────────
@@ -1152,8 +1141,7 @@
     btn.classList.toggle('active', active);
   }
 
-  function updateCount() {
-    var count = loadFavs().length;
+  function updateCount(count) {
     var badge = document.getElementById('favourites-count');
     if (!badge) return;
     badge.textContent = count;
@@ -1167,7 +1155,6 @@
     var desc = '';
     var tagsHtml = '';
 
-    // pull data from the original card
     var linkEl = originalCard.querySelector('h3 a');
     if (linkEl) {
       name = linkEl.textContent.replace(/\s*★\s*\d[\d.K]*$/, '').trim();
@@ -1180,7 +1167,6 @@
     var tagsEl = originalCard.querySelector('.tags');
     if (tagsEl) tagsHtml = tagsEl.outerHTML;
 
-    // build the cloned card HTML
     var card = document.createElement('div');
     card.className = 'card';
     card.setAttribute('data-fav-id', favId);
@@ -1201,66 +1187,85 @@
   }
 
   // ── render the favourites section ────────────────────
-  function renderFavourites() {
-    var favs = loadFavs();
+  function renderFavourites(favs) {
     var grid = document.getElementById('favourites-grid');
     var empty = document.getElementById('favourites-empty');
     if (!grid || !empty) return;
 
-    // clear existing
     grid.innerHTML = '';
 
-    if (favs.length === 0) {
+    if (!favs || favs.length === 0) {
       grid.style.display = 'none';
       empty.style.display = 'block';
+      updateCount(0);
       return;
     }
 
     grid.style.display = '';
     empty.style.display = 'none';
+    updateCount(favs.length);
 
     favs.forEach(function(favId) {
-      // find the original card on the page
       var btn = document.querySelector('.star-btn[data-favid="' + CSS.escape(favId) + '"]');
       if (!btn) return;
       var originalCard = btn.closest('.card');
       if (!originalCard) return;
       grid.appendChild(buildFavCard(originalCard, favId));
     });
-    updateCount();
+  }
+
+  // ── sync all star buttons from server state ──────────
+  function syncStars(favs) {
+    var favSet = {};
+    favs.forEach(function(id) { favSet[id] = true; });
+    document.querySelectorAll('.star-btn').forEach(function(btn) {
+      updateStar(btn, !!favSet[btn.getAttribute('data-favid')]);
+    });
   }
 
   // ── star button click handler ────────────────────────
   function handleStarClick(btn) {
     var id = btn.getAttribute('data-favid');
-    var nowActive = toggleFav(id);
+    // optimistically toggle
+    var isActive = btn.classList.contains('active');
+    var nowActive = !isActive;
     updateStar(btn, nowActive);
 
-    // sync all other buttons with same id (e.g. in fav grid)
+    // sync other buttons with same id
     document.querySelectorAll('.star-btn[data-favid="' + CSS.escape(id) + '"]').forEach(function(b) {
       if (b !== btn) updateStar(b, nowActive);
     });
 
-    updateCount();
-    renderFavourites();
+    // reload from server to get canonical state, then re-render
+    loadFavs().then(function(favs) {
+      if (nowActive && favs.indexOf(id) === -1) {
+        favs.push(id);
+      } else if (!nowActive && favs.indexOf(id) !== -1) {
+        favs.splice(favs.indexOf(id), 1);
+      }
+      return saveFavs(favs);
+    }).then(function() {
+      return loadFavs();
+    }).then(function(favs) {
+      syncStars(favs);
+      renderFavourites(favs);
+    });
   }
 
   // ── init ─────────────────────────────────────────────
   function init() {
-    // attach click handlers to every star button
-    document.querySelectorAll('.star-btn').forEach(function(btn) {
-      var id = btn.getAttribute('data-favid');
-      // set initial state
-      updateStar(btn, isFaved(id));
-      btn.addEventListener('click', function() { handleStarClick(this); });
+    loadFavs().then(function(favs) {
+      // set initial star states
+      syncStars(favs);
+      // render favourites section
+      renderFavourites(favs);
+      // attach click handlers
+      document.querySelectorAll('.star-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() { handleStarClick(this); });
+      });
     });
-
-    // render initial favourites section
-    renderFavourites();
-    updateCount();
   }
 
-  // run when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
