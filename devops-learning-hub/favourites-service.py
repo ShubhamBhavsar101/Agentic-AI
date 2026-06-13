@@ -34,13 +34,17 @@ def load_json(path):
 def save_json(path, data):
     with open(path, "w") as f:
         json.dump(data, f, indent=2)
-    # Auto-commit and push
+
+
+def commit_all(msg):
+    """Commit and push all data files. Called only on server shutdown."""
     try:
-        subprocess.run(["git", "add", path], cwd=SCRIPT_DIR, capture_output=True)
-        subprocess.run(["git", "commit", "-m", "sync: update " + os.path.basename(path)], cwd=SCRIPT_DIR, capture_output=True)
+        subprocess.run(["git", "add", FAV_FILE, PROJ_FILE], cwd=SCRIPT_DIR, capture_output=True)
+        subprocess.run(["git", "commit", "-m", msg], cwd=SCRIPT_DIR, capture_output=True)
         subprocess.run(["git", "push"], cwd=SCRIPT_DIR, capture_output=True)
-    except Exception:
-        pass
+        print("Changes committed and pushed.")
+    except Exception as e:
+        print(f"Git commit failed: {e}")
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -133,3 +137,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\nShutting down.")
         server.server_close()
+        commit_all("sync: update data files")
