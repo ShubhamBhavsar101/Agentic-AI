@@ -184,6 +184,11 @@ if __name__ == "__main__":
 
     print("Shutting down.")
     server.server_close()
-    # Commmit in daemon thread, don't wait
-    threading.Thread(target=commit_all, args=("sync: update data files",), daemon=True).start()
+    # Commit on exit — use a non-daemon thread and join with timeout
+    # so the git push actually finishes before the process exits.
+    commit_thread = threading.Thread(target=commit_all, args=("sync: update data files",))
+    commit_thread.start()
+    commit_thread.join(timeout=30)
+    if commit_thread.is_alive():
+        print("Git still running after 30s — exiting anyway.")
     print("Shutdown complete.")
