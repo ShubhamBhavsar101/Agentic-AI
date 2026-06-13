@@ -39,12 +39,25 @@ def save_json(path, data):
 def commit_all(msg):
     """Commit and push all data files. Called only on server shutdown."""
     try:
-        subprocess.run(["git", "add", FAV_FILE, PROJ_FILE], cwd=SCRIPT_DIR, capture_output=True)
-        subprocess.run(["git", "commit", "-m", msg], cwd=SCRIPT_DIR, capture_output=True)
-        subprocess.run(["git", "push"], cwd=SCRIPT_DIR, capture_output=True)
-        print("Changes committed and pushed.")
+        subprocess.run(["git", "add", FAV_FILE, PROJ_FILE], cwd=SCRIPT_DIR, capture_output=True, timeout=10)
+        result = subprocess.run(["git", "commit", "-m", msg], cwd=SCRIPT_DIR, capture_output=True, timeout=10)
+        if result.returncode == 0:
+            print("Changes committed.")
+        else:
+            print("Nothing to commit (no changes).")
+        # Push with timeout — don't block shutdown if network is slow
+        try:
+            push_result = subprocess.run(["git", "push"], cwd=SCRIPT_DIR, capture_output=True, timeout=15)
+            if push_result.returncode == 0:
+                print("Changes pushed.")
+            else:
+                print("Push failed — data committed locally, push manually later.")
+        except subprocess.TimeoutExpired:
+            print("Push timed out — data committed locally, push manually later.")
+    except subprocess.TimeoutExpired:
+        print("Git commit timed out.")
     except Exception as e:
-        print(f"Git commit failed: {e}")
+        print(f"Git error: {e}")
 
 
 class Handler(SimpleHTTPRequestHandler):

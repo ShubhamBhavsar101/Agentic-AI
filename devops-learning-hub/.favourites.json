@@ -1,20 +1,5 @@
 [
   {
-    "id": "test-card",
-    "name": "Test",
-    "url": "https://test.com"
-  },
-  {
-    "id": "card-003-microsoft-learn-devops",
-    "name": "Microsoft Learn \u2014 DevOps",
-    "url": "https://learn.microsoft.com/en-us/training/modules/get-started-with-devops/"
-  },
-  {
-    "id": "card-006-dev-to-favorite-free-devops-courses",
-    "name": "Dev.to \u2014 Favorite Free DevOps Courses",
-    "url": "https://dev.to/javinpaul/my-favorite-free-courses-to-learn-devops-in-2023-4h6m"
-  },
-  {
     "id": "card-005-techtarget-s-10-best-free-devops-courses",
     "name": "TechTarget's 10 Best Free DevOps Courses",
     "url": "https://www.techtarget.com/whatis/feature/9-best-free-DevOps-certifications-and-training-courses"
@@ -23,15 +8,5 @@
     "id": "card-004-coursera-devops-courses",
     "name": "Coursera DevOps Courses",
     "url": "https://www.coursera.org/courses?query=devops"
-  },
-  {
-    "id": "card-001-kodekloud-free-tier",
-    "name": "KodeKloud (Free Tier)",
-    "url": "https://kodekloud.com/courses/"
-  },
-  {
-    "id": "card-002-cloudcaptain",
-    "name": "CloudCaptain",
-    "url": "https://cloudcaptain.io"
   }
 ]
