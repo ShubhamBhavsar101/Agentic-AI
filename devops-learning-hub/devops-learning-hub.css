@@ -207,9 +207,21 @@ header p {
   transition: color 0.2s;
   white-space: nowrap;
 }
+.learning-nav li a.nav-kofi {
+  background: var(--link);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
 .learning-nav li a:hover,
 .learning-nav li a.active {
   color: var(--link);
+}
+.learning-nav li a.nav-kofi:hover {
+  opacity: 0.85;
+  text-decoration: none;
+  background: var(--link-hover);
+  color: #fff;
 }
 
 /* ── CONTAINER ────────────────────────────────────────── */
