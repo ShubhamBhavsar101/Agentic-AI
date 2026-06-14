@@ -19,5 +19,12 @@
     "url": "https://cloudcaptain.io",
     "desc": "100% free, open-source learning hub with 150+ documentation pages, 49 architecture diagrams, 8 career paths & 7 structured roadmaps covering Cloud, DevOps & AI. Hands-on exercises, cheat sheets & interview Q&A included.",
     "tags": "<span class=\"tag tag-free\">Free</span>"
+  },
+  {
+    "id": "card-004-coursera-devops-courses",
+    "name": "Coursera DevOps Courses",
+    "url": "https://www.coursera.org/courses?query=devops",
+    "desc": "Courses from IBM, Google, Duke University & more. Introduction to DevOps, CI/CD, Kubernetes, and cloud-native development. Free to audit (pay only for certificates). Financial aid available.",
+    "tags": "<span class=\"tag tag-free\">Free to Audit</span>"
   }
 ]
