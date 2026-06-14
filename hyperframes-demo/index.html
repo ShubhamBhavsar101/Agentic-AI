@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Background gradient */
+      #bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      }
+
+      /* Animated particles */
+      .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Title styling */
+      #title {
+        position: absolute;
+        top: 380px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 96px;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -2px;
+        text-shadow: 0 0 80px rgba(120, 80, 255, 0.6);
+      }
+
+      #subtitle {
+        position: absolute;
+        top: 500px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 36px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+      }
+
+      /* Accent line */
+      #accent-line {
+        position: absolute;
+        top: 485px;
+        left: 50%;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #7c3aed, #06b6d4);
+        transform: translateX(-50%);
+      }
+
+      /* Bottom tagline */
+      #tagline {
+        position: absolute;
+        bottom: 120px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 24px;
+        color: rgba(255, 255, 255, 0.4);
+        font-weight: 300;
+      }
+
+      /* Logo / icon area */
+      #logo {
+        position: absolute;
+        top: 180px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 120px;
+        border-radius: 30px;
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 20px 60px rgba(124, 58, 237, 0.4);
+      }
+      #logo span {
+        font-size: 56px;
+        color: #fff;
+        font-weight: 900;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="8"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Background -->
+      <div id="bg" class="clip" data-start="0" data-duration="8" data-track-index="0"></div>
+
+      <!-- Floating particles (separate tracks to avoid overlap) -->
+      <div id="particle-1" class="particle clip" data-start="0" data-duration="8" data-track-index="10" style="top:200px;left:300px"></div>
+      <div id="particle-2" class="particle clip" data-start="0" data-duration="8" data-track-index="11" style="top:600px;left:1500px;width:8px;height:8px"></div>
+      <div id="particle-3" class="particle clip" data-start="0" data-duration="8" data-track-index="12" style="top:800px;left:400px;width:4px;height:4px"></div>
+      <div id="particle-4" class="particle clip" data-start="0" data-duration="8" data-track-index="13" style="top:300px;left:1200px;width:10px;height:10px"></div>
+      <div id="particle-5" class="particle clip" data-start="0" data-duration="8" data-track-index="14" style="top:700px;left:800px;width:6px;height:6px"></div>
+
+      <!-- Logo -->
+      <div id="logo" class="clip" data-start="0.3" data-duration="6" data-track-index="2">
+        <span>H</span>
+      </div>
+
+      <!-- Title -->
+      <div id="title" class="clip" data-start="1" data-duration="5" data-track-index="3">
+        HyperFrames
+      </div>
+
+      <!-- Accent line -->
+      <div id="accent-line" class="clip" data-start="1.5" data-duration="4" data-track-index="4"></div>
+
+      <!-- Subtitle -->
+      <div id="subtitle" class="clip" data-start="1.8" data-duration="4.5" data-track-index="5">
+        Write HTML. Render Video.
+      </div>
+
+      <!-- Tagline -->
+      <div id="tagline" class="clip" data-start="2.5" data-duration="4" data-track-index="6">
+        Built for agents. Open source. Deterministic.
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Logo: scale in with bounce
+      tl.from("#logo", {
+        scale: 0,
+        rotation: -180,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)"
+      }, 0.3);
+
+      // Title: slide up + fade in
+      tl.from("#title", {
+        opacity: 0,
+        y: 60,
+        duration: 0.8,
+        ease: "power3.out"
+      }, 1);
+
+      // Accent line: expand width
+      tl.to("#accent-line", {
+        width: 300,
+        duration: 0.6,
+        ease: "power2.out"
+      }, 1.5);
+
+      // Subtitle: fade in
+      tl.from("#subtitle", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        ease: "power2.out"
+      }, 1.8);
+
+      // Tagline: fade in
+      tl.from("#tagline", {
+        opacity: 0,
+        y: 15,
+        duration: 0.5,
+        ease: "power2.out"
+      }, 2.5);
+
+      // Particles: gentle float
+      tl.from(".particle", {
+        opacity: 0,
+        scale: 0,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power2.out"
+      }, 0);
+
+      // Exit: fade out everything at the end
+      tl.to(["#title", "#subtitle", "#tagline", "#accent-line", "#logo"], {
+        opacity: 0,
+        y: -20,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.in"
+      }, 6.5);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
