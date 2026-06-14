@@ -1,12 +1,16 @@
 [
   {
-    "id": "card-002-cloudcaptain",
-    "name": "CloudCaptain",
-    "url": "https://cloudcaptain.io"
+    "id": "card-071-ramitsurana-awesome-kubernetes",
+    "name": "ramitsurana/awesome-kubernetes",
+    "url": "https://github.com/ramitsurana/awesome-kubernetes",
+    "desc": "A curated list of awesome Kubernetes sources and resources. Covers tools, platforms, books, tutorials, blogs, events & more for Kubernetes. Great for discovering new tools in the K8s ecosystem.",
+    "tags": "Free, Kubernetes"
   },
   {
-    "id": "card-001-kodekloud-free-tier",
-    "name": "KodeKloud (Free Tier)",
-    "url": "https://kodekloud.com/courses/"
+    "id": "card-002-cloudcaptain",
+    "name": "CloudCaptain",
+    "url": "https://cloudcaptain.io",
+    "desc": "100% free, open-source learning hub with 150+ documentation pages, 49 architecture diagrams, 8 career paths & 7 structured roadmaps covering Cloud, DevOps & AI. Hands-on exercises, cheat sheets & interview Q&A included.",
+    "tags": "Free"
   }
 ]
