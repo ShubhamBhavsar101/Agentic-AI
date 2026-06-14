@@ -212,31 +212,22 @@ header p {
   color: var(--link);
 }
 
-/* Inline Ko-fi CTA in nav */
-.nav-cta {
-  flex-shrink: 0;
-  height: max-content;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
+/* Ko-fi pill in nav */
+.learning-nav li a.nav-kofi {
   background: #ff5e5b;
   color: #fff;
-  border: 1px solid #ff3b38;
   border-radius: 999px;
   font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 0 18px rgba(255,94,91,0.45), 0 0 6px rgba(0,0,0,0.25);
-  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-  font-size: 0.9em;
+  padding: 8px 18px;
+  border: 1px solid #ff3b38;
+  box-shadow: 0 0 18px rgba(255,94,91,0.45);
 }
-.nav-cta:hover {
-  opacity: 1;
+.learning-nav li a.nav-kofi:hover {
   background: #ff3b38;
+  box-shadow: 0 0 24px rgba(255,59,56,0.65);
   transform: translateY(-1px);
-  box-shadow: 0 0 24px rgba(255,59,56,0.65), 0 0 10px rgba(0,0,0,0.35);
-  text-decoration: none;
   color: #fff;
+  text-decoration: none;
 }
 
 /* Keep nav layout inline + centered */
@@ -244,15 +235,15 @@ header p {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 8px;
   max-width: var(--max-width);
   align-items: center;
+  justify-content: center;
 }
 .learning-nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
   flex-wrap: wrap;
 }
 
