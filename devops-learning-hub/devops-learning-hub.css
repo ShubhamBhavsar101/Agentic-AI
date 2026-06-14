@@ -96,11 +96,16 @@ img {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 12px;
   padding: 8px 16px;
   position: relative;
+}
+.top-tabs-tabs {
+  display: flex;
+  gap: 12px;
+  margin: 0 auto;
 }
 .top-tab-btn {
   background: none;
@@ -121,10 +126,7 @@ img {
 
 /* Ko-fi in top tabs */
 .top-kofi {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-left: auto;
   background: linear-gradient(135deg, #ff5e5b 0%, #ff8a4c 100%);
   color: #fff;
   border-radius: 999px;
@@ -140,6 +142,7 @@ img {
   gap: 8px;
   overflow: hidden;
   text-decoration: none;
+  flex-shrink: 0;
 }
 .top-kofi::before {
   content: '';
