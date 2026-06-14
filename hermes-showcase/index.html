@@ -165,10 +165,6 @@
         letter-spacing: 3px; text-transform: uppercase; margin-top: 16px;
       }
 
-      /* ── Transition overlay ── */
-      .flash-overlay {
-        position: absolute; inset: 0; background: white; opacity: 0; pointer-events: none;
-      }
     </style>
   </head>
   <body>
@@ -218,9 +214,6 @@
         <div class="bg-grid" style="opacity:0.3"></div>
       </div>
 
-      <!-- Flash transition -->
-      <div id="flash1" class="clip flash-overlay" data-start="4" data-duration="0.3" data-track-index="20"></div>
-
       <!-- Hermes wizard orb -->
       <div id="hermes-orb" class="clip glow-purple" data-start="4.3" data-duration="2.7" data-track-index="2" style="position:absolute;left:840px;top:280px;">
         <div class="wizard-orb">
@@ -245,8 +238,6 @@
       <div id="scene3-bg" class="clip" data-start="7" data-duration="3.5" data-track-index="1">
         <div class="bg-grid" style="opacity:0.3"></div>
       </div>
-
-      <div id="flash2" class="clip flash-overlay" data-start="7" data-duration="0.2" data-track-index="21"></div>
 
       <!-- Section label -->
       <div id="code-label" class="clip" data-start="7.3" data-duration="3.2" data-track-index="2" style="position:absolute;left:100px;top:60px;font-size:14px;text-transform:uppercase;letter-spacing:2px;color:rgba(59,130,246,0.6);">
@@ -299,8 +290,6 @@
         <div class="bg-grid" style="opacity:0.3"></div>
       </div>
 
-      <div id="flash3" class="clip flash-overlay" data-start="10.5" data-duration="0.2" data-track-index="22"></div>
-
       <div id="devops-label" class="clip" data-start="10.8" data-duration="3.2" data-track-index="6" style="position:absolute;left:100px;top:60px;font-size:14px;text-transform:uppercase;letter-spacing:2px;color:rgba(34,197,94,0.6);">
         🔧 DevOps Troubleshooting
       </div>
@@ -347,8 +336,6 @@
       <div id="scene5-bg" class="clip" data-start="14" data-duration="3" data-track-index="1">
         <div class="bg-grid" style="opacity:0.3"></div>
       </div>
-
-      <div id="flash4" class="clip flash-overlay" data-start="14" data-duration="0.2" data-track-index="23"></div>
 
       <div id="resume-label" class="clip" data-start="14.3" data-duration="2.7" data-track-index="11" style="position:absolute;left:100px;top:60px;font-size:14px;text-transform:uppercase;letter-spacing:2px;color:rgba(245,158,11,0.6);">
         📄 Resume Optimization
@@ -408,8 +395,6 @@
       <div id="scene6-bg" class="clip" data-start="17" data-duration="3" data-track-index="1">
         <div class="bg-grid" style="opacity:0.3"></div>
       </div>
-
-      <div id="flash5" class="clip flash-overlay" data-start="17" data-duration="0.2" data-track-index="24"></div>
 
       <div id="jobs-label" class="clip" data-start="17.3" data-duration="2.7" data-track-index="14" style="position:absolute;left:100px;top:60px;font-size:14px;text-transform:uppercase;letter-spacing:2px;color:rgba(168,85,247,0.6);">
         🎯 Job Applications
@@ -478,8 +463,6 @@
         <div class="bg-grid" style="opacity:0.3"></div>
       </div>
 
-      <div id="flash6" class="clip flash-overlay" data-start="20" data-duration="0.2" data-track-index="25"></div>
-
       <!-- AI Workflow section (left) -->
       <div id="ai-label" class="clip" data-start="20.3" data-duration="4.7" data-track-index="20" style="position:absolute;left:80px;top:50px;font-size:14px;text-transform:uppercase;letter-spacing:2px;color:rgba(6,182,212,0.6);">
         🤖 AI Workflows
@@ -539,8 +522,6 @@
       <div id="scene8-bg" class="clip" data-start="25" data-duration="5" data-track-index="1">
         <div class="bg-grid" style="opacity:0.4"></div>
       </div>
-
-      <div id="flash7" class="clip flash-overlay" data-start="25" data-duration="0.3" data-track-index="26"></div>
 
       <!-- Big particles for finale -->
       <div id="final-p1" class="clip particle" data-start="25.5" data-duration="4.5" data-track-index="30" style="left:300px;top:200px;width:4px;height:4px;background:#c084fc;"></div>
@@ -612,8 +593,6 @@
       tl.to(["#chaos-tab1","#chaos-tab2","#chaos-tab3","#chaos-tab4","#chaos-tab5","#chaos-tab6","#chaos-tab7","#chaos-tab8"], { opacity: 0, scale: 0.5, duration: 0.4 }, 3.5);
 
       /* ── SCENE 2: Hermes Appears (4–7s) ── */
-      tl.to("#flash1", { opacity: 0.6, duration: 0.15, ease: "power2.out" }, 4.0);
-      tl.to("#flash1", { opacity: 0, duration: 0.15 }, 4.15);
 
       tl.from("#hermes-orb", { scale: 0, opacity: 0, rotation: -180, duration: 0.8, ease: "back.out(2)" }, 4.3);
       tl.to("#hermes-orb", { scale: 1.05, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 5.1);
@@ -628,8 +607,6 @@
       tl.to(["#hermes-orb","#hermes-name","#hermes-tag","#hermes-ring"], { opacity: 0, scale: 0.8, duration: 0.4 }, 6.4);
 
       /* ── SCENE 3: Coding (7–10.5s) ── */
-      tl.to("#flash2", { opacity: 0.4, duration: 0.1, ease: "power2.out" }, 7.0);
-      tl.to("#flash2", { opacity: 0, duration: 0.1 }, 7.1);
 
       tl.from("#code-label", { opacity: 0, x: -20, duration: 0.4 }, 7.3);
       tl.from("#code-editor", { opacity: 0, y: 30, scale: 0.95, duration: 0.6, ease: "power2.out" }, 7.5);
@@ -640,8 +617,6 @@
       tl.to(["#code-editor","#code-suggestion","#code-status","#code-label"], { opacity: 0, y: -20, duration: 0.4 }, 9.9);
 
       /* ── SCENE 4: DevOps (10.5–14s) ── */
-      tl.to("#flash3", { opacity: 0.4, duration: 0.1, ease: "power2.out" }, 10.5);
-      tl.to("#flash3", { opacity: 0, duration: 0.1 }, 10.6);
 
       tl.from("#devops-label", { opacity: 0, x: -20, duration: 0.4 }, 10.8);
       tl.from("#terminal", { opacity: 0, y: 30, scale: 0.95, duration: 0.6, ease: "power2.out" }, 11.0);
@@ -653,8 +628,6 @@
       tl.to(["#terminal","#metric1","#metric2","#metric3","#devops-label"], { opacity: 0, y: -20, duration: 0.4 }, 13.4);
 
       /* ── SCENE 5: Resume (14–17s) ── */
-      tl.to("#flash4", { opacity: 0.4, duration: 0.1, ease: "power2.out" }, 14.0);
-      tl.to("#flash4", { opacity: 0, duration: 0.1 }, 14.1);
 
       tl.from("#resume-label", { opacity: 0, x: -20, duration: 0.4 }, 14.3);
       tl.from("#resume-doc", { opacity: 0, y: 30, scale: 0.95, duration: 0.6, ease: "power2.out" }, 14.5);
@@ -667,8 +640,6 @@
       tl.to(["#resume-doc","#resume-tips","#resume-label"], { opacity: 0, y: -20, duration: 0.4 }, 16.4);
 
       /* ── SCENE 6: Jobs (17–20s) ── */
-      tl.to("#flash5", { opacity: 0.4, duration: 0.1, ease: "power2.out" }, 17.0);
-      tl.to("#flash5", { opacity: 0, duration: 0.1 }, 17.1);
 
       tl.from("#jobs-label", { opacity: 0, x: -20, duration: 0.4 }, 17.3);
       tl.from("#job1", { opacity: 0, x: -30, duration: 0.4, ease: "power2.out" }, 17.5);
@@ -681,8 +652,6 @@
       tl.to(["#job1","#job2","#job3","#job4","#app-stats","#jobs-label"], { opacity: 0, y: -20, duration: 0.4 }, 19.4);
 
       /* ── SCENE 7: AI Workflows + Research (20–25s) ── */
-      tl.to("#flash6", { opacity: 0.4, duration: 0.1, ease: "power2.out" }, 20.0);
-      tl.to("#flash6", { opacity: 0, duration: 0.1 }, 20.1);
 
       tl.from("#ai-label", { opacity: 0, x: -20, duration: 0.4 }, 20.3);
       tl.from("#research-label", { opacity: 0, x: 20, duration: 0.4 }, 20.3);
@@ -703,8 +672,6 @@
       tl.to(["#flow1","#flow2","#flow3","#flow4","#flow-arrow1","#flow-arrow2","#flow-arrow3","#browser","#ai-label","#research-label"], { opacity: 0, y: -20, duration: 0.4 }, 24.4);
 
       /* ── SCENE 8: Final Logo (25–30s) ── */
-      tl.to("#flash7", { opacity: 0.7, duration: 0.15, ease: "power2.out" }, 25.0);
-      tl.to("#flash7", { opacity: 0, duration: 0.15 }, 25.15);
 
       // Rings
       tl.from("#final-ring", { scale: 0, opacity: 0, duration: 1.2, ease: "power2.out" }, 25.5);
