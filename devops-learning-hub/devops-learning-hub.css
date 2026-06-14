@@ -207,28 +207,53 @@ header p {
   transition: color 0.2s;
   white-space: nowrap;
 }
-.learning-nav li a.nav-kofi {
-  background: #ff5e5b;
-  color: #fff;
-  border-radius: var(--radius-pill);
-  font-weight: 700;
-  padding: 6px 16px;
-  margin: auto 6px;
-  border: 1px solid #ff3b38;
-  box-shadow: 0 0 18px rgba(255,94,91,0.45);
-  letter-spacing: 0.2px;
-}
 .learning-nav li a:hover,
 .learning-nav li a.active {
   color: var(--link);
 }
-.learning-nav li a.nav-kofi:hover {
-  opacity: 0.92;
-  text-decoration: none;
-  background: #ff3b38;
+
+/* Inline Ko-fi CTA in nav */
+.nav-cta {
+  flex-shrink: 0;
+  height: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #ff5e5b;
   color: #fff;
-  box-shadow: 0 0 22px rgba(255,59,56,0.7);
+  border: 1px solid #ff3b38;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 0 18px rgba(255,94,91,0.45), 0 0 6px rgba(0,0,0,0.25);
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  font-size: 0.9em;
+}
+.nav-cta:hover {
+  opacity: 1;
+  background: #ff3b38;
   transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(255,59,56,0.65), 0 0 10px rgba(0,0,0,0.35);
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Keep nav layout inline + centered */
+.learning-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  align-items: center;
+}
+.learning-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 /* ── CONTAINER ────────────────────────────────────────── */
