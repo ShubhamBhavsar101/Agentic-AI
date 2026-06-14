@@ -138,7 +138,6 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  position: relative;
   overflow: hidden;
   text-decoration: none;
 }
