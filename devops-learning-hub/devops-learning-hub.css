@@ -100,6 +100,7 @@ img {
   align-items: center;
   gap: 12px;
   padding: 8px 16px;
+  position: relative;
 }
 .top-tab-btn {
   background: none;
@@ -120,7 +121,10 @@ img {
 
 /* Ko-fi in top tabs */
 .top-kofi {
-  margin-left: auto;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   background: linear-gradient(135deg, #ff5e5b 0%, #ff8a4c 100%);
   color: #fff;
   border-radius: 999px;
