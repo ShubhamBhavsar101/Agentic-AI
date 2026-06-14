@@ -246,14 +246,14 @@ header p {
   flex-wrap: wrap;
   gap: 4px;
   max-width: var(--max-width);
-  margin: 0 auto;
   align-items: center;
 }
 .learning-nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 /* ── CONTAINER ────────────────────────────────────────── */
