@@ -1,12 +1,5 @@
 [
   {
-    "id": "card-071-ramitsurana-awesome-kubernetes",
-    "name": "ramitsurana/awesome-kubernetes",
-    "url": "https://github.com/ramitsurana/awesome-kubernetes",
-    "desc": "A curated list of awesome Kubernetes sources and resources. Covers tools, platforms, books, tutorials, blogs, events & more for Kubernetes. Great for discovering new tools in the K8s ecosystem.",
-    "tags": "<span class=\"tag tag-free\">Free</span>\n          <span class=\"tag tag-cert\">Kubernetes</span>"
-  },
-  {
     "id": "card-001-kodekloud-free-tier",
     "name": "KodeKloud (Free Tier)",
     "url": "https://kodekloud.com/courses/",
@@ -21,10 +14,10 @@
     "tags": "<span class=\"tag tag-free\">Free</span>"
   },
   {
-    "id": "card-004-coursera-devops-courses",
-    "name": "Coursera DevOps Courses",
-    "url": "https://www.coursera.org/courses?query=devops",
-    "desc": "Courses from IBM, Google, Duke University & more. Introduction to DevOps, CI/CD, Kubernetes, and cloud-native development. Free to audit (pay only for certificates). Financial aid available.",
-    "tags": "<span class=\"tag tag-free\">Free to Audit</span>"
+    "id": "card-046-cloud-advocate-krishna-gadhiraju",
+    "name": "Cloud Advocate (Krishna Gadhiraju)",
+    "url": "https://www.youtube.com/@CloudAdvocate",
+    "desc": "DevSecOps expert and AWS/GCP architect providing tutorials on DevOps, cloud architecture, security best practices, and multi-cloud strategies. Great for engineers targeting cloud-native DevOps or DevSecOps roles.",
+    "tags": "<span class=\"tag tag-youtube\">YouTube</span>\n          <span class=\"tag tag-free\">Free</span>"
   }
 ]
