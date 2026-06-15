@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Hermes AI Agent — Explainer</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&family=Roboto+Mono:wght@400;500;700&display=block" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/brand-tokens.css" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px; overflow: hidden;
+        background: #07121c;
+        font-family: "Montserrat", sans-serif;
+        color: #ffffff;
+      }
+      [data-composition-id="hermes-explainer"] {
+        position: relative; width: 1920px; height: 1080px;
+        background: #07121c; overflow: hidden;
+      }
+      [data-composition-id="hermes-explainer"] .bg {
+        position: absolute; inset: 0; background: #07121c; z-index: 0;
+      }
+      [data-composition-id="hermes-explainer"] .scene-wrap {
+        position: absolute; inset: 0; z-index: 1; will-change: transform, opacity;
+      }
+      [data-composition-id="hermes-explainer"] #grain-overlay { z-index: 100; }
+      @keyframes hf-grain-noise {
+        0%, 100% { transform: translate(0, 0); }
+        10% { transform: translate(-5%, -5%); }
+        20% { transform: translate(-10%, 5%); }
+        30% { transform: translate(5%, -10%); }
+        40% { transform: translate(-5%, 15%); }
+        50% { transform: translate(-10%, 5%); }
+        60% { transform: translate(15%, 0); }
+        70% { transform: translate(0, 10%); }
+        80% { transform: translate(-15%, 0); }
+        90% { transform: translate(10%, 5%); }
+      }
+      [data-composition-id="hermes-explainer"] #grain-overlay .grain-texture {
+        position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        opacity: 0.06; animation: hf-grain-noise 0.5s steps(1) infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hermes-explainer" data-composition-id="hermes-explainer"
+         data-start="0" data-duration="30" data-width="1920" data-height="1080">
+      <div class="bg"></div>
+
+      <!-- Scene 1: Hook — "What is Hermes?" (0-4s) -->
+      <div id="scene-1" class="scene-wrap"
+           data-composition-id="s1-hook"
+           data-composition-src="compositions/s1-hook.html"
+           data-start="0" data-duration="4" data-track-index="1"
+           data-width="1920" data-height="1080"></div>
+
+      <!-- Scene 2: Skills — Spellbook (4-9s) -->
+      <div id="scene-2" class="scene-wrap"
+           data-composition-id="s2-skills"
+           data-composition-src="compositions/s2-skills.html"
+           data-start="4" data-duration="5" data-track-index="2"
+           data-width="1920" data-height="1080"></div>
+
+      <!-- Scene 3: Memories — The Pensieve (9-14s) -->
+      <div id="scene-3" class="scene-wrap"
+           data-composition-id="s3-memories"
+           data-composition-src="compositions/s3-memories.html"
+           data-start="9" data-duration="5" data-track-index="3"
+           data-width="1920" data-height="1080"></div>
+
+      <!-- Scene 4: Orchestration — Agents & Tools (14-20s) -->
+      <div id="scene-4" class="scene-wrap"
+           data-composition-id="s4-orchestrate"
+           data-composition-src="compositions/s4-orchestrate.html"
+           data-start="14" data-duration="6" data-track-index="4"
+           data-width="1920" data-height="1080"></div>
+
+      <!-- Scene 5: Gateway — Connect Everywhere (20-25s) -->
+      <div id="scene-5" class="scene-wrap"
+           data-composition-id="s5-gateway"
+           data-composition-src="compositions/s5-gateway.html"
+           data-start="20" data-duration="5" data-track-index="5"
+           data-width="1920" data-height="1080"></div>
+
+      <!-- Scene 6: CTA — Outro (25-30s) -->
+      <div id="scene-6" class="scene-wrap"
+           data-composition-id="s6-cta"
+           data-composition-src="compositions/s6-cta.html"
+           data-start="25" data-duration="5" data-track-index="6"
+           data-width="1920" data-height="1080"></div>
+
+      <!-- Grain overlay -->
+      <div id="grain-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;">
+        <div class="grain-texture"></div>
+      </div>
+
+      <!-- Ambient music pad -->
+      <audio id="music" data-start="0" data-duration="30" data-track-index="0"
+             data-volume="0.12" src="assets/warm-pad.mp3"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Transition 1->2: Zoom-through (0.35s)
+      tl.to("#scene-1", { autoAlpha: 0, scale: 1.3, duration: 0.35, ease: "power4.inOut" }, 3.65);
+      tl.fromTo("#scene-2", { autoAlpha: 0, scale: 0.7 },
+        { autoAlpha: 1, scale: 1, duration: 0.35, ease: "power4.inOut" }, 3.65);
+
+      // Transition 2->3: Push-slide left (0.3s)
+      tl.to("#scene-2", { autoAlpha: 0, xPercent: -20, duration: 0.3, ease: "power2.inOut" }, 8.7);
+      tl.fromTo("#scene-3", { autoAlpha: 0, xPercent: 20 },
+        { autoAlpha: 1, xPercent: 0, duration: 0.3, ease: "power2.inOut" }, 8.7);
+
+      // Transition 3->4: Flash-through-white (0.35s)
+      tl.to("#scene-3", { autoAlpha: 0, scale: 1.15, duration: 0.35, ease: "power3.in" }, 13.65);
+      tl.fromTo("#scene-4", { autoAlpha: 0, scale: 0.85 },
+        { autoAlpha: 1, scale: 1, duration: 0.35, ease: "power3.out" }, 13.65);
+
+      // Transition 4->5: Push-slide left (0.3s)
+      tl.to("#scene-4", { autoAlpha: 0, xPercent: -20, duration: 0.3, ease: "power2.inOut" }, 19.7);
+      tl.fromTo("#scene-5", { autoAlpha: 0, xPercent: 20 },
+        { autoAlpha: 1, xPercent: 0, duration: 0.3, ease: "power2.inOut" }, 19.7);
+
+      // Transition 5->6: Blur crossfade (0.5s)
+      tl.to("#scene-5", { autoAlpha: 0, filter: "blur(14px)", scale: 1.05, duration: 0.5, ease: "sine.inOut" }, 24.5);
+      tl.fromTo("#scene-6", { autoAlpha: 0, filter: "blur(14px)", scale: 0.95 },
+        { autoAlpha: 1, filter: "blur(0px)", scale: 1, duration: 0.5, ease: "sine.inOut" }, 24.5);
+
+      // Hold final scene
+      tl.set("#scene-6", { autoAlpha: 1 }, 29.9);
+
+      // Law #11 anchor
+      tl.set({}, {}, 30);
+      window.__timelines["hermes-explainer"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<template id="s3-memories-template">
+  <div data-composition-id="s3-memories" data-start="0" data-duration="5" data-width="1920" data-height="1080">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&family=Roboto+Mono:wght@400;500;700&display=block" />
+    <div class="scene">
+      <!-- Radial glow -->
+      <div class="glow"></div>
+
+      <!-- Section label -->
+      <div class="lbl">MEMORIES</div>
+
+      <!-- Central orb -->
+      <div class="orb-wrap">
+        <div class="orb"></div>
+        <div class="orb-ring"></div>
+        <div class="orb-ring r2"></div>
+      </div>
+
+      <!-- Memory items floating around -->
+      <div class="mem m1">User preferences</div>
+      <div class="mem m2">Project context</div>
+      <div class="mem m3">Learned patterns</div>
+      <div class="mem m4">Tool quirks</div>
+      <div class="mem m5">API endpoints</div>
+      <div class="mem m6">Past decisions</div>
+
+      <!-- Tagline -->
+      <div class="tagline">Remembers everything. Forgets nothing.</div>
+    </div>
+
+    <style>
+      [data-composition-id="s3-memories"] { position: absolute; inset: 0; background: #07121c; overflow: hidden; }
+      [data-composition-id="s3-memories"] .scene {
+        position: absolute; inset: 0;
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        padding: 100px 160px; box-sizing: border-box; gap: 30px;
+      }
+      [data-composition-id="s3-memories"] .glow {
+        position: absolute; top: 50%; left: 50%; width: 800px; height: 800px;
+        margin-top: -400px; margin-left: -400px;
+        background: radial-gradient(circle, rgba(55,189,248,0.12) 0%, rgba(7,18,28,0) 60%);
+        pointer-events: none;
+      }
+      [data-composition-id="s3-memories"] .lbl {
+        font-family: "Roboto Mono", monospace; font-weight: 500; font-size: 20px;
+        color: #37bdf8; letter-spacing: 0.28em; text-transform: uppercase; z-index: 2;
+      }
+      [data-composition-id="s3-memories"] .orb-wrap {
+        position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center;
+      }
+      [data-composition-id="s3-memories"] .orb {
+        width: 80px; height: 80px; border-radius: 50%;
+        background: radial-gradient(circle, #37bdf8, #195066);
+        box-shadow: 0 0 60px rgba(55,189,248,0.6), 0 0 120px rgba(55,189,248,0.3);
+      }
+      [data-composition-id="s3-memories"] .orb-ring {
+        position: absolute; width: 140px; height: 140px; border-radius: 50%;
+        border: 1.5px solid rgba(55,189,248,0.4);
+      }
+      [data-composition-id="s3-memories"] .orb-ring.r2 { width: 200px; height: 200px; border-color: rgba(55,189,248,0.15); }
+      [data-composition-id="s3-memories"] .mem {
+        position: absolute; padding: 10px 20px; border-radius: 999px;
+        background: rgba(13,32,49,0.9); border: 1px solid #37bdf8;
+        font-family: "Roboto Mono", monospace; font-weight: 500; font-size: 18px; color: #37bdf8;
+      }
+      [data-composition-id="s3-memories"] .m1 { top: 18%; left: 12%; }
+      [data-composition-id="s3-memories"] .m2 { top: 15%; right: 12%; }
+      [data-composition-id="s3-memories"] .m3 { top: 45%; left: 6%; }
+      [data-composition-id="s3-memories"] .m4 { top: 45%; right: 6%; }
+      [data-composition-id="s3-memories"] .m5 { bottom: 22%; left: 10%; }
+      [data-composition-id="s3-memories"] .m6 { bottom: 18%; right: 10%; }
+      [data-composition-id="s3-memories"] .tagline {
+        font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 36px;
+        color: #ffffff; z-index: 2;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      (function() {
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+        const r = '[data-composition-id="s3-memories"]';
+
+        tl.from(r + " .glow", { autoAlpha: 0, scale: 0.5, duration: 0.8, ease: "power2.out" }, 0.1);
+        tl.from(r + " .lbl", { autoAlpha: 0, y: -20, duration: 0.35, ease: "expo.out" }, 0.2);
+        tl.from(r + " .orb", { autoAlpha: 0, scale: 0, duration: 0.6, ease: "back.out(2)" }, 0.4);
+        tl.from(r + " .orb-ring", { autoAlpha: 0, scale: 0.3, duration: 0.7, ease: "expo.out", stagger: 0.15 }, 0.6);
+        tl.from(r + " .mem", {
+          autoAlpha: 0, scale: 0.7, duration: 0.35, ease: "back.out(1.8)", stagger: 0.12
+        }, 0.8);
+        tl.from(r + " .tagline", { autoAlpha: 0, y: 20, duration: 0.4, ease: "power2.out" }, 2.2);
+
+        // Orb pulse
+        tl.to(r + " .orb", { scale: 1.15, duration: 0.8, ease: "sine.inOut", repeat: 2, yoyo: true }, 1.5);
+        tl.to(r + " .orb-ring", { scale: 1.08, duration: 1.0, ease: "sine.inOut", repeat: 1, yoyo: true, stagger: 0.1 }, 1.8);
+
+        // Memory pills drift
+        tl.to(r + " .m1, " + r + " .m3, " + r + " .m5", { x: 15, duration: 2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 2.5);
+        tl.to(r + " .m2, " + r + " .m4, " + r + " .m6", { x: -15, duration: 2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 2.5);
+
+        tl.set({}, {}, 5);
+        window.__timelines["s3-memories"] = tl;
+      })();
+    </script>
+  </div>
+</template>

@@ -1,0 +1,11 @@
+:root {
+  --hermes-bg: #07121c;
+  --hermes-surface: #0d2031;
+  --hermes-surface-2: #195066;
+  --hermes-border: #252d33;
+  --hermes-accent: #37bdf8;
+  --hermes-accent-glow: #0307ff;
+  --hermes-warn: #f09025;
+  --hermes-text: #ffffff;
+  --hermes-text-dim: #96a2b6;
+}

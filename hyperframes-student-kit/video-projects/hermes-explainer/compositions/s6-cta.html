@@ -1,0 +1,102 @@
+<template id="s6-cta-template">
+  <div data-composition-id="s6-cta" data-start="0" data-duration="5" data-width="1920" data-height="1080">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&family=Roboto+Mono:wght@400;500;700&display=block" />
+    <div class="scene">
+      <!-- Ambient glow -->
+      <div class="glow"></div>
+
+      <!-- Corner ticks -->
+      <div class="tick tl"></div>
+      <div class="tick tr"></div>
+      <div class="tick bl"></div>
+      <div class="tick br"></div>
+
+      <!-- Logo / Wordmark -->
+      <div class="logo">HERMES</div>
+
+      <!-- Tagline -->
+      <div class="tagline">Your AI Agent. Your Rules.</div>
+
+      <!-- CTA pill -->
+      <div class="cta-pill">
+        <span class="cta-dot"></span>
+        <span class="cta-text">hermes-agent.nousresearch.com</span>
+      </div>
+
+      <!-- Bottom label -->
+      <div class="bottom-lbl">Autonomous. Persistent. Yours.</div>
+    </div>
+
+    <style>
+      [data-composition-id="s6-cta"] { position: absolute; inset: 0; background: #07121c; overflow: hidden; }
+      [data-composition-id="s6-cta"] .scene {
+        position: absolute; inset: 0;
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        padding: 100px 160px; box-sizing: border-box; gap: 32px;
+      }
+      [data-composition-id="s6-cta"] .glow {
+        position: absolute; top: 50%; left: 50%; width: 1000px; height: 1000px;
+        margin-top: -500px; margin-left: -500px;
+        background: radial-gradient(circle, rgba(55,189,248,0.15) 0%, rgba(7,18,28,0) 50%);
+        pointer-events: none;
+      }
+      [data-composition-id="s6-cta"] .tick { position: absolute; width: 40px; height: 40px; }
+      [data-composition-id="s6-cta"] .tick.tl { top: 60px; left: 60px; border-top: 2px solid #37bdf8; border-left: 2px solid #37bdf8; }
+      [data-composition-id="s6-cta"] .tick.tr { top: 60px; right: 60px; border-top: 2px solid #37bdf8; border-right: 2px solid #37bdf8; }
+      [data-composition-id="s6-cta"] .tick.bl { bottom: 60px; left: 60px; border-bottom: 2px solid #37bdf8; border-left: 2px solid #37bdf8; }
+      [data-composition-id="s6-cta"] .tick.br { bottom: 60px; right: 60px; border-bottom: 2px solid #37bdf8; border-right: 2px solid #37bdf8; }
+      [data-composition-id="s6-cta"] .logo {
+        font-family: "Montserrat", sans-serif; font-weight: 900; font-size: 120px;
+        letter-spacing: 0.06em; color: #ffffff;
+        text-shadow: 0 0 40px rgba(55,189,248,0.4), 0 0 80px rgba(55,189,248,0.2);
+      }
+      [data-composition-id="s6-cta"] .tagline {
+        font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 42px;
+        background: linear-gradient(90deg, #37bdf8, #5ee2d9);
+        -webkit-background-clip: text; color: transparent;
+      }
+      [data-composition-id="s6-cta"] .cta-pill {
+        display: inline-flex; align-items: center; gap: 14px;
+        padding: 16px 36px; border: 1.5px solid #37bdf8; border-radius: 999px;
+        background: rgba(13,32,49,0.8);
+        font-family: "Roboto Mono", monospace; font-weight: 500; font-size: 22px;
+        color: #ffffff; letter-spacing: 0.04em;
+      }
+      [data-composition-id="s6-cta"] .cta-dot {
+        width: 12px; height: 12px; border-radius: 50%; background: #37bdf8;
+        box-shadow: 0 0 12px rgba(55,189,248,0.95);
+      }
+      [data-composition-id="s6-cta"] .bottom-lbl {
+        font-family: "Roboto Mono", monospace; font-weight: 500; font-size: 18px;
+        color: #96a2b6; letter-spacing: 0.14em;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      (function() {
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+        const r = '[data-composition-id="s6-cta"]';
+
+        tl.from(r + " .glow", { autoAlpha: 0, scale: 0.5, duration: 0.8, ease: "power2.out" }, 0.1);
+        tl.from(r + " .tick", { autoAlpha: 0, scale: 0.5, duration: 0.3, stagger: 0.06, ease: "expo.out" }, 0.15);
+        tl.from(r + " .logo", { autoAlpha: 0, y: 40, scale: 0.9, duration: 0.6, ease: "back.out(1.6)" }, 0.3);
+        tl.from(r + " .tagline", { autoAlpha: 0, y: 20, duration: 0.4, ease: "power2.out" }, 0.8);
+        tl.from(r + " .cta-pill", { autoAlpha: 0, y: 20, scale: 0.9, duration: 0.4, ease: "back.out(1.8)" }, 1.2);
+        tl.from(r + " .cta-dot", { scale: 0, duration: 0.3, ease: "back.out(2)" }, 1.5);
+        tl.from(r + " .bottom-lbl", { autoAlpha: 0, y: 10, duration: 0.35, ease: "power2.out" }, 1.6);
+
+        // CTA breathing
+        tl.to(r + " .cta-pill", { scale: 1.03, duration: 0.8, ease: "sine.inOut", repeat: 2, yoyo: true }, 2.0);
+        tl.to(r + " .logo", { scale: 1.02, duration: 1.0, ease: "sine.inOut", repeat: 1, yoyo: true }, 2.5);
+
+        // FINAL SCENE: fade non-essential elements
+        tl.to(r + " .bottom-lbl", { autoAlpha: 0.3, duration: 0.5, ease: "power2.out" }, 4.2);
+
+        tl.set({}, {}, 5);
+        window.__timelines["s6-cta"] = tl;
+      })();
+    </script>
+  </div>
+</template>
